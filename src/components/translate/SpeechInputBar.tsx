@@ -80,7 +80,8 @@ export default function SpeechInputBar({
         transcript += event.results[i][0].transcript;
       }
       onChange(transcript);
-      if (event.results[0]?.isFinal) {
+      const lastResult = event.results[event.results.length - 1];
+      if (lastResult?.isFinal) {
         setIsListening(false);
         if (transcript.trim()) {
           onSubmit(transcript.trim());
@@ -101,7 +102,11 @@ export default function SpeechInputBar({
     };
 
     recognitionRef.current = recognition;
-    recognition.start();
+    try {
+      recognition.start();
+    } catch {
+      setIsListening(false);
+    }
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -145,7 +150,7 @@ export default function SpeechInputBar({
             placeholder={
               isListening
                 ? "말씀해 주세요... (듣고 있습니다)"
-                : "어르신께 전할 말을 입력하세요 (예: 추석 잘 보내세요)"
+                : "농인과 나눌 대화를 입력하세요 (예: 추석 잘 보내세요)"
             }
             className="w-full min-w-0 bg-transparent px-1.5 py-2 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"
           />

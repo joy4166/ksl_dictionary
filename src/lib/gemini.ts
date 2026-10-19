@@ -1207,8 +1207,8 @@ export async function translateKoreanToKsl(
         required: ["tokens", "nonManualTip", "contextExplanation"],
       };
 
-      const prompt = `당신은 농아인주간보호시설 어르신들과 소통하는 한국수어(KSL) 수석 통역사입니다.
-입력된 한국어 문장을 단순 단어 나열이 아니라 **절(Clause)과 구문(Chunk) 단위로 의미를 파악하여 농아인 어르신이 가장 직관적으로 이해할 수 있는 쉬운 기본 한국수어(KSL) 어순으로 압축 번역**하세요.
+      const prompt = `당신은 농인과 원활한 대화를 돕는 한국수어(KSL) 수석 통역사입니다.
+입력된 한국어 문장을 단순 단어 나열이 아니라 **절(Clause)과 구문(Chunk) 단위로 의미를 파악하여 농인이 가장 직관적으로 이해할 수 있는 쉬운 기본 한국수어(KSL) 어순으로 압축 번역**하세요.
 
 [핵심 번역 및 구문 압축 규칙]
 1. 쉬운 기본 수어 최우선 치환 (Easy-KSL Paraphrasing):
@@ -1287,7 +1287,7 @@ export async function translateKoreanToKsl(
           senseIndex: 1,
           meaning: `${token.originalPart} (${cleanPrimaryGloss})`,
           category: "일상",
-          signDescription: `'${cleanPrimaryGloss}' 표현입니다. 어르신께 입모양(구화)과 자연스러운 제스처로 천천히 전달해 주세요.`,
+          signDescription: `'${cleanPrimaryGloss}' 표현입니다. 상대방에게 입모양(구화)과 자연스러운 제스처로 천천히 전달해 주세요.`,
           actionSummary: `입모양으로 '${cleanPrimaryGloss}'을(를) 분명하게 보여주며 표현하기`,
           handShapeHint: "👐",
           imageUrls: ["/fallback-sign.svg"],
@@ -1348,7 +1348,7 @@ export async function translateKoreanToKsl(
         }
       } else if (cleanPrimaryGloss === "가능하다" || cleanPrimaryGloss === "괜찮다") {
         const possibleSign = getSignById("ksl_080");
-        const okaySign = getSignById("ksl_028");
+        const okaySign = getSignById("ksl_032");
         for (const extra of [possibleSign, okaySign]) {
           if (extra && !enrichedCandidates.some((c) => c.id === extra.id)) {
             enrichedCandidates.push(extra);

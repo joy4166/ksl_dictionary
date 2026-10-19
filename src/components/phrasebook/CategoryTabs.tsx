@@ -48,7 +48,7 @@ export default function CategoryTabs({
         <LayoutGrid className="h-3.5 w-3.5" />
         <span>전체</span>
         <span
-          className={`rounded-full px-1.5 py-0.2 text-[10px] ${
+          className={`rounded-full px-1.5 py-0.5 text-[10px] ${
             selectedCategory === "all"
               ? "bg-blue-500 text-white"
               : "bg-slate-100 text-slate-600"
@@ -77,7 +77,7 @@ export default function CategoryTabs({
             <Icon className="h-3.5 w-3.5" />
             <span>{cat.label}</span>
             <span
-              className={`rounded-full px-1.5 py-0.2 text-[10px] ${
+              className={`rounded-full px-1.5 py-0.5 text-[10px] ${
                 isSelected
                   ? "bg-blue-500 text-white"
                   : "bg-slate-100 text-slate-600"

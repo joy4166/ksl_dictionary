@@ -70,7 +70,7 @@ export default function BottomNav({
                   }`}
                 />
                 {typeof item.badge === "number" && item.badge > 0 && (
-                  <span className=" -top-1.5 -right-3.5 absolute rounded-full bg-blue-600 px-1.5 py-0.2 text-[10px] font-bold text-white">
+                  <span className="-top-1.5 -right-3.5 absolute rounded-full bg-blue-600 px-1.5 py-0.5 text-[10px] font-bold text-white">
                     {item.badge}
                   </span>
                 )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { MessageSquareHeart, Sparkles } from "lucide-react";
 import BottomNav, { ActiveTabId } from "@/components/layout/BottomNav";
 import Header from "@/components/layout/Header";
 import CategoryTabs, {
@@ -14,7 +15,6 @@ import SignSequenceList from "@/components/translate/SignSequenceList";
 import SpeechInputBar from "@/components/translate/SpeechInputBar";
 import {
   getPresetPhrasebook,
-  getSignById,
   searchReverseByMotionLocal,
 } from "@/lib/ksl-dictionary";
 import {
@@ -33,51 +33,15 @@ import {
 
 const API_KEY_STORAGE = "my_sign_dictionary_gemini_api_key_v1";
 
-function createInitialDemoResult(): TranslationResult {
-  const chuseok = getSignById("ksl_002")!;
-  const well = getSignById("ksl_003")!;
-  const spendTime = getSignById("ksl_004")!;
-  const sendItem = getSignById("ksl_005")!;
-
-  return {
-    inputSentence: "추석 잘 보내세요",
-    glossSummary: "[추석] → [잘] → [지내다]",
-    nonManualTip:
-      "환하게 웃으며 따뜻한 명절 덕담을 건네듯 고개를 부드럽게 끄덕이며 표현하세요.",
-    kslSequence: [
-      {
-        originalPart: "추석",
-        kslGloss: "추석",
-        selectedSign: chuseok,
-        alternativeSigns: [],
-      },
-      {
-        originalPart: "잘",
-        kslGloss: "잘",
-        selectedSign: well,
-        alternativeSigns: [],
-      },
-      {
-        originalPart: "보내세요",
-        kslGloss: "지내다",
-        selectedSign: spendTime,
-        alternativeSigns: sendItem ? [sendItem] : [],
-        selectionReason:
-          "시간·명절을 '보내다'는 물건 발송('보내다')이 아닌 '지내다/생활하다' 수어를 사용합니다.",
-      },
-    ],
-  };
-}
-
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<ActiveTabId>("translate");
   const [isLargeMode, setIsLargeMode] = useState(false);
   const [apiKey, setApiKey] = useState("");
 
-  // --- [탭 1: 문장 번역 상태] ---
-  const [inputSentence, setInputSentence] = useState("추석 잘 보내세요");
+  // --- [탭 1: 문장 번역 상태 (초기 진입 시 자동 검색 없음)] ---
+  const [inputSentence, setInputSentence] = useState("");
   const [translationResult, setTranslationResult] =
-    useState<TranslationResult>(createInitialDemoResult);
+    useState<TranslationResult | null>(null);
   const [isTranslating, setIsTranslating] = useState(false);
   const [translateError, setTranslateError] = useState<string | null>(null);
 
@@ -161,6 +125,7 @@ export default function HomePage() {
     newSign: SignWordEntry
   ) => {
     setTranslationResult((prev) => {
+      if (!prev) return prev;
       const updatedSeq = [...prev.kslSequence];
       const currentToken = updatedSeq[tokenIndex];
       if (!currentToken) return prev;
@@ -190,6 +155,7 @@ export default function HomePage() {
 
   // 현재 번역 결과를 나만의 문장함에 저장
   const handleSaveCurrentPhrase = (categoryId: PhraseCategoryId) => {
+    if (!translationResult) return;
     savePhraseToStorage(translationResult, categoryId);
     setSavedPhrases(getAllSavedPhrases());
   };
@@ -282,9 +248,12 @@ export default function HomePage() {
   }, [categories]);
 
   const currentSentenceIsSaved = useMemo(
-    () => isSentenceSaved(translationResult.inputSentence),
+    () =>
+      translationResult
+        ? isSentenceSaved(translationResult.inputSentence)
+        : false,
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [translationResult.inputSentence, savedPhrases]
+    [translationResult?.inputSentence, savedPhrases]
   );
 
   return (
@@ -296,10 +265,10 @@ export default function HomePage() {
         onSaveApiKey={handleSaveApiKey}
       />
 
-      {/* 어르신 화면 공유 모드 활성화 안내 바 */}
+      {/* 화면 공유 모드 활성화 안내 바 */}
       {isLargeMode && (
         <div className="bg-amber-500 px-4 py-1.5 text-center text-xs font-extrabold text-white shadow-2xs">
-          🔍 어르신 화면 공유 모드 (글자와 수어 동작 카드를 큼직하게 표시합니다)
+          🔍 대화 화면 공유 모드 (글자와 수어 동작 카드를 큼직하게 표시합니다)
         </div>
       )}
 
@@ -327,7 +296,7 @@ export default function HomePage() {
                 <div className="h-40 rounded-2xl bg-slate-200/80" />
                 <div className="h-40 rounded-2xl bg-slate-200/80" />
               </div>
-            ) : (
+            ) : translationResult ? (
               <>
                 <NonManualTipBanner
                   result={translationResult}
@@ -342,16 +311,38 @@ export default function HomePage() {
                   isLargeMode={isLargeMode}
                 />
               </>
+            ) : (
+              <div className="rounded-2xl border border-slate-200/90 bg-white p-6 text-center shadow-2xs space-y-3">
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
+                  <MessageSquareHeart className="h-6 w-6" />
+                </div>
+                <div className="space-y-1">
+                  <h2 className="text-sm font-extrabold text-slate-900">
+                    농인과 나누고 싶은 말을 입력해 보세요
+                  </h2>
+                  <p className="text-xs text-slate-500 leading-relaxed">
+                    한국어 문장을 입력하거나 음성으로 말하면, 한국수어(KSL) 어순과 문맥에 맞는 수어 영상·수형 카드로 변환해 드립니다.
+                  </p>
+                </div>
+                <div className="rounded-xl bg-slate-50 p-3 text-left text-[11px] text-slate-600 space-y-1 border border-slate-100">
+                  <div className="font-bold text-slate-700 flex items-center gap-1">
+                    <Sparkles className="h-3.5 w-3.5 text-blue-600" />
+                    <span>이렇게 활용해 보세요</span>
+                  </div>
+                  <p>• 위 입력창에 문장을 입력하거나 <strong>빠른 예시</strong> 버튼을 눌러보세요.</p>
+                  <p>• 동음이의어(예: 명절을 <strong>보내다→지내다</strong>, 대회를 <strong>나가다→참가하다</strong>)도 문맥에 맞게 자동 선택됩니다.</p>
+                </div>
+              </div>
             )}
           </div>
         )}
 
-        {/* === [탭 2: 주간보호시설 상황별 문장함] === */}
+        {/* === [탭 2: 대화 상황별 문장함] === */}
         {activeTab === "phrasebook" && (
           <div className="space-y-4">
             <div className="rounded-2xl bg-blue-50/90 border border-blue-200 px-3.5 py-2.5 text-xs text-blue-950">
               <strong className="font-extrabold text-blue-800">
-                현장 원터치 문장함:
+                원터치 대화 문장함:
               </strong>{" "}
               자주 쓰는 상황별 문장을 터치하면 검색 기다림 없이{" "}
               <strong>0.1초 만에</strong> 수어 순서와 동작 카드가 펼쳐집니다.
@@ -398,6 +389,7 @@ export default function HomePage() {
             <CandidateList
               candidates={reverseCandidates}
               isLargeMode={isLargeMode}
+              isInitialBrowse={!reverseQuery.trim() && selectedChips.length === 0}
             />
           </div>
         )}

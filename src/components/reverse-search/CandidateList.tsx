@@ -7,11 +7,13 @@ import { ReverseSearchCandidate } from "@/types/sign";
 interface CandidateListProps {
   candidates: ReverseSearchCandidate[];
   isLargeMode?: boolean;
+  isInitialBrowse?: boolean;
 }
 
 export default function CandidateList({
   candidates,
   isLargeMode = false,
+  isInitialBrowse = false,
 }: CandidateListProps) {
   if (candidates.length === 0) {
     return (
@@ -31,10 +33,12 @@ export default function CandidateList({
     <div className="space-y-3">
       <div className="flex items-center justify-between px-1">
         <h2 className="text-sm font-extrabold text-slate-800">
-          일치하는 수어 동작 후보 ({candidates.length}건)
+          {isInitialBrowse
+            ? `자주 찾는 기본 수어 동작 (${candidates.length}건)`
+            : `일치하는 수어 동작 후보 (${candidates.length}건)`}
         </h2>
         <span className="text-[11px] text-slate-500">
-          수형 설명 유사도 순 정렬
+          {isInitialBrowse ? "태그나 묘사를 입력해 검색하세요" : "수형 설명 유사도 순 정렬"}
         </span>
       </div>
 
@@ -49,14 +53,16 @@ export default function CandidateList({
               <div className="flex items-center gap-1.5">
                 <span
                   className={`inline-flex items-center gap-1 rounded-lg px-2 py-0.5 text-xs font-extrabold ${
-                    idx === 0
+                    !isInitialBrowse && idx === 0
                       ? "bg-indigo-600 text-white"
                       : "bg-indigo-100 text-indigo-800"
                   }`}
                 >
                   <CheckCircle2 className="h-3.5 w-3.5" />
                   <span>
-                    {idx + 1}순위 후보 ({item.score}% 일치)
+                    {isInitialBrowse
+                      ? "기본 추천 수어"
+                      : `${idx + 1}순위 후보 (${item.score}% 일치)`}
                   </span>
                 </span>
                 <div className="flex flex-wrap gap-1">
@@ -72,9 +78,11 @@ export default function CandidateList({
               </div>
             </div>
 
-            <p className="px-1.5 text-xs font-medium text-indigo-950">
-              💡 {item.matchReason}
-            </p>
+            {!isInitialBrowse && (
+              <p className="px-1.5 text-xs font-medium text-indigo-950">
+                💡 {item.matchReason}
+              </p>
+            )}
 
             <SignCard sign={item.sign} isLargeMode={isLargeMode} />
           </div>

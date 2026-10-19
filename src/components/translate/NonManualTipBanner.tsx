@@ -71,7 +71,7 @@ export default function NonManualTipBanner({
       {showCategoryPicker && !isSaved && (
         <div className="rounded-xl bg-white p-3 border border-blue-200 space-y-2">
           <div className="text-xs font-bold text-slate-700">
-            저장할 주간보호시설 상황 카테고리를 선택하세요:
+            저장할 대화 상황 카테고리를 선택하세요:
           </div>
           <div className="flex flex-wrap gap-1.5">
             {CATEGORY_OPTIONS.map((cat) => (

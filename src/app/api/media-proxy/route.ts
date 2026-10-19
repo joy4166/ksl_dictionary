@@ -37,6 +37,7 @@ export async function GET(req: NextRequest) {
   try {
     const upstream = await fetch(targetUrl.toString(), {
       headers,
+      signal: AbortSignal.timeout(10000),
     });
 
     if (!upstream.ok && upstream.status !== 206) {

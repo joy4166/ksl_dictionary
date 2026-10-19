@@ -38,7 +38,7 @@ export default function Header({
               </span>
             </div>
             <p className="text-[11px] text-slate-500">
-              농아인주간보호시설 어르신 소통 도우미
+              농인과 대화를 위한 소통 앱
             </p>
           </div>
         </div>
