@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="42" fill="url(#bg)" />
+  <circle cx="96" cy="96" r="64" fill="#ffffff" fill-opacity="0.14" />
+  <path d="M96 54c-11 0-20 8-20 19 0 15 20 31 20 31s20-16 20-31c0-11-9-19-20-19z" fill="#fbbf24" />
+  <path d="M56 118c0-9 7-16 16-16h48c9 0 16 7 16 16v14c0 9-7 16-16 16H72c-9 0-16-7-16-16v-14z" fill="#ffffff" />
+  <text x="96" y="131" font-family="sans-serif" font-size="22" font-weight="800" fill="#1e40af" text-anchor="middle">수어</text>
+</svg>

@@ -1,0 +1,162 @@
+{
+  "categories": [
+    {
+      "id": "greeting",
+      "label": "인사/안부",
+      "iconName": "Smile",
+      "description": "출석 맞이, 명절·주말 안부, 컨디션 인사"
+    },
+    {
+      "id": "meal",
+      "label": "식사/간식",
+      "iconName": "Utensils",
+      "description": "점심 식사, 간식 배식, 추가 배식 및 식수 안내"
+    },
+    {
+      "id": "health",
+      "label": "복약/건강",
+      "iconName": "HeartPulse",
+      "description": "통증 부위 확인, 복약 안내, 휴식 및 화장실 안내"
+    },
+    {
+      "id": "program",
+      "label": "프로그램",
+      "iconName": "Activity",
+      "description": "건강 체조, 자리 안내, 주간보호 활동 시작"
+    },
+    {
+      "id": "farewell",
+      "label": "귀가/송영",
+      "iconName": "Home",
+      "description": "하원 차량 탑승, 안전 귀가 인사, 내일 약속"
+    }
+  ],
+  "phrases": [
+    {
+      "id": "preset_greeting_1",
+      "categoryId": "greeting",
+      "title": "안녕하세요, 오늘 기분 어떠세요?",
+      "nonManualTip": "밝은 미소로 눈을 맞추며 고개를 살짝 숙여 인사한 뒤, 눈썹을 살짝 올리며 다정하게 물어보세요.",
+      "signIds": ["ksl_001", "ksl_007", "ksl_008", "ksl_009"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:00:00.000Z"
+    },
+    {
+      "id": "preset_greeting_2",
+      "categoryId": "greeting",
+      "title": "추석 잘 보내세요",
+      "nonManualTip": "환하게 웃으며 따뜻한 명절 덕담을 건네듯 고개를 부드럽게 끄덕이며 표현하세요. ('물건을 보내다'가 아닌 '지내다' 수어 사용)",
+      "signIds": ["ksl_002", "ksl_003", "ksl_004"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:01:00.000Z"
+    },
+    {
+      "id": "preset_greeting_3",
+      "categoryId": "greeting",
+      "title": "주말 잘 보내셨어요?",
+      "nonManualTip": "마지막 '끝(완료)' 동작에서 눈썹을 살짝 올리고 고개를 앞으로 살짝 기울여 질문형(과거 의문)임을 표현하세요.",
+      "signIds": ["ksl_006", "ksl_003", "ksl_004", "ksl_013"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:02:00.000Z"
+    },
+    {
+      "id": "preset_meal_1",
+      "categoryId": "meal",
+      "title": "오늘 점심 맛있게 드셨어요?",
+      "nonManualTip": "'맛있다'에서 밝은 표정을 짓고, 마지막 '끝' 동작에서 눈썹을 올려 다정하게 여쭤보세요.",
+      "signIds": ["ksl_007", "ksl_010", "ksl_011", "ksl_012", "ksl_013"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:03:00.000Z"
+    },
+    {
+      "id": "preset_meal_2",
+      "categoryId": "meal",
+      "title": "맛있게 드세요",
+      "nonManualTip": "입가에 미소를 머금고 고개를 가볍게 끄덕이며 권유하듯 표현하세요.",
+      "signIds": ["ksl_011", "ksl_012"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:04:00.000Z"
+    },
+    {
+      "id": "preset_meal_3",
+      "categoryId": "meal",
+      "title": "더 드릴까요?",
+      "nonManualTip": "'드리다' 동작을 하며 눈썹을 살짝 올리고 어르신의 식판을 바라보며 질문하세요.",
+      "signIds": ["ksl_014", "ksl_015"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:05:00.000Z"
+    },
+    {
+      "id": "preset_meal_4",
+      "categoryId": "meal",
+      "title": "물 드릴까요?",
+      "nonManualTip": "컵을 마시는 동작('물') 후 두 손을 공손히 내밀며('드리다') 눈을 맞춰 물어보세요.",
+      "signIds": ["ksl_016", "ksl_015"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:06:00.000Z"
+    },
+    {
+      "id": "preset_health_1",
+      "categoryId": "health",
+      "title": "어디 편찮으신 곳 있으세요?",
+      "nonManualTip": "눈썹을 살짝 모으고 걱정스럽고 세심한 표정으로 어르신의 몸 상태를 살피며 표현하세요.",
+      "signIds": ["ksl_017", "ksl_018"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:07:00.000Z"
+    },
+    {
+      "id": "preset_health_2",
+      "categoryId": "health",
+      "title": "약 드실 시간이에요",
+      "nonManualTip": "손목시계 자리를 톡톡 두드린 뒤 따뜻하게 안내하는 표정으로 고개를 끄덕이세요.",
+      "signIds": ["ksl_019", "ksl_020"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:08:00.000Z"
+    },
+    {
+      "id": "preset_health_3",
+      "categoryId": "health",
+      "title": "괜찮으세요? 편히 쉬세요",
+      "nonManualTip": "부드러운 눈빛으로 고개를 끄덕이며 안심시켜 드리듯 천천히 표현하세요.",
+      "signIds": ["ksl_032", "ksl_035"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:09:00.000Z"
+    },
+    {
+      "id": "preset_program_1",
+      "categoryId": "program",
+      "title": "잠시 후 체조 시작해요",
+      "nonManualTip": "활기차고 밝은 표정으로 어르신들의 주의를 집중시키며 팔을 힘차게 움직여 표현하세요.",
+      "signIds": ["ksl_021", "ksl_022", "ksl_023"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:10:00.000Z"
+    },
+    {
+      "id": "preset_program_2",
+      "categoryId": "program",
+      "title": "여기로 앉아 주세요",
+      "nonManualTip": "앉으실 의자 방향을 실제로 가리킨 뒤, 공손한 미소와 함께 착석 동작을 안내하세요.",
+      "signIds": ["ksl_024", "ksl_025"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:11:00.000Z"
+    },
+    {
+      "id": "preset_farewell_1",
+      "categoryId": "farewell",
+      "title": "조심히 들어가세요",
+      "nonManualTip": "'조심하다'에서는 진지하게 주의를 당부하는 표정을, '돌아가다'에서는 따뜻한 미소를 지으세요.",
+      "signIds": ["ksl_026", "ksl_027"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:12:00.000Z"
+    },
+    {
+      "id": "preset_farewell_2",
+      "categoryId": "farewell",
+      "title": "내일 또 봬요",
+      "nonManualTip": "밝게 웃으며 내일 다시 만날 것을 기대하는 표정으로 눈을 맞추며 인사하세요.",
+      "signIds": ["ksl_028", "ksl_029", "ksl_030"],
+      "isPreset": true,
+      "createdAt": "2026-10-19T09:13:00.000Z"
+    }
+  ]
+}
