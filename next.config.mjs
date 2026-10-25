@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  serverExternalPackages: ["garu-ko"],
+  outputFileTracingIncludes: {
+    "/api/**/*": ["./node_modules/garu-ko/**/*"],
+  },
   images: {
     remotePatterns: [
       {
