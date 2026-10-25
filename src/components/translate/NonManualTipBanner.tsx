@@ -1,6 +1,15 @@
 "use client";
 
-import { ArrowRight, Bookmark, Check, SmilePlus, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  Bookmark,
+  Check,
+  ChevronDown,
+  ChevronUp,
+  Clock,
+  SmilePlus,
+  Sparkles,
+} from "lucide-react";
 import { useState } from "react";
 import { PhraseCategoryId, TranslationResult } from "@/types/sign";
 
@@ -28,24 +37,44 @@ export default function NonManualTipBanner({
   const [selectedCategory, setSelectedCategory] =
     useState<PhraseCategoryId>("greeting");
   const [showCategoryPicker, setShowCategoryPicker] = useState(false);
+  const [showTimingsDetail, setShowTimingsDetail] = useState(false);
 
   return (
     <div className="rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50/90 via-white to-indigo-50/60 p-4 shadow-xs space-y-3">
       {/* 한국수어(KSL) 어순 시퀀스 한눈에 보기 */}
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 flex-wrap">
           <span className="rounded-md bg-blue-600 px-2 py-0.5 text-[11px] font-bold text-white">
             한국수어(KSL) 어순
           </span>
           {result.engineUsed === "gemini" ? (
             <span className="inline-flex items-center gap-1 rounded-md bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800 border border-emerald-200">
               <Sparkles className="h-3 w-3" />
-              Gemini AI 3계층 문맥번역
+              하이브리드 NLP + Gemini 문맥번역
             </span>
           ) : (
-            <span className="rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-semibold text-slate-600">
-              총 {result.kslSequence.length}동작 · KSL 문맥엔진
+            <span className="inline-flex items-center gap-1 rounded-md bg-indigo-100 px-2 py-0.5 text-[10px] font-bold text-indigo-800 border border-indigo-200">
+              <Sparkles className="h-3 w-3" />
+              Garu + KSL 관용구·동음이의어 NLP 엔진 ({result.kslSequence.length}동작)
             </span>
+          )}
+
+          {/* 소요 시간 (타이밍 로그) 뱃지 */}
+          {result.timings && (
+            <button
+              type="button"
+              onClick={() => setShowTimingsDetail((prev) => !prev)}
+              className="inline-flex items-center gap-1 rounded-md bg-amber-50 hover:bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-800 border border-amber-300 transition-colors cursor-pointer"
+              title="클릭하여 단계별 처리 시간 상세 로그 보기"
+            >
+              <Clock className="h-3 w-3 text-amber-600" />
+              <span>{(result.timings.totalMs / 1000).toFixed(2)}초</span>
+              {showTimingsDetail ? (
+                <ChevronUp className="h-3 w-3" />
+              ) : (
+                <ChevronDown className="h-3 w-3" />
+              )}
+            </button>
           )}
         </div>
 
@@ -66,6 +95,68 @@ export default function NonManualTipBanner({
           </button>
         )}
       </div>
+
+      {/* 처리 소요 시간 상세 분석 패널 (토글) */}
+      {showTimingsDetail && result.timings && (
+        <div className="rounded-xl bg-slate-900 text-slate-100 p-3 text-xs font-mono space-y-2 border border-slate-700 shadow-inner">
+          <div className="flex items-center justify-between text-amber-400 font-bold border-b border-slate-800 pb-1.5">
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-3.5 w-3.5" />
+              문맥 변환 성능 타임로그
+            </span>
+            <span>총 {result.timings.totalMs}ms ({(result.timings.totalMs / 1000).toFixed(2)}s)</span>
+          </div>
+
+          <div className="space-y-1.5 pt-0.5 text-[11px]">
+            <div className="flex justify-between items-center text-slate-300">
+              <span>1. 형태소 분해(Garu) & 문맥·어순 분석:</span>
+              <span className="font-bold text-blue-400">
+                {result.timings.stage1GeminiMs}ms
+                {result.timings.modelUsed && (
+                  <span className="ml-1 text-[10px] text-slate-400 font-normal">
+                    ({result.timings.modelUsed})
+                  </span>
+                )}
+              </span>
+            </div>
+
+            <div className="flex justify-between items-center text-slate-300">
+              <span>2. 하이브리드 수어 사전 바인딩:</span>
+              <span className="font-bold text-emerald-400">
+                {result.timings.stage2DictionaryMs}ms
+              </span>
+            </div>
+
+            {/* 토큰별 세부 사전 매칭 출처 */}
+            {result.timings.tokenDetails && result.timings.tokenDetails.length > 0 && (
+              <div className="pl-3 py-1 border-l-2 border-slate-700 space-y-1">
+                {result.timings.tokenDetails.map((td, i) => (
+                  <div key={i} className="flex justify-between text-[10px] text-slate-400">
+                    <span>
+                      • [{td.token}]{" "}
+                      {td.source === "local" ? (
+                        <span className="text-emerald-400 font-semibold">[로컬 캐시]</span>
+                      ) : td.source === "live_crawler" ? (
+                        <span className="text-amber-400 font-semibold">[국립국어원 실시간]</span>
+                      ) : (
+                        <span className="text-slate-400 font-semibold">[기본 폴백]</span>
+                      )}
+                    </span>
+                    <span>{td.durationMs}ms</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="flex justify-between items-center text-slate-300">
+              <span>3. 동음이의어 문맥 2차 정밀 검증:</span>
+              <span className="font-bold text-purple-400">
+                {result.timings.stage3DisambiguationMs}ms
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 카테고리 선택기 (저장 버튼 클릭 시 노출) */}
       {showCategoryPicker && !isSaved && (

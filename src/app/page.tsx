@@ -106,6 +106,37 @@ export default function HomePage() {
 
         const data = (await res.json()) as TranslationResult;
         setTranslationResult(data);
+
+        if (data.timings) {
+          console.group(
+            `%c⏱️ [KSL 문맥변환 타임로그] 총 ${data.timings.totalMs}ms ("${data.inputSentence}")`,
+            "color: #2563eb; font-weight: bold; font-size: 13px;"
+          );
+          console.log(
+            `• 1단계 (Gemini 어순/절 압축): ${data.timings.stage1GeminiMs}ms [모델: ${data.timings.modelUsed || "AI"}]`
+          );
+          console.log(
+            `• 2단계 (사전 검색 및 매칭):    ${data.timings.stage2DictionaryMs}ms`
+          );
+          if (data.timings.tokenDetails?.length) {
+            console.table(
+              data.timings.tokenDetails.map((t) => ({
+                단어: t.token,
+                출처:
+                  t.source === "local"
+                    ? "🟢 로컬 캐시"
+                    : t.source === "live_crawler"
+                    ? "🌐 국립국어원 실시간"
+                    : "⚪ 폴백",
+                "소요시간(ms)": t.durationMs,
+              }))
+            );
+          }
+          console.log(
+            `• 3단계 (동음이의어 문맥 검증): ${data.timings.stage3DisambiguationMs}ms`
+          );
+          console.groupEnd();
+        }
       } catch (err) {
         setTranslateError(
           err instanceof Error

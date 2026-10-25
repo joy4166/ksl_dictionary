@@ -75,8 +75,15 @@ const CANONICAL_GLOSS_ALIASES: Record<string, string[]> = {
   편찮으시다: ["아프다"],
   편찮다: ["아프다"],
   통증: ["아프다"],
+  침침하다: ["어둡다", "아프다", "모르다"],
+  소식: ["말하다", "편지", "듣다"],
+  한잔: ["마시다", "물"],
+  음식: ["음식", "밥", "먹다"],
   복약: ["약"],
   복용하다: ["약", "먹다"],
+  // 부정/금지
+  못: ["못하다"],
+  안: ["안하다", "없다"],
   // 호칭/대명사
   저: ["나"],
   제: ["나"],
@@ -244,12 +251,13 @@ export function searchLocalDictionary(queryTerms: string[]): SignWordEntry[] {
       // 앞쪽 검색어(1순위 표제어)일수록 미세 가산점 부여
       const orderBonus = Math.max(0, 5 - qIdx);
 
-      // 1순위: 대표 표제어 완전 일치
-      if (entry.word === q) {
+      // 1순위: 대표 표제어 완전 일치 (괄호 구분 표제어도 동급 인정, 예: '(신체의)눈' -> '눈')
+      const cleanWord = entry.word.replace(/\(.*?\)/g, "").trim();
+      if (entry.word === q || cleanWord === q) {
         bestPriority = Math.max(bestPriority, 100 + orderBonus);
       }
       // 2순위: 유의어/대응표현 완전 일치
-      else if (entry.synonyms?.some((syn) => syn === q)) {
+      else if (entry.synonyms?.some((syn) => syn === q || syn.replace(/\(.*?\)/g, "").trim() === q)) {
         bestPriority = Math.max(bestPriority, 90 + orderBonus);
       }
       // 3순위: 어간/기본형 일치 (2글자 이상 표제어만 허용, 예: "시작하다" <-> "시작")
@@ -296,7 +304,7 @@ export async function fetchLiveFromSldict(
   }
 
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 3500);
+  const timeoutId = setTimeout(() => controller.abort(), 2000);
 
   try {
     const searchUrl = `https://sldict.korean.go.kr/front/search/searchAllList.do?searchKeyword=${encodeURIComponent(
@@ -372,8 +380,16 @@ export async function fetchLiveFromSldict(
 
       const aWords = a.rawTitle.split(",").map((w) => w.trim());
       const bWords = b.rawTitle.split(",").map((w) => w.trim());
-      const aExact = aWords.includes(cleanKw) ? 1 : 0;
-      const bExact = bWords.includes(cleanKw) ? 1 : 0;
+      const aExact = aWords.some(
+        (w) => w === cleanKw || w.replace(/\(.*?\)/g, "").trim() === cleanKw
+      )
+        ? 1
+        : 0;
+      const bExact = bWords.some(
+        (w) => w === cleanKw || w.replace(/\(.*?\)/g, "").trim() === cleanKw
+      )
+        ? 1
+        : 0;
       return bExact - aExact;
     });
 
@@ -431,7 +447,9 @@ export async function fetchLiveFromSldict(
           // 상세 페이지 실패 시 기본 썸네일 및 제목 유지
         }
 
-        const exactSyn = synonyms.find((s) => s === cleanKw);
+        const exactSyn = synonyms.find(
+          (s) => s === cleanKw || s.replace(/\(.*?\)/g, "").trim() === cleanKw
+        );
         const primaryWord =
           exactSyn ||
           synonyms[0] ||
@@ -467,6 +485,7 @@ export async function fetchLiveFromSldict(
     return entries;
   } catch (err) {
     console.warn(`[fetchLiveFromSldict] '${cleanKw}' 조회 실패:`, err);
+    LIVE_SLDICT_CACHE.set(cleanKw, []);
     return [];
   } finally {
     clearTimeout(timeoutId);
@@ -480,60 +499,109 @@ export async function fetchLiveFromSldict(
  *        국립국어원 한국수어사전(sldict.korean.go.kr)에서 대표 표제어를 먼저 실시간 검색!
  * 3순위: 대표 표제어 실시간 검색 결과 뒤에 로컬 유의어 후보를 대안 수어(alternativeSigns)로 병합하거나, 없을 때만 유의어 폴백 수행
  */
-export async function searchHybridDictionary(
+export interface HybridSearchResultMeta {
+  entries: SignWordEntry[];
+  source: "local" | "live_crawler" | "fallback";
+  durationMs: number;
+}
+
+/**
+ * 하이브리드 사전 검색기 (소요 시간 및 출처 메타데이터 포함)
+ */
+export async function searchHybridDictionaryWithMeta(
   queryTerms: string[]
-): Promise<SignWordEntry[]> {
+): Promise<HybridSearchResultMeta> {
+  const start = Date.now();
   const cleanTerms = queryTerms.map((q) => q.trim()).filter(Boolean);
-  if (cleanTerms.length === 0) return [];
+  if (cleanTerms.length === 0) {
+    return { entries: [], source: "fallback", durationMs: 0 };
+  }
 
   const primaryTerm = cleanTerms[0];
 
-  // 1순위: 대표 표제어(primaryTerm) 단독으로 로컬 사전 매칭 시도
+  // 1순위: 대표 표제어(primaryTerm)의 표제어가 로컬 사전에 직접 일치하는지 확인
   const primaryLocalMatches = searchLocalDictionary([primaryTerm]);
+  const exactLocalMatches = primaryLocalMatches.filter(
+    (e) =>
+      e.word === primaryTerm ||
+      e.word.replace(/\(.*?\)/g, "").trim() === primaryTerm
+  );
   const allLocalSynonymMatches = searchLocalDictionary(cleanTerms);
 
-  if (primaryLocalMatches.length > 0) {
-    const merged = [...primaryLocalMatches];
+  if (exactLocalMatches.length > 0) {
+    const merged = [...exactLocalMatches];
     for (const synMatch of allLocalSynonymMatches) {
       if (!merged.some((m) => m.id === synMatch.id)) {
         merged.push(synMatch);
       }
     }
-    return merged;
+    return {
+      entries: merged,
+      source: "local",
+      durationMs: Date.now() - start,
+    };
   }
 
-  // 2순위: 대표 표제어가 로컬 사전에 없다면, 유의어에 가로채이지 않도록 국립국어원(sldict) 실시간 검색을 먼저 수행!
-  const primaryExpanded = expandAndSanitizeQueryTerms([primaryTerm]);
-  for (const pTerm of primaryExpanded) {
-    const livePrimaryMatches = await fetchLiveFromSldict(pTerm);
+  // 2순위: 대표 표제어가 로컬 사전에 없다면, 유의어에 가로채이지 않도록 국립국어원(sldict) 실시간 검색을 먼저 수행! (병렬 2개 한정)
+  const primaryExpanded = expandAndSanitizeQueryTerms([primaryTerm]).slice(0, 2);
+  const livePrimaryResults = await Promise.all(
+    primaryExpanded.map((pTerm) => fetchLiveFromSldict(pTerm))
+  );
+
+  for (const livePrimaryMatches of livePrimaryResults) {
     if (livePrimaryMatches.length > 0) {
       const merged = [...livePrimaryMatches];
-      // 로컬 사전에 있던 유의어(예: '처음' 검색 시 '시작하다')는 대안 수어 후보로 뒤에 추가
+      // 로컬 사전에 있던 유의어는 대안 수어 후보로 뒤에 추가
       for (const synMatch of allLocalSynonymMatches) {
         if (!merged.some((m) => m.id === synMatch.id)) {
           merged.push(synMatch);
         }
       }
-      return merged;
+      return {
+        entries: merged,
+        source: "live_crawler",
+        durationMs: Date.now() - start,
+      };
     }
   }
 
   // 3순위: 국립국어원에도 대표 표제어가 없을 때만 로컬 유의어 매칭 또는 확장 유의어 실시간 검색으로 폴백
   if (allLocalSynonymMatches.length > 0) {
-    return allLocalSynonymMatches;
+    return {
+      entries: allLocalSynonymMatches,
+      source: "local",
+      durationMs: Date.now() - start,
+    };
   }
 
-  const expandedAll = expandAndSanitizeQueryTerms(cleanTerms.slice(1));
-  for (const term of expandedAll) {
-    const clean = term.trim();
-    if (!clean) continue;
-    const liveMatches = await fetchLiveFromSldict(clean);
-    if (liveMatches.length > 0) {
-      return liveMatches;
+  const expandedAll = expandAndSanitizeQueryTerms(cleanTerms.slice(1)).slice(0, 2);
+  if (expandedAll.length > 0) {
+    const liveResults = await Promise.all(
+      expandedAll.map((term) => fetchLiveFromSldict(term))
+    );
+    for (const liveMatches of liveResults) {
+      if (liveMatches.length > 0) {
+        return {
+          entries: liveMatches,
+          source: "live_crawler",
+          durationMs: Date.now() - start,
+        };
+      }
     }
   }
 
-  return [];
+  return {
+    entries: [],
+    source: "fallback",
+    durationMs: Date.now() - start,
+  };
+}
+
+export async function searchHybridDictionary(
+  queryTerms: string[]
+): Promise<SignWordEntry[]> {
+  const result = await searchHybridDictionaryWithMeta(queryTerms);
+  return result.entries;
 }
 
 /**

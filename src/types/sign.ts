@@ -59,6 +59,21 @@ export interface TranslatedSignToken {
   selectionReason?: string;
 }
 
+export interface TokenTimingDetail {
+  token: string;
+  source: "local" | "live_crawler" | "fallback";
+  durationMs: number;
+}
+
+export interface TranslationTimings {
+  totalMs: number;
+  stage1GeminiMs: number;
+  stage2DictionaryMs: number;
+  stage3DisambiguationMs: number;
+  modelUsed?: string;
+  tokenDetails?: TokenTimingDetail[];
+}
+
 /**
  * 2단계 AI 문맥 번역 API 최종 응답 패킷
  */
@@ -75,6 +90,8 @@ export interface TranslationResult {
   contextExplanation?: string;
   /** 실제 사용된 번역 엔진 ('gemini': Gemini AI 2단계 파이프라인, 'rule': 내장 KSL 문법 엔진) */
   engineUsed?: "gemini" | "rule";
+  /** 문맥 변환 처리 구간별 소요 시간 성능 로그 메타데이터 */
+  timings?: TranslationTimings;
 }
 
 /**

@@ -2256,7 +2256,6 @@
       "싶어요",
       "내키다",
       "소원",
-      "바람",
       "욕구",
       "염원",
       "원"
@@ -3090,6 +3089,1734 @@
       "촬영",
       "카메라",
       "찍다"
+    ]
+  },
+  {
+    "id": "ksl_106",
+    "word": "바람",
+    "senseIndex": 1,
+    "meaning": "기압 차이로 일어나는 공기의 흐름 ('바람이 불다', '강풍')",
+    "category": "자연/날씨",
+    "signDescription": "두 손을 벌려 손등이 위로 향하게 하였다가 안으로 두 번 돌려 올린다.",
+    "actionSummary": "두 손을 벌려 손등이 위로 향하게 하였다가 안으로 두 번 돌려 올리기",
+    "handShapeHint": "💨+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151219/230574/IMG000224391_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629731/MOV000257328_700X466.mp4",
+    "keywords": [
+      "바람",
+      "불다",
+      "공기",
+      "대기",
+      "날씨",
+      "강풍",
+      "돌풍",
+      "태풍"
+    ],
+    "synonyms": [
+      "바람",
+      "바람이 불다",
+      "바람불다",
+      "강풍",
+      "돌풍"
+    ]
+  },
+  {
+    "id": "ksl_107",
+    "word": "(신체의)눈",
+    "senseIndex": 1,
+    "meaning": "빛의 자극을 받아 물체를 볼 수 있는 사람이나 동물의 감각 기관 ('눈을 뜨다', '눈을 감다', '시각')",
+    "category": "신체/감각",
+    "signDescription": "오른 주먹의 1지를 펴서 끝 바닥으로 오른쪽 눈 아래를 가리킨다.",
+    "actionSummary": "오른손 검지로 오른쪽 눈 아래를 가리키기",
+    "handShapeHint": "☝️+👀",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151221/231753/IMG000225876_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629535/MOV000255397_700X466.mp4",
+    "keywords": [
+      "눈",
+      "신체",
+      "시각",
+      "안구",
+      "얼굴",
+      "눈을 뜨다",
+      "눈감다"
+    ],
+    "synonyms": [
+      "눈",
+      "신체눈",
+      "안구",
+      "시각"
+    ]
+  },
+  {
+    "id": "ksl_108",
+    "word": "눈(이 내리다)",
+    "senseIndex": 1,
+    "meaning": "대기 중의 수증기가 찬 기운을 만나 얼어서 내리는 흰 가루 ('눈이 오다', '함박눈')",
+    "category": "자연/날씨",
+    "signDescription": "오른 주먹의 1지를 펴서 끝으로 치아를 가리킨 다음, 손등이 위로 손끝이 밖으로 향하게 편 두 손을 아래로 내리면서 손가락을 가볍게 까딱거린다.",
+    "actionSummary": "치아를 가리킨 후 두 손을 아래로 내리며 손가락 까딱거리기",
+    "handShapeHint": "❄️+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151221/231754/IMG000225878_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629536/MOV000255398_700X466.mp4",
+    "keywords": [
+      "눈",
+      "하늘",
+      "날씨",
+      "겨울",
+      "강수",
+      "내리다",
+      "함박눈",
+      "눈이오다",
+      "폭설"
+    ],
+    "synonyms": [
+      "눈",
+      "함박눈",
+      "스노우",
+      "눈이 내리다"
+    ]
+  },
+  {
+    "id": "ksl_109",
+    "word": "(신체의)다리",
+    "senseIndex": 1,
+    "meaning": "사람이나 짐승의 몸통 아래에 붙어 서거나 걷거나 뛰는 데 쓰는 신체 기관 ('다리가 아프다', '보행')",
+    "category": "신체/건강",
+    "signDescription": "두 손을 펴서 손바닥을 허벅지에 댄 다음 손끝을 아래로 향하게 하여 가볍게 두드린다.",
+    "actionSummary": "두 손바닥으로 허벅지나 다리를 가볍게 두드리기",
+    "handShapeHint": "🦵+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151222/232467/IMG000226849_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629656/MOV000257364_700X466.mp4",
+    "keywords": [
+      "다리",
+      "신체",
+      "사람 다리",
+      "무릎",
+      "정강이",
+      "보행",
+      "발"
+    ],
+    "synonyms": [
+      "다리",
+      "신체다리",
+      "하체"
+    ]
+  },
+  {
+    "id": "ksl_110",
+    "word": "(시설물)다리",
+    "senseIndex": 1,
+    "meaning": "개울, 강, 바다 따위를 건너갈 수 있도록 만든 구조물 (교량, 한강 다리, 육교)",
+    "category": "시설/장소",
+    "signDescription": "왼 손바닥 위에 오른손 1·2지를 펴서 다리 모양을 만들어 건너가는 동작을 취한다.",
+    "actionSummary": "왼 손바닥 위를 오른손 두 손가락으로 다리처럼 건너기",
+    "handShapeHint": "🌉+✌️",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151221/231572/IMG000225503_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629517/MOV000255023_700X466.mp4",
+    "keywords": [
+      "다리",
+      "교량",
+      "도로",
+      "시설물",
+      "건너다",
+      "한강다리"
+    ],
+    "synonyms": [
+      "다리",
+      "교량",
+      "시설물다리"
+    ]
+  },
+  {
+    "id": "ksl_111",
+    "word": "(신체의)배",
+    "senseIndex": 1,
+    "meaning": "사람이나 동물의 가슴과 엉덩이 사이의 부위 (복부, 위장, '배가 아프다')",
+    "category": "신체/건강",
+    "signDescription": "오른 손바닥을 배에 댄다.",
+    "actionSummary": "오른 손바닥을 배에 댄다.",
+    "handShapeHint": "🤰+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151224/233629/IMG000228352_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20221014/1039941/MOV000360488_700X466.mp4",
+    "keywords": [
+      "배",
+      "복부",
+      "신체",
+      "위장",
+      "소화",
+      "배탈",
+      "아프다",
+      "배고프다",
+      "배부르다"
+    ],
+    "synonyms": [
+      "배",
+      "복부",
+      "신체배",
+      "(신체의)배"
+    ]
+  },
+  {
+    "id": "ksl_112",
+    "word": "(탈것)배",
+    "senseIndex": 2,
+    "meaning": "물 위로 사람이나 짐을 싣고 다니는 탈것 (선박, 유람선, 여객선)",
+    "category": "시설/장소",
+    "signDescription": "두 손의 4지 옆면을 맞대어 배 모양을 만들어 밖으로 내민다.",
+    "actionSummary": "두 손의 4지 옆면을 맞대어 배 모양을 만들어 밖으로 내민다.",
+    "handShapeHint": "🚢+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151224/233628/IMG000228350_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191017/628478/MOV000254719_700X466.mp4",
+    "keywords": [
+      "배",
+      "선박",
+      "바다",
+      "항구",
+      "타다",
+      "물",
+      "항해",
+      "배편"
+    ],
+    "synonyms": [
+      "배",
+      "선박",
+      "여객선",
+      "유람선",
+      "선척"
+    ]
+  },
+  {
+    "id": "ksl_113",
+    "word": "(과일)배",
+    "senseIndex": 3,
+    "meaning": "배나무의 열매로 깎아 먹는 달콤한 과일 (나주배, 과일 배)",
+    "category": "식사/간식",
+    "signDescription": "오른 손가락을 구부려 끝을 왼 주먹 등에 두 번 댄다.",
+    "actionSummary": "오른 손가락을 구부려 끝을 왼 주먹 등에 두 번 댄다.",
+    "handShapeHint": "🍐+🔪",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151224/233627/IMG000228348_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191017/628477/MOV000254717_700X466.mp4",
+    "keywords": [
+      "배",
+      "과일",
+      "열매",
+      "깎다",
+      "먹다",
+      "달다",
+      "간식",
+      "사과"
+    ],
+    "synonyms": [
+      "배",
+      "과일배",
+      "(과일)배"
+    ]
+  },
+  {
+    "id": "ksl_114",
+    "word": "(시간)밤",
+    "senseIndex": 1,
+    "meaning": "해가 진 뒤부터 날이 새기 전까지의 어두운 시간 (야간, 밤잠)",
+    "category": "시간/명절",
+    "signDescription": "손바닥이 밖으로 향하게 세운 두 손을 중앙으로 모아 교차시킨다.",
+    "actionSummary": "손바닥이 밖으로 향하게 세운 두 손을 중앙으로 모아 교차시킨다.",
+    "handShapeHint": "🌙+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151128/218319/IMG000209816_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191016/628064/MOV000241223_700X466.mp4",
+    "keywords": [
+      "밤",
+      "야간",
+      "저녁",
+      "어둡다",
+      "자다",
+      "잠",
+      "새벽",
+      "오늘밤",
+      "어제밤"
+    ],
+    "synonyms": [
+      "밤",
+      "야간",
+      "밤중",
+      "한밤중",
+      "어둡다",
+      "껌껌하다",
+      "어둠",
+      "깜깜하다",
+      "캄캄하다"
+    ]
+  },
+  {
+    "id": "ksl_115",
+    "word": "(열매)밤",
+    "senseIndex": 2,
+    "meaning": "밤나무의 열매로 구워 먹거나 삶아 먹는 견과류 (군밤, 알밤)",
+    "category": "식사/간식",
+    "signDescription": "4·5지를 편 오른 주먹의 1·2·3지 등을 턱 에 대고 상하로 두 번 문지른다.",
+    "actionSummary": "4·5지를 편 오른 주먹의 1·2·3지 등을 턱 에 대고 상하로 두 번 문지른다.",
+    "handShapeHint": "🌰+✊",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151224/233409/IMG000228009_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629694/MOV000254436_700X466.mp4",
+    "keywords": [
+      "밤",
+      "열매",
+      "군밤",
+      "알밤",
+      "먹다",
+      "구워",
+      "삶다",
+      "간식"
+    ],
+    "synonyms": [
+      "밤",
+      "알밤",
+      "군밤",
+      "(열매)밤"
+    ]
+  },
+  {
+    "id": "ksl_116",
+    "word": "(말을)타다",
+    "senseIndex": 2,
+    "meaning": "말이나 자전거 등에 올라타다 ('말을 타다', '승마')",
+    "category": "프로그램",
+    "signDescription": "왼 주먹의 5지를 펴서 끝이 밖으로 향하게 모로 세우고 그 위에 오른 주먹의 1·2지를 펴서 벌려 올려 끼우고 상하로 두 번 움직인다.",
+    "actionSummary": "왼 주먹의 5지를 펴서 끝이 밖으로 향하게 모로 세우고 그 위에 오른 주먹의 1·2지를 펴서 벌려 올려 끼우고 상하로 두 번 움직인다.",
+    "handShapeHint": "🐎+✌️",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231442/IMG000225445_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191011/626601/MOV000252375_700X466.mp4",
+    "keywords": [
+      "말",
+      "타다",
+      "승마",
+      "올라타다"
+    ],
+    "synonyms": [
+      "타다",
+      "승마하다",
+      "말",
+      "승마"
+    ]
+  },
+  {
+    "id": "ksl_117",
+    "word": "(동물)말",
+    "senseIndex": 2,
+    "meaning": "사람이 타거나 짐을 끄는 네 발 달린 동물 (경주마, 조랑말)",
+    "category": "자연/날씨",
+    "signDescription": "왼 주먹의 5지를 펴서 끝이 밖으로 향하게 모로 세우고 그 위에 오른 주먹의 1·2지를 펴서 벌려 올려 끼우고 상하로 두 번 움직인다.",
+    "actionSummary": "왼 주먹의 5지를 펴서 끝이 밖으로 향하게 모로 세우고 그 위에 오른 주먹의 1·2지를 펴서 벌려 올려 끼우고 상하로 두 번 움직인다.",
+    "handShapeHint": "🐴+✌️",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231442/IMG000225445_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191011/626601/MOV000252375_700X466.mp4",
+    "keywords": [
+      "말",
+      "동물",
+      "타다",
+      "달리다",
+      "승마",
+      "당근"
+    ],
+    "synonyms": [
+      "말",
+      "동물말",
+      "경주마",
+      "승마"
+    ]
+  },
+  {
+    "id": "ksl_118",
+    "word": "(신체의)손",
+    "senseIndex": 1,
+    "meaning": "사람의 팔목 끝에 달린 신체 부위 ('손을 씻다', '손을 잡다')",
+    "category": "신체/건강",
+    "signDescription": "오른 손바닥을 왼 손등에 댄다.",
+    "actionSummary": "오른 손바닥을 왼 손등에 댄다.",
+    "handShapeHint": "✋+🤚",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151224/233808/IMG000228489_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191029/632321/MOV000254829_700X466.mp4",
+    "keywords": [
+      "손",
+      "신체",
+      "손바닥",
+      "손가락",
+      "씻다",
+      "잡다"
+    ],
+    "synonyms": [
+      "손",
+      "양손",
+      "손바닥",
+      "맨손"
+    ]
+  },
+  {
+    "id": "ksl_119",
+    "word": "(신체의)발",
+    "senseIndex": 1,
+    "meaning": "사람이나 동물의 다리 끝에 달린 신체 부위 ('발이 아프다', '발걸음')",
+    "category": "신체/건강",
+    "signDescription": "손바닥이 아래로 손끝이 밖으로 향하게 편 두 손을 번갈아 비스듬히 내리면서 내민다.",
+    "actionSummary": "손바닥이 아래로 손끝이 밖으로 향하게 편 두 손을 번갈아 비스듬히 내리면서 내민다.",
+    "handShapeHint": "🦶+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151127/217789/IMG000209179_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20200824/735234/MOV000240777_700X466.mp4",
+    "keywords": [
+      "발",
+      "신체",
+      "발목",
+      "발바닥",
+      "신발",
+      "걷다",
+      "발걸음"
+    ],
+    "synonyms": [
+      "발",
+      "양발",
+      "발걸음",
+      "발자국",
+      "밟다",
+      "걸음"
+    ]
+  },
+  {
+    "id": "ksl_120",
+    "word": "(신체의)입",
+    "senseIndex": 1,
+    "meaning": "음식을 먹고 소리를 내는 신체 기관 ('입을 벌리다', '입술')",
+    "category": "신체/건강",
+    "signDescription": "오른 주먹의 1지를 펴서 끝을 입술에 댄다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝을 입술에 댄다.",
+    "handShapeHint": "👄+☝️",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151225/234126/IMG000228981_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191022/629933/MOV000255200_700X466.mp4",
+    "keywords": [
+      "입",
+      "신체",
+      "입술",
+      "치아",
+      "벌리다"
+    ],
+    "synonyms": [
+      "입",
+      "구강",
+      "입술"
+    ]
+  },
+  {
+    "id": "ksl_121",
+    "word": "(신체의)귀",
+    "senseIndex": 1,
+    "meaning": "소리를 듣는 감각 기관 ('귀가 밝다', '귀가 아프다')",
+    "category": "신체/건강",
+    "signDescription": "오른 주먹의 1·5지로 오른쪽 귀를 잡는다.",
+    "actionSummary": "오른 주먹의 1·5지로 오른쪽 귀를 잡는다.",
+    "handShapeHint": "👂+🤏",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20160325/255358/IMG000268562_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20160325/259822/MOV000268561_700X466.mp4",
+    "keywords": [
+      "귀",
+      "신체",
+      "듣다",
+      "소리",
+      "청각"
+    ],
+    "synonyms": [
+      "귀",
+      "양귀"
+    ]
+  },
+  {
+    "id": "ksl_122",
+    "word": "(마시는)차",
+    "senseIndex": 2,
+    "meaning": "찻잎이나 열매 등을 우려내어 마시는 음료 (녹차, 보리차, 커피, 한방차)",
+    "category": "식사/간식",
+    "signDescription": "왼손을 펴서 손끝이 오른쪽으로 향하게 모로 세우고, 그 아래쪽을 오른손의 5지와 1·2·3·4지로 잡았다 내리는 동작을 두 번 반복한다.",
+    "actionSummary": "왼손을 펴서 손끝이 오른쪽으로 향하게 모로 세우고, 그 아래쪽을 오른손의 5지와 1·2·3·4지로 잡았다 내리는 동작을 두 번 반복한다.",
+    "handShapeHint": "🍵+🤏",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231476/IMG000225505_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191029/632478/MOV000252428_700X466.mp4",
+    "keywords": [
+      "차",
+      "마시다",
+      "음료",
+      "따뜻하다",
+      "녹차",
+      "커피",
+      "한잔"
+    ],
+    "synonyms": [
+      "차",
+      "녹차",
+      "홍차",
+      "다과"
+    ]
+  },
+  {
+    "id": "ksl_123",
+    "word": "기준",
+    "senseIndex": 1,
+    "meaning": "기본이 되는 표준이나 눈높이 ('눈이 높다 → 기준이 높다')",
+    "category": "일상/동작",
+    "signDescription": "두 손을 펴서 손끝이 밖으로 향하게 마주 보게 세워 오른쪽에서 왼쪽으로 또는 왼쪽에서 오른쪽으로 두 번 옮긴다.",
+    "actionSummary": "두 손을 펴서 손끝이 밖으로 향하게 마주 보게 세워 오른쪽에서 왼쪽으로 또는 왼쪽에서 오른쪽으로 두 번 옮긴다.",
+    "handShapeHint": "📏+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151228/236356/IMG000231830_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191016/628158/MOV000257528_700X466.mp4",
+    "keywords": [
+      "기준",
+      "표준",
+      "수준",
+      "눈높이"
+    ],
+    "synonyms": [
+      "표준",
+      "수준",
+      "눈높이",
+      "준비",
+      "장만",
+      "채비",
+      "마련",
+      "차리다",
+      "챙기다"
+    ]
+  },
+  {
+    "id": "ksl_124",
+    "word": "높다",
+    "senseIndex": 1,
+    "meaning": "아래에서 위까지의 높이나 수준·기준이 높다",
+    "category": "감정/상태",
+    "signDescription": "오른 주먹의 1지를 펴서 끝이 위로 향하게 세워 손목을 좌우로 흔들며 위로 올린다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝이 위로 향하게 세워 손목을 좌우로 흔들며 위로 올린다.",
+    "handShapeHint": "⬆️+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151221/231626/IMG000225711_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191014/627331/MOV000252580_700X466.mp4",
+    "keywords": [
+      "높다",
+      "위로",
+      "수준",
+      "키"
+    ],
+    "synonyms": [
+      "높아요",
+      "높으시다",
+      "높다"
+    ]
+  },
+  {
+    "id": "ksl_125",
+    "word": "낮다",
+    "senseIndex": 1,
+    "meaning": "높이나 수준·온도가 아래쪽에 있다",
+    "category": "감정/상태",
+    "signDescription": "손등이 위로 향하게 편 오른손을 가슴 앞에서 아래로 약간 내린다.",
+    "actionSummary": "손등이 위로 향하게 편 오른손을 가슴 앞에서 아래로 약간 내린다.",
+    "handShapeHint": "⬇️+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151219/230823/IMG000224652_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20200821/733666/MOV000251708_700X466.mp4",
+    "keywords": [
+      "낮다",
+      "아래로"
+    ],
+    "synonyms": [
+      "낮아요",
+      "낮다",
+      "비하"
+    ]
+  },
+  {
+    "id": "ksl_126",
+    "word": "크다",
+    "senseIndex": 1,
+    "meaning": "길이, 넓이, 부피나 마음·규모가 크다",
+    "category": "감정/상태",
+    "signDescription": "오른 주먹의 1·5지를 펴서 등이 밖으로 향하게 하여 왼쪽에서 오른쪽으로 이동시킨다.",
+    "actionSummary": "오른 주먹의 1·5지를 펴서 등이 밖으로 향하게 하여 왼쪽에서 오른쪽으로 이동시킨다.",
+    "handShapeHint": "👐+↔️",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151218/229884/IMG000223382_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191029/632469/MOV000250657_700X466.mp4",
+    "keywords": [
+      "크다",
+      "양손",
+      "벌리다",
+      "넓다"
+    ],
+    "synonyms": [
+      "커요",
+      "크시다",
+      "거대하다",
+      "크다",
+      "꽤",
+      "매우",
+      "몹시",
+      "무척",
+      "아주",
+      "대",
+      "대단히"
+    ]
+  },
+  {
+    "id": "ksl_127",
+    "word": "작다",
+    "senseIndex": 1,
+    "meaning": "길이, 넓이, 부피나 규모가 작다 ('적다')",
+    "category": "감정/상태",
+    "signDescription": "오른 주먹의 1지 끝에 5지 끝을 댔다가 튕겨 벌린다.",
+    "actionSummary": "오른 주먹의 1지 끝에 5지 끝을 댔다가 튕겨 벌린다.",
+    "handShapeHint": "🤏+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151226/234874/IMG000229889_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191018/628678/MOV000255952_700X466.mp4",
+    "keywords": [
+      "작다",
+      "적다",
+      "조금"
+    ],
+    "synonyms": [
+      "작아요",
+      "적다",
+      "조그맣다",
+      "작다",
+      "다소",
+      "약간",
+      "조금",
+      "약소하다",
+      "자그마하다",
+      "조그마하다"
+    ]
+  },
+  {
+    "id": "ksl_128",
+    "word": "넓다",
+    "senseIndex": 1,
+    "meaning": "면적이 크거나 마음·관계가 넓다",
+    "category": "감정/상태",
+    "signDescription": "손끝이 밖으로 향하게 모로 세운 두 손을 마주보게 하여 양옆으로 벌린다.",
+    "actionSummary": "손끝이 밖으로 향하게 모로 세운 두 손을 마주보게 하여 양옆으로 벌린다.",
+    "handShapeHint": "👐+🌊",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151129/218882/IMG000210464_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191028/631912/MOV000241687_700X466.mp4",
+    "keywords": [
+      "넓다",
+      "크다",
+      "양손",
+      "벌리다"
+    ],
+    "synonyms": [
+      "넓어요",
+      "광범위하다",
+      "넓다",
+      "너르다",
+      "널찍하다"
+    ]
+  },
+  {
+    "id": "ksl_129",
+    "word": "마음",
+    "senseIndex": 1,
+    "meaning": "사람의 생각이나 감정, 심정, 가슴속 ('마음이 따뜻하다', '가슴이 아프다')",
+    "category": "감정/상태",
+    "signDescription": "오른 주먹의 1지를 펴서 끝을, 손등이 밖으로 손끝이 오른쪽으로 향하게 편 왼 손등에 댔다가 왼 손바닥에 댄다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝을, 손등이 밖으로 손끝이 오른쪽으로 향하게 편 왼 손등에 댔다가 왼 손바닥에 댄다.",
+    "handShapeHint": "❤️+ chest",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231040/IMG000224924_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191014/627081/MOV000251936_700X466.mp4",
+    "keywords": [
+      "마음",
+      "가슴",
+      "심정",
+      "속",
+      "감정",
+      "성격"
+    ],
+    "synonyms": [
+      "심정",
+      "가슴",
+      "속마음",
+      "정성",
+      "마음",
+      "심리"
+    ]
+  },
+  {
+    "id": "ksl_130",
+    "word": "안심하다",
+    "senseIndex": 1,
+    "meaning": "걱정이나 불안이 사라지고 마음이 놓이다 ('마음이 놓이다', '한시름 놓다', '다행이다')",
+    "category": "감정/상태",
+    "signDescription": "약간 구부린 왼손은 배에, 오른손은 그 위쪽에 댔다가 밖으로 내밀며 손가락을 모은다.",
+    "actionSummary": "약간 구부린 왼손은 배에, 오른손은 그 위쪽에 댔다가 밖으로 내밀며 손가락을 모은다.",
+    "handShapeHint": "😌+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151227/235297/IMG000230455_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191031/632969/MOV000256423_700X466.mp4",
+    "keywords": [
+      "안심",
+      "마음",
+      "가슴",
+      "내리다",
+      "다행",
+      "편안하다"
+    ],
+    "synonyms": [
+      "안심",
+      "마음이 놓이다",
+      "한시름 놓다",
+      "다행이다",
+      "안전",
+      "안정"
+    ]
+  },
+  {
+    "id": "ksl_131",
+    "word": "걱정하다",
+    "senseIndex": 1,
+    "meaning": "안좋은 일이 있을까 봐 마음이 불안하고 염려되다 ('염려하다', '애가 타다')",
+    "category": "감정/상태",
+    "signDescription": "약간 구부린 오른 손끝을 가슴에 대고 왼쪽으로 강하게 천천히 두 바퀴 돌린다.",
+    "actionSummary": "약간 구부린 오른 손끝을 가슴에 대고 왼쪽으로 강하게 천천히 두 바퀴 돌린다.",
+    "handShapeHint": "😟+🤚",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151208/224057/IMG000216489_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20220729/1003314/MOV000359612_700X466.mp4",
+    "keywords": [
+      "걱정",
+      "염려",
+      "불안",
+      "이마",
+      "마음"
+    ],
+    "synonyms": [
+      "걱정",
+      "염려하다",
+      "불안하다",
+      "고민",
+      "번민",
+      "근심",
+      "상심",
+      "시름",
+      "염려",
+      "우수",
+      "괴롭다"
+    ]
+  },
+  {
+    "id": "ksl_132",
+    "word": "화나다",
+    "senseIndex": 1,
+    "meaning": "기분이 나쁘고 성이 나다 ('열받다', '짜증나다', '속이 터지다')",
+    "category": "감정/상태",
+    "signDescription": "오른 주먹의 5지를 펴서 세워 배에서 위로 약간 힘주어 올린다.",
+    "actionSummary": "오른 주먹의 5지를 펴서 세워 배에서 위로 약간 힘주어 올린다.",
+    "handShapeHint": "😠+⬆️",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151121/213772/IMG000204560_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20190918/615455/MOV000237775_700X466.mp4",
+    "keywords": [
+      "화나다",
+      "분노",
+      "성나다",
+      "짜증",
+      "열받다"
+    ],
+    "synonyms": [
+      "성나다",
+      "열받다",
+      "짜증나다",
+      "분노하다",
+      "화나다",
+      "노여움",
+      "노엽다",
+      "노하다",
+      "성내다",
+      "화내다"
+    ]
+  },
+  {
+    "id": "ksl_133",
+    "word": "부끄럽다",
+    "senseIndex": 1,
+    "meaning": "수줍거나 창피하여 얼굴이 화끈거리다 ('얼굴이 두껍다/얇다', '창피하다', '민망하다')",
+    "category": "감정/상태",
+    "signDescription": "오른손의 1·5지 끝을 맞대어 동그라미를 만들어 세워 등을 오른쪽 볼에 두 번 댔다 뗀다.",
+    "actionSummary": "오른손의 1·5지 끝을 맞대어 동그라미를 만들어 세워 등을 오른쪽 볼에 두 번 댔다 뗀다.",
+    "handShapeHint": "😳+🤚",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151223/233283/IMG000227722_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191029/632228/MOV000254200_700X466.mp4",
+    "keywords": [
+      "부끄럽다",
+      "창피하다",
+      "수줍다",
+      "민망하다",
+      "볼"
+    ],
+    "synonyms": [
+      "창피하다",
+      "민망하다",
+      "수줍다",
+      "쑥스럽다",
+      "부끄럽다",
+      "부끄러움",
+      "수치",
+      "창피"
+    ]
+  },
+  {
+    "id": "ksl_134",
+    "word": "비밀",
+    "senseIndex": 1,
+    "meaning": "남에게 알리지 않아야 할 숨겨진 일 ('입이 무겁다 → 비밀을 지키다')",
+    "category": "일상/동작",
+    "signDescription": "손바닥이 오른쪽으로 손끝이 밖으로 향하게 편 왼 손바닥을 오른 손끝으로 두 번 긁어 들인다.",
+    "actionSummary": "손바닥이 오른쪽으로 손끝이 밖으로 향하게 편 왼 손바닥을 오른 손끝으로 두 번 긁어 들인다.",
+    "handShapeHint": "🤫+🔒",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20190730/605260/IMG000226517_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191007/625164/MOV000253226_700X466.mp4",
+    "keywords": [
+      "비밀",
+      "숨기다",
+      "조용히",
+      "입"
+    ],
+    "synonyms": [
+      "보안",
+      "숨기다",
+      "비밀"
+    ]
+  },
+  {
+    "id": "ksl_135",
+    "word": "지키다",
+    "senseIndex": 1,
+    "meaning": "약속이나 비밀, 규칙 등을 어기지 않고 보호하다",
+    "category": "일상/동작",
+    "signDescription": "오른 주먹의 1·2지를 펴서 약간 구부려 두 눈으로 향하게 하여 왼쪽으로 돌린 다음, 왼 손바닥으로 오른 팔꿈치를 받치고 오른 주먹의 1지를 펴서 곧게 세운다.",
+    "actionSummary": "오른 주먹의 1·2지를 펴서 약간 구부려 두 눈으로 향하게 하여 왼쪽으로 돌린 다음, 왼 손바닥으로 오른 팔꿈치를 받치고 오른 주먹의 1지를 펴서 곧게 세운다.",
+    "handShapeHint": "🛡️+✊",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151216/229019/IMG000222305_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151216/229020/IMG000222306_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191022/630124/MOV000249800_700X466.mp4",
+    "keywords": [
+      "지키다",
+      "보호하다",
+      "유지하다"
+    ],
+    "synonyms": [
+      "보호하다",
+      "준수하다",
+      "경비",
+      "보초",
+      "수위",
+      "파수",
+      "지키다"
+    ]
+  },
+  {
+    "id": "ksl_136",
+    "word": "친하다",
+    "senseIndex": 1,
+    "meaning": "사이가 가깝고 정이 깊다 ('가깝다', '친근하다')",
+    "category": "인사/안부",
+    "signDescription": "두 손을 맞잡고 오른쪽으로 돌린다.",
+    "actionSummary": "두 손을 맞잡고 오른쪽으로 돌린다.",
+    "handShapeHint": "🤞+🤝",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151218/230065/IMG000223659_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191024/630492/MOV000250884_700X466.mp4",
+    "keywords": [
+      "친하다",
+      "친구",
+      "가깝다",
+      "사이좋다"
+    ],
+    "synonyms": [
+      "가깝다",
+      "절친하다",
+      "사이좋다",
+      "다정",
+      "우정",
+      "우애",
+      "우의",
+      "친목",
+      "가까이하다",
+      "단란하다",
+      "의좋다",
+      "정답다",
+      "친하다",
+      "친교"
+    ]
+  },
+  {
+    "id": "ksl_137",
+    "word": "사람",
+    "senseIndex": 1,
+    "meaning": "인간, 타인, 인맥 ('발이 넓다 → 아는 사람이 많다')",
+    "category": "인사/안부",
+    "signDescription": "두 주먹의 4·5지를 펴서 끝이 위로 향하게 맞대고 세워 양옆으로 두 번 약간 돌리며 벌린다.",
+    "actionSummary": "두 주먹의 4·5지를 펴서 끝이 위로 향하게 맞대고 세워 양옆으로 두 번 약간 돌리며 벌린다.",
+    "handShapeHint": "🧑+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151223/232945/IMG000227378_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629598/MOV000253926_700X466.mp4",
+    "keywords": [
+      "사람",
+      "인간",
+      "분",
+      "인물"
+    ],
+    "synonyms": [
+      "인간",
+      "분",
+      "이",
+      "사람",
+      "자",
+      "-민"
+    ]
+  },
+  {
+    "id": "ksl_138",
+    "word": "선물",
+    "senseIndex": 1,
+    "meaning": "정성을 담아 남에게 주는 물건",
+    "category": "인사/안부",
+    "signDescription": "왼 주먹의 1·2지를 펴서 등이 위로 향하게 하고, 그 등에 오른 주먹의 1·2지를 펴서 바닥을 ‘X’자로 댔다가 뒤집어 등을 댄다.",
+    "actionSummary": "왼 주먹의 1·2지를 펴서 등이 위로 향하게 하고, 그 등에 오른 주먹의 1·2지를 펴서 바닥을 ‘X’자로 댔다가 뒤집어 등을 댄다.",
+    "handShapeHint": "🎁+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151222/232573/IMG000226898_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191011/626666/MOV000253532_700X466.mp4",
+    "keywords": [
+      "선물",
+      "주다",
+      "드리다",
+      "축하"
+    ],
+    "synonyms": [
+      "기념품",
+      "선물하다",
+      "선물"
+    ]
+  },
+  {
+    "id": "ksl_139",
+    "word": "바쁘다",
+    "senseIndex": 1,
+    "meaning": "할 일이 많아 겨를이 없다 ('눈코 뜰 새 없다', '손이 모자라다')",
+    "category": "일상/동작",
+    "signDescription": "손바닥이 위로 향하게 편 두 손을, 손끝이 마주 보게 하여 상하로 엇갈리게 움직인다.",
+    "actionSummary": "손바닥이 위로 향하게 편 두 손을, 손끝이 마주 보게 하여 상하로 엇갈리게 움직인다.",
+    "handShapeHint": "🏃+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151223/233004/IMG000227474_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191021/629657/MOV000254000_700X466.mp4",
+    "keywords": [
+      "바쁘다",
+      "분주하다",
+      "일",
+      "빠르다"
+    ],
+    "synonyms": [
+      "분주하다",
+      "바빠요",
+      "바쁘다"
+    ]
+  },
+  {
+    "id": "ksl_140",
+    "word": "부족하다",
+    "senseIndex": 1,
+    "meaning": "필요한 양이나 기준에 미치지 못하고 모자라다 ('손이 모자라다')",
+    "category": "감정/상태",
+    "signDescription": "두 주먹의 1·5지를 펴서 끝이 위로 향하게 하여 1·5지를 두 번 붙인 다음, 오른 주먹의 1지를 펴서 옆면으로 입술 밑을 오른쪽으로 스쳐내고, 그 끝으로 왼 손등을 내려 그은 다음, 두 주먹의 4·5지를 펴서 끝이 위로 향하게 맞대고 세워 좌우로 두 번 약간 돌리며 벌린다.",
+    "actionSummary": "두 주먹의 1·5지를 펴서 끝이 위로 향하게 하여 1·5지를 두 번 붙인 다음, 오른 주먹의 1지를 펴서 옆면으로 입술 밑을 오른쪽으로 스쳐내고, 그 끝으로 왼 손등을 내려 그은 다음, 두 주먹의 4·5지를 펴서 끝이 위로 향하게 맞대고 세워 좌우로 두 번 약간 돌리며 벌린다.",
+    "handShapeHint": "📉+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151121/214065/IMG000204913_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151121/214066/IMG000204914_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151121/214067/IMG000204915_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151121/214068/IMG000204916_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20221024/1044073/MOV000361138_700X466.mp4",
+    "keywords": [
+      "부족하다",
+      "모자라다",
+      "적다"
+    ],
+    "synonyms": [
+      "모자라다",
+      "부족",
+      "아쉽다",
+      "종족"
+    ]
+  },
+  {
+    "id": "ksl_141",
+    "word": "충분하다",
+    "senseIndex": 1,
+    "meaning": "모자람이 없이 넉넉하고 풍족하다 ('손이 크다 → 넉넉하다')",
+    "category": "감정/상태",
+    "signDescription": "오른손을 펴서 손끝을 왼쪽 가슴에 댔다가 오른쪽 가슴에 댄다.",
+    "actionSummary": "오른손을 펴서 손끝을 왼쪽 가슴에 댔다가 오른쪽 가슴에 댄다.",
+    "handShapeHint": "🈵+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231432/IMG000225426_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191022/630193/MOV000236772_700X466.mp4",
+    "keywords": [
+      "충분하다",
+      "넉넉하다",
+      "풍족하다",
+      "가득"
+    ],
+    "synonyms": [
+      "넉넉하다",
+      "풍족하다",
+      "충분",
+      "만족",
+      "여유",
+      "자신",
+      "충족",
+      "늠름하다",
+      "당당하다",
+      "떳떳하다",
+      "충분하다",
+      "푸짐하다",
+      "풍부하다",
+      "듬뿍",
+      "실컷"
+    ]
+  },
+  {
+    "id": "ksl_142",
+    "word": "베풀다",
+    "senseIndex": 1,
+    "meaning": "남에게 정이나 재물, 음식을 아낌없이 나누어 주다",
+    "category": "인사/안부",
+    "signDescription": "손바닥이 위로 향하게 편 왼 손바닥에 손끝이 밖으로 향하게 모로 세운 오른손을 대고 좌우로 스쳐 낸다.",
+    "actionSummary": "손바닥이 위로 향하게 편 왼 손바닥에 손끝이 밖으로 향하게 모로 세운 오른손을 대고 좌우로 스쳐 낸다.",
+    "handShapeHint": "🤲+💞",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151216/228852/IMG000222082_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191028/631950/MOV000249630_700X466.mp4",
+    "keywords": [
+      "베풀다",
+      "나누다",
+      "주다",
+      "인정"
+    ],
+    "synonyms": [
+      "나누다",
+      "나눠주다",
+      "베풀어주다",
+      "가르다",
+      "구별",
+      "구분",
+      "분류",
+      "분별",
+      "분할",
+      "유별"
+    ]
+  },
+  {
+    "id": "ksl_143",
+    "word": "잊다",
+    "senseIndex": 1,
+    "meaning": "기억하고 있던 것을 까먹거나 생각나지 않다 ('깜빡하다')",
+    "category": "감정/상태",
+    "signDescription": "오른 주먹을 머리 오른쪽에 댔다가 위로 올리며 편다.",
+    "actionSummary": "오른 주먹을 머리 오른쪽에 댔다가 위로 올리며 편다.",
+    "handShapeHint": "🧠+💨",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151221/231690/IMG000225771_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191022/629941/MOV000252631_700X466.mp4",
+    "keywords": [
+      "잊다",
+      "잊어버리다",
+      "까먹다",
+      "깜빡하다"
+    ],
+    "synonyms": [
+      "잊어버리다",
+      "까먹다",
+      "깜빡하다",
+      "망각",
+      "잊다"
+    ]
+  },
+  {
+    "id": "ksl_144",
+    "word": "약속",
+    "senseIndex": 1,
+    "meaning": "앞으로 할 일을 서로 정하여 다짐함",
+    "category": "인사/안부",
+    "signDescription": "두 주먹의 4지를 펴서 구부리며 서로 건다.",
+    "actionSummary": "두 주먹의 4지를 펴서 구부리며 서로 건다.",
+    "handShapeHint": "🤙+🤝",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151217/229658/IMG000223119_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191015/627703/MOV000250441_700X466.mp4",
+    "keywords": [
+      "약속",
+      "새끼손가락",
+      "다짐"
+    ],
+    "synonyms": [
+      "약속하다",
+      "다짐",
+      "꼭",
+      "약속",
+      "-야",
+      "필수",
+      "필시"
+    ]
+  },
+  {
+    "id": "ksl_145",
+    "word": "놀라다",
+    "senseIndex": 1,
+    "meaning": "뜻밖의 일로 가슴이 두근거리거나 깜짝 놀라다 ('간이 떨어지다', '눈이 휘둥그레지다')",
+    "category": "감정/상태",
+    "signDescription": "1·5지 끝을 맞댄 오른손을 가슴에 대고 같은 모양의 왼손을 그 밑에 대면서 놀라는 표정을 지으며 두 손을 동시에 편다.",
+    "actionSummary": "1·5지 끝을 맞댄 오른손을 가슴에 대고 같은 모양의 왼손을 그 밑에 대면서 놀라는 표정을 지으며 두 손을 동시에 편다.",
+    "handShapeHint": "😲+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151126/217090/IMG000208337_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151126/217091/IMG000208338_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191011/626621/MOV000252438_700X466.mp4",
+    "keywords": [
+      "놀라다",
+      "깜짝",
+      "당황하다"
+    ],
+    "synonyms": [
+      "깜짝 놀라다",
+      "당황하다",
+      "경악",
+      "깜짝",
+      "놀라다"
+    ]
+  },
+  {
+    "id": "ksl_146",
+    "word": "부럽다",
+    "senseIndex": 1,
+    "meaning": "남의 좋은 일이나 물건을 보고 나도 그러기를 바라다 ('사촌이 땅을 사면 배가 아프다 → 부럽다/질투하다')",
+    "category": "감정/상태",
+    "signDescription": "오른 주먹의 1지를 펴서 끝을 오른쪽 입가에 댔다가 약간 내린다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝을 오른쪽 입가에 댔다가 약간 내린다.",
+    "handShapeHint": "🥺+👍",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20190730/605404/IMG000227883_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191022/630005/MOV000254328_700X466.mp4",
+    "keywords": [
+      "부럽다",
+      "샘나다",
+      "질투"
+    ],
+    "synonyms": [
+      "부러워하다",
+      "샘나다",
+      "부럽다"
+    ]
+  },
+  {
+    "id": "ksl_147",
+    "word": "열심히",
+    "senseIndex": 1,
+    "meaning": "온 정성과 힘을 다하여 부지런히 ('땀을 흘리다', '최선을 다하다')",
+    "category": "일상/부사",
+    "signDescription": "5지를 펴서 세운 두 주먹을 배 양쪽에 댔다가 힘주어 밖으로 내민다.",
+    "actionSummary": "5지를 펴서 세운 두 주먹을 배 양쪽에 댔다가 힘주어 밖으로 내민다.",
+    "handShapeHint": "🔥+✊",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151215/228259/IMG000221349_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191017/628491/MOV000249058_700X466.mp4",
+    "keywords": [
+      "열심히",
+      "최선",
+      "노력",
+      "성실히"
+    ],
+    "synonyms": [
+      "열심",
+      "최선을 다하다",
+      "부지런히",
+      "노력하다",
+      "근면",
+      "열성",
+      "꾸준하다",
+      "부지런하다",
+      "정진"
+    ]
+  },
+  {
+    "id": "ksl_148",
+    "word": "습관",
+    "senseIndex": 1,
+    "meaning": "오랫동안 되풀이하여 몸에 밴 버릇 ('손에 익다', '버릇')",
+    "category": "일상/동작",
+    "signDescription": "위로 향하게 편 왼 손등에 오른손의 2지를 댔다가 손바닥을 댄다.",
+    "actionSummary": "위로 향하게 편 왼 손등에 오른손의 2지를 댔다가 손바닥을 댄다.",
+    "handShapeHint": "🔄+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20190723/603658/IMG000355721_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20190723/603659/IMG000355722_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191025/630941/MOV000256237_700X466.mp4",
+    "keywords": [
+      "습관",
+      "버릇",
+      "익숙하다"
+    ],
+    "synonyms": [
+      "버릇",
+      "익숙하다",
+      "습관"
+    ]
+  },
+  {
+    "id": "ksl_149",
+    "word": "처음",
+    "senseIndex": 1,
+    "meaning": "시간이나 순서상으로 맨 앞이나 첫 번째",
+    "category": "시간/명절",
+    "signDescription": "손바닥이 아래로 손끝이 밖으로 향하게 편 오른손을 위로 올리며 2지와 5지 끝을 맞댄다.",
+    "actionSummary": "손바닥이 아래로 손끝이 밖으로 향하게 편 오른손을 위로 올리며 2지와 5지 끝을 맞댄다.",
+    "handShapeHint": "1️⃣+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151218/230204/IMG000223718_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191016/628035/MOV000250938_700X466.mp4",
+    "keywords": [
+      "처음",
+      "첫번째",
+      "맨처음"
+    ],
+    "synonyms": [
+      "첫",
+      "맨처음",
+      "초기",
+      "처음",
+      "시작",
+      "우선",
+      "초"
+    ]
+  },
+  {
+    "id": "ksl_150",
+    "word": "길",
+    "senseIndex": 1,
+    "meaning": "사람이나 차가 지나다니는 도로, 통로",
+    "category": "시설/장소",
+    "signDescription": "손끝이 밖으로 향하게 모로 세운 두 손을 마주 보게 하여 좌우로 움직이며 내민다.",
+    "actionSummary": "손끝이 밖으로 향하게 모로 세운 두 손을 마주 보게 하여 좌우로 움직이며 내민다.",
+    "handShapeHint": "🛣️+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20190726/604550/IMG000222573_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191015/627555/MOV000250010_700X466.mp4",
+    "keywords": [
+      "길",
+      "도로",
+      "거리",
+      "골목"
+    ],
+    "synonyms": [
+      "도로",
+      "거리",
+      "길"
+    ]
+  },
+  {
+    "id": "ksl_151",
+    "word": "비",
+    "senseIndex": 1,
+    "meaning": "구름에서 땅으로 떨어지는 물방울 ('비가 오다', '소나기')",
+    "category": "자연/날씨",
+    "signDescription": "오른 주먹의 1·5지를 펴서 구부려 입으로 약간 기울여 올린 다음, 두 손을 펴서 손끝이 아래로 손등이 밖으로 향하게 하여 상하로 두 번 움직인다.",
+    "actionSummary": "오른 주먹의 1·5지를 펴서 구부려 입으로 약간 기울여 올린 다음, 두 손을 펴서 손끝이 아래로 손등이 밖으로 향하게 하여 상하로 두 번 움직인다.",
+    "handShapeHint": "🌧️+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151221/232120/IMG000226337_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151221/232121/IMG000226338_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191014/627272/MOV000253082_700X466.mp4",
+    "keywords": [
+      "비",
+      "날씨",
+      "내리다",
+      "우산",
+      "장마",
+      "소나기"
+    ],
+    "synonyms": [
+      "비오다",
+      "소나기",
+      "우천",
+      "비",
+      "강우",
+      "비가 내리다"
+    ]
+  },
+  {
+    "id": "ksl_152",
+    "word": "안경",
+    "senseIndex": 1,
+    "meaning": "시력을 보완하기 위해 눈에 쓰는 도구 ('안경을 쓰다')",
+    "category": "일상/동작",
+    "signDescription": "두 주먹의 1·5지를 둥글게 구부려 양쪽 눈앞에 댄다.",
+    "actionSummary": "두 주먹의 1·5지를 둥글게 구부려 양쪽 눈앞에 댄다.",
+    "handShapeHint": "👓+👌",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151226/235166/IMG000230288_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191015/627699/MOV000256291_700X466.mp4",
+    "keywords": [
+      "안경",
+      "눈",
+      "쓰다",
+      "시력",
+      "돋보기"
+    ],
+    "synonyms": [
+      "돋보기",
+      "선글라스",
+      "안경"
+    ]
+  },
+  {
+    "id": "ksl_153",
+    "word": "(모자·안경을)쓰다",
+    "senseIndex": 1,
+    "meaning": "모자나 안경 등을 머리나 얼굴에 착용하다 ('모자를 쓰다', '안경을 쓰다')",
+    "category": "일상/동작",
+    "signDescription": "1지 옆면에 5지 바닥을 댄 오른 주먹을 머리 위에서 이마 가까이로 내린다.",
+    "actionSummary": "1지 옆면에 5지 바닥을 댄 오른 주먹을 머리 위에서 이마 가까이로 내린다.",
+    "handShapeHint": "🧢+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151226/234628/IMG000229567_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191011/626359/MOV000255681_700X466.mp4",
+    "keywords": [
+      "쓰다",
+      "착용하다",
+      "모자",
+      "안경"
+    ],
+    "synonyms": [
+      "쓰다",
+      "착용하다",
+      "(모자를)쓰다",
+      "모자(를 쓰다)"
+    ]
+  },
+  {
+    "id": "ksl_154",
+    "word": "(글을)쓰다",
+    "senseIndex": 2,
+    "meaning": "종이 위에 글씨를 적거나 문장을 작성하다 ('글을 쓰다', '적다', '필기하다')",
+    "category": "프로그램",
+    "signDescription": "오른 주먹의 1‧5지 끝을 맞대어 왼 손바닥에 대고 전후로 약간 움직이며 오른쪽으로 이동시킨다.",
+    "actionSummary": "오른 주먹의 1‧5지 끝을 맞대어 왼 손바닥에 대고 전후로 약간 움직이며 오른쪽으로 이동시킨다.",
+    "handShapeHint": "✍️+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151116/210703/IMG000200862_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20160924/347161/MOV000302183_700X466.mp4",
+    "keywords": [
+      "쓰다",
+      "글씨",
+      "적다",
+      "편지",
+      "이름",
+      "서명",
+      "필기"
+    ],
+    "synonyms": [
+      "쓰다",
+      "적다",
+      "작성하다",
+      "기록하다",
+      "필기",
+      "이론",
+      "쓰기",
+      "저술",
+      "서술"
+    ]
+  },
+  {
+    "id": "ksl_155",
+    "word": "(맛이)쓰다",
+    "senseIndex": 3,
+    "meaning": "약이나 음식의 맛이 달지 않고 쓰다 ('약이 쓰다', '쓴맛')",
+    "category": "식사/간식",
+    "signDescription": "오른 주먹의 1지를 펴서 끝으로 오른쪽 입가를 가볍게 찌르면서 목을 왼쪽으로 약간 기울인다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝으로 오른쪽 입가를 가볍게 찌르면서 목을 왼쪽으로 약간 기울인다.",
+    "handShapeHint": "😖+👅",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231418/IMG000225404_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20201023/764375/MOV000252341_700X466.mp4",
+    "keywords": [
+      "쓰다",
+      "맛",
+      "약",
+      "입맛",
+      "쓴맛"
+    ],
+    "synonyms": [
+      "쓰다",
+      "쓴맛",
+      "씁쓸하다",
+      "독",
+      "독하다",
+      "(맛이)쓰다",
+      "시다"
+    ]
+  },
+  {
+    "id": "ksl_156",
+    "word": "음식",
+    "senseIndex": 1,
+    "meaning": "사람이 먹을 수 있도록 만든 밥이나 요리 ('식사', '요리')",
+    "category": "식사/간식",
+    "signDescription": "오른 주먹의 1지를 펴서 끝을 입술에 댄 다음, 두 주먹의 1·5지를 펴서 끝이 위로 향하게 하여 1·5지를 붙인다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝을 입술에 댄 다음, 두 주먹의 1·5지를 펴서 끝이 위로 향하게 하여 1·5지를 붙인다.",
+    "handShapeHint": "🍲+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151119/212611/IMG000203252_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151119/212612/IMG000203253_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20221024/1044195/MOV000361159_700X466.mp4",
+    "keywords": [
+      "음식",
+      "요리",
+      "먹다",
+      "식사"
+    ],
+    "synonyms": [
+      "음식",
+      "요리",
+      "먹거리",
+      "(음식에 간을)맞추다"
+    ]
+  },
+  {
+    "id": "ksl_157",
+    "word": "종이",
+    "senseIndex": 1,
+    "meaning": "글씨를 쓰거나 그림을 그리는 종이",
+    "category": "프로그램",
+    "signDescription": "오른 주먹의 1지를 펴서 끝으로 치아를 가리킨 다음, 두 주먹의 1지를 펴서 끝으로 네모를 그린다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝으로 치아를 가리킨 다음, 두 주먹의 1지를 펴서 끝으로 네모를 그린다.",
+    "handShapeHint": "📄+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151208/224052/IMG000216481_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151208/224053/IMG000216482_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191022/629978/MOV000245718_700X466.mp4",
+    "keywords": [
+      "종이",
+      "글씨",
+      "쓰다"
+    ],
+    "synonyms": [
+      "종이",
+      "용지",
+      "백지"
+    ]
+  },
+  {
+    "id": "ksl_158",
+    "word": "이름",
+    "senseIndex": 1,
+    "meaning": "사람이나 사물을 부르는 명칭 ('성함', '성명')",
+    "category": "인사/안부",
+    "signDescription": "오른 주먹의 1·5지를 펴서 끝이 왼쪽으로 향하게 하여 왼쪽 가슴에 1·5지 옆면이 닿게 댄다.",
+    "actionSummary": "오른 주먹의 1·5지를 펴서 끝이 왼쪽으로 향하게 하여 왼쪽 가슴에 1·5지 옆면이 닿게 댄다.",
+    "handShapeHint": "📛+👍",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151227/235520/IMG000230742_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191015/627715/MOV000256668_700X466.mp4",
+    "keywords": [
+      "이름",
+      "성함",
+      "명찰",
+      "가슴"
+    ],
+    "synonyms": [
+      "이름",
+      "성함",
+      "성명",
+      "명"
+    ]
+  },
+  {
+    "id": "ksl_159",
+    "word": "바다",
+    "senseIndex": 1,
+    "meaning": "지구 위에서 짠물이 괴어 있는 넓고 큰 곳",
+    "category": "자연/날씨",
+    "signDescription": "오른 주먹의 4지를 펴서 끝을 오른쪽 입가에 댄 다음, 두 손을 펴서 손바닥이 밑으로 손끝이 밖으로 향하게 하여 상하로 약간 움직이며 왼쪽에서 오른쪽으로 이동시킨다.",
+    "actionSummary": "오른 주먹의 4지를 펴서 끝을 오른쪽 입가에 댄 다음, 두 손을 펴서 손바닥이 밑으로 손끝이 밖으로 향하게 하여 상하로 약간 움직이며 왼쪽에서 오른쪽으로 이동시킨다.",
+    "handShapeHint": "🌊+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151223/232876/IMG000227313_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151223/232877/IMG000227314_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191028/632077/MOV000253874_700X466.mp4",
+    "keywords": [
+      "바다",
+      "물",
+      "파도",
+      "배"
+    ],
+    "synonyms": [
+      "바다",
+      "해양",
+      "바닷가"
+    ]
+  },
+  {
+    "id": "ksl_160",
+    "word": "강",
+    "senseIndex": 1,
+    "meaning": "넓고 길게 흐르는 큰 물줄기 ('한강', '하천')",
+    "category": "자연/날씨",
+    "signDescription": "오른 주먹의 1·5지를 펴서 구부려 입으로 약간 기울여 올린 다음, 오른손을 펴서 손바닥이 위로 손끝이 왼쪽으로 향하게 하여 상하로 약간 흔들며 오른쪽으로 이동시킨다.",
+    "actionSummary": "오른 주먹의 1·5지를 펴서 구부려 입으로 약간 기울여 올린 다음, 오른손을 펴서 손바닥이 위로 손끝이 왼쪽으로 향하게 하여 상하로 약간 흔들며 오른쪽으로 이동시킨다.",
+    "handShapeHint": "🏞️+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151214/227748/IMG000220714_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151214/227749/IMG000220715_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20200820/732419/MOV000248576_700X466.mp4",
+    "keywords": [
+      "강",
+      "물",
+      "흐르다",
+      "다리",
+      "한강"
+    ],
+    "synonyms": [
+      "강",
+      "하천",
+      "강물",
+      "한강"
+    ]
+  },
+  {
+    "id": "ksl_161",
+    "word": "건너다",
+    "senseIndex": 1,
+    "meaning": "강이나 다리, 길을 이쪽에서 저쪽으로 가로질러 가다 ('건너가다')",
+    "category": "일상/동작",
+    "signDescription": "오른 주먹의 1지를 펴서 끝이 약간 아래로 향하게 하여, 손끝이 오른쪽으로 손등이 위로 향하게 편 왼 손등을 안에서 밖으로 넘긴다.",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝이 약간 아래로 향하게 하여, 손끝이 오른쪽으로 손등이 위로 향하게 편 왼 손등을 안에서 밖으로 넘긴다.",
+    "handShapeHint": "🚶+🌉",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151127/217373/IMG000208680_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191022/630078/MOV000240437_700X466.mp4",
+    "keywords": [
+      "건너다",
+      "다리",
+      "길",
+      "횡단"
+    ],
+    "synonyms": [
+      "건너다",
+      "건너가다",
+      "횡단하다",
+      "횡단",
+      "넘다",
+      "넘어가다",
+      "침범"
+    ]
+  },
+  {
+    "id": "ksl_162",
+    "word": "과일",
+    "senseIndex": 1,
+    "meaning": "나무나 풀에 열리는 먹을 수 있는 열매 ('과실', '청과')",
+    "category": "식사/간식",
+    "signDescription": "오른 손바닥으로 왼 주먹을 한 번 감싸 돌린 다음, 오른 주먹의 1·5지를 펴서 1지 끝이 밖으로 향하게 모로 세워 손목을 좌우로 흔들며 오른쪽으로 이동시킨다.",
+    "actionSummary": "오른 손바닥으로 왼 주먹을 한 번 감싸 돌린 다음, 오른 주먹의 1·5지를 펴서 1지 끝이 밖으로 향하게 모로 세워 손목을 좌우로 흔들며 오른쪽으로 이동시킨다.",
+    "handShapeHint": "🍎+🍐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151215/228353/IMG000221458_700X466.jpg",
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151215/228354/IMG000221459_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191017/628475/MOV000249146_700X466.mp4",
+    "keywords": [
+      "과일",
+      "열매",
+      "사과",
+      "배",
+      "간식"
+    ],
+    "synonyms": [
+      "과일",
+      "과실",
+      "청과"
+    ]
+  },
+  {
+    "id": "ksl_163",
+    "word": "달다",
+    "senseIndex": 1,
+    "meaning": "꿀이나 설탕, 과일처럼 맛이 달콤하다 ('달콤하다')",
+    "category": "식사/간식",
+    "signDescription": "오른손을 펴서 손끝이 위로, 손바닥이 입으로 향하게 하여, 내민 혀 앞에서 왼쪽으로 두 번 돌린다.",
+    "actionSummary": "오른손을 펴서 손끝이 위로, 손바닥이 입으로 향하게 하여, 내민 혀 앞에서 왼쪽으로 두 번 돌린다.",
+    "handShapeHint": "🍬+😋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151218/230321/IMG000223989_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191015/627551/MOV000251156_700X466.mp4",
+    "keywords": [
+      "달다",
+      "달콤하다",
+      "맛",
+      "설탕",
+      "과일"
+    ],
+    "synonyms": [
+      "달다",
+      "달콤하다",
+      "단맛",
+      "당분",
+      "당"
+    ]
+  },
+  {
+    "id": "ksl_164",
+    "word": "미끄럽다",
+    "senseIndex": 1,
+    "meaning": "바닥이나 길이 매끄러워 미끄러지기 쉽다 ('미끄러지다')",
+    "category": "자연/날씨",
+    "signDescription": "오른 손끝을 코 오른쪽에 댔다가 떼면서 5지로 나머지 손가락을 4지부터 차례로 비빈다.",
+    "actionSummary": "오른 손끝을 코 오른쪽에 댔다가 떼면서 5지로 나머지 손가락을 4지부터 차례로 비빈다.",
+    "handShapeHint": "🧊+👐",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151216/228933/IMG000222213_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20191028/631970/MOV000249730_700X466.mp4",
+    "keywords": [
+      "미끄럽다",
+      "미끄러지다",
+      "얼음",
+      "눈",
+      "길"
+    ],
+    "synonyms": [
+      "미끄럽다",
+      "미끄러지다",
+      "빙판",
+      "기름",
+      "숙달",
+      "원활",
+      "능숙하다",
+      "매끄럽다",
+      "순조롭다",
+      "자주",
+      "빈번히",
+      "낯익다"
+    ]
+  },
+  {
+    "id": "ksl_165",
+    "word": "장갑",
+    "senseIndex": 1,
+    "meaning": "손을 보호하거나 추위를 막기 위해 손에 끼는 물건",
+    "category": "일상/동작",
+    "signDescription": "손등이 위로 향하게 편 왼 손등에, 2지를 펴고 1·3지를 둘째 마디만 굽힌 오른 주먹의 바닥을 대고 오른손을 전후로 움직인다.",
+    "actionSummary": "손등이 위로 향하게 편 왼 손등에, 2지를 펴고 1·3지를 둘째 마디만 굽힌 오른 주먹의 바닥을 대고 오른손을 전후로 움직인다.",
+    "handShapeHint": "🧤+✋",
+    "imageUrls": [
+      "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151230/237448/IMG000233198_700X466.jpg"
+    ],
+    "videoUrl": "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20200825/735696/MOV000258614_700X466.mp4",
+    "keywords": [
+      "장갑",
+      "손",
+      "끼다",
+      "겨울"
+    ],
+    "synonyms": [
+      "장갑",
+      "손장갑",
+      "장갑차",
+      "장갑차량"
     ]
   }
 ]

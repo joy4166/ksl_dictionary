@@ -12,10 +12,10 @@ interface SpeechInputBarProps {
 
 const QUICK_EXAMPLES = [
   "추석 잘 보내세요",
-  "오늘 점심 맛있게 드셨어요?",
-  "어디 편찮으신 곳 있으세요?",
-  "잠시 후 체조 시작해요",
-  "조심히 들어가세요",
+  "할머니는 손이 크셔서 음식을 많이 하세요",
+  "어제 밤에 눈이 많이 내려서 길이 미끄럽다",
+  "저 대회에 나갈 영상을 촬영할건데 할머니랑 찍어도 될까요?",
+  "마음이 놓이네요",
 ];
 
 export default function SpeechInputBar({
