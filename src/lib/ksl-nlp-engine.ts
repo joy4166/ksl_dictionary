@@ -10,6 +10,8 @@ export interface NlpResolvedToken {
   originalPart: string;
   kslGloss: string;
   senseHint: string;
+  excludeSense?: string;
+  searchKeywords?: string[];
   selectionReason: string;
   /** 로컬 NLP 엔진이 확정 매칭한 수어 엔트리 (있을 경우 즉시 사용) */
   resolvedSign?: SignWordEntry;
@@ -42,6 +44,7 @@ interface IdiomRule {
   maxDistance: number;
   physicalBlockerWords?: string[];
   requireContextWords?: string[];
+  consumeSpanTerms?: string[];
   kslSequence: Array<{
     kslGloss: string;
     targetSignId: string;
@@ -105,6 +108,48 @@ const MODAL_END_WORDS = new Set([
 ]);
 
 /**
+ * 비유·관용 표현의 중심이 되기 쉬운 신체·심리·자연 명사 집합
+ */
+const FIGURATIVE_RISK_NOUNS = new Set([
+  "눈",
+  "손",
+  "발",
+  "입",
+  "귀",
+  "배",
+  "가슴",
+  "마음",
+  "머리",
+  "목",
+  "코",
+  "간",
+  "속",
+  "바람",
+]);
+
+/**
+ * 목적어·주어에 따라 직역 시 오역 위험이 높은 고빈도 다의어 서술어 집합
+ */
+const POLYSEMOUS_RISK_PREDICATES = new Set([
+  "먹다",
+  "맞다",
+  "차다",
+  "걸리다",
+  "빠지다",
+  "놓다",
+  "끊다",
+  "치다",
+  "풀다",
+  "잡다",
+  "맵다",
+  "쓰다",
+  "타다",
+  "깎다",
+  "씻다",
+  "돌리다",
+]);
+
+/**
  * [핵심 NLP 엔진]
  * 1) 형태소 슬라이딩 윈도우 기반 공식 관용구(Idiom FST) 감지 및 KSL 의역 치환
  * 2) Simplified Lesk & 구어체 연어 TF-IDF 가중치 내적을 통한 동음이의어 문맥 판별 (WSD)
@@ -112,10 +157,11 @@ const MODAL_END_WORDS = new Set([
  * 4) 엄격한 Confidence Gating 점수 산출
  */
 export function analyzeSentenceWithLocalNlp(
-  sentence: string,
+  _sentence: string,
   garuTokens: GaruToken[]
 ): LocalNlpAnalysisResult {
   const start = Date.now();
+  void _sentence;
   if (garuTokens.length === 0) {
     return {
       sequence: [],
@@ -143,42 +189,11 @@ export function analyzeSentenceWithLocalNlp(
   const consumedIndices = new Set<number>();
   const idiomReplacements = new Map<number, NlpResolvedToken[]>();
   const appliedIdioms: string[] = [];
+  let matchedPhysicalBlocker = false;
 
   // ============================================================================
   // [Step 1] 관용구 FST 슬라이딩 윈도우 탐색 (조사/어미/부사 개입 완벽 대응)
   // ============================================================================
-  // 특수 구문: "눈코 뜰 새 없다" 처럼 붙여 쓰거나 띄어 쓴 복합 관용구 선처리
-  if (/눈코\s*뜰/.test(sentence)) {
-    const busyIdiom = IDIOM_RULES.find((r) => r.id === "idiom_busy_eyes_nose");
-    if (busyIdiom) {
-      appliedIdioms.push(busyIdiom.idiom);
-      const literalSigns = (busyIdiom.literalFallbackIds || [])
-        .map((id) => getSignById(id))
-        .filter((s): s is SignWordEntry => Boolean(s));
-
-      const seqTokens: NlpResolvedToken[] = busyIdiom.kslSequence.map((item) => {
-        const sign = getSignById(item.targetSignId);
-        return {
-          originalPart: "눈코 뜰 새 없다",
-          kslGloss: sign ? sign.word : item.kslGloss,
-          senseHint: item.senseHint,
-          selectionReason: busyIdiom.explanation,
-          resolvedSign: sign,
-          alternativeSigns: literalSigns,
-          isConfident: Boolean(sign),
-        };
-      });
-      return {
-        sequence: seqTokens,
-        isFullyConfident: true,
-        confidenceScore: 98,
-        appliedIdioms,
-        disambiguatedHomonyms: [],
-        elapsedMs: Date.now() - start,
-      };
-    }
-  }
-
   for (let i = 0; i < garuTokens.length; i++) {
     if (consumedIndices.has(i)) continue;
     const headToken = garuTokens[i];
@@ -191,10 +206,11 @@ export function analyzeSentenceWithLocalNlp(
         rule.physicalBlockerWords &&
         rule.physicalBlockerWords.some((bw) => allContextTerms.has(bw))
       ) {
+        matchedPhysicalBlocker = true;
         continue;
       }
 
-      // 2) 필수 문맥 단어(requireContextWords) 검사 (예: "사촌이 땅을 사면 배가 아프다")
+      // 2) 필수 문맥 단어(requireContextWords) 검사 (예: "사촌이 땅을 사면 배가 아프다", "눈코 뜰 새 없다")
       if (
         rule.requireContextWords &&
         !rule.requireContextWords.some((rw) => allContextTerms.has(rw))
@@ -221,17 +237,32 @@ export function analyzeSentenceWithLocalNlp(
       if (matchedPredIdx !== -1) {
         consumedIndices.add(i);
         consumedIndices.add(matchedPredIdx);
-        // 사이에 낀 순수 정도부사("정말", "너무", "엄청", "아주", "참")도 관용구 덩어리로 함께 흡수
+        // 사이에 낀 수식 부사("정말", "너무", "많이", "단단히", "굳게" 등)도 관용구 덩어리로 함께 흡수
         for (let k = i + 1; k < matchedPredIdx; k++) {
           if (
             garuTokens[k].pos === "ADV" &&
-            /^(정말|너무|엄청|아주|참|매우|진짜|무척|꽤)$/.test(garuTokens[k].base)
+            /^(정말|너무|엄청|아주|참|매우|진짜|무척|꽤|많이|단단히|굳게|크게|깊이)$/.test(
+              garuTokens[k].base
+            )
           ) {
             consumedIndices.add(k);
           }
         }
 
-        const combinedRaw = `${headToken.raw} ${garuTokens[matchedPredIdx].raw}`;
+        // 관용구 구성 부속 어휘(예: '눈코 뜰 새 없다'의 '코', '새', '없다')도 함께 흡수
+        if (rule.consumeSpanTerms && rule.consumeSpanTerms.length > 0) {
+          const spanEnd = Math.min(garuTokens.length - 1, matchedPredIdx + 2);
+          for (let k = i + 1; k <= spanEnd; k++) {
+            if (rule.consumeSpanTerms.includes(garuTokens[k].base)) {
+              consumedIndices.add(k);
+            }
+          }
+        }
+
+        const combinedRaw =
+          headToken.raw === garuTokens[matchedPredIdx].raw
+            ? headToken.raw
+            : `${headToken.raw} ${garuTokens[matchedPredIdx].raw}`;
         appliedIdioms.push(rule.idiom);
 
         const literalSigns = (rule.literalFallbackIds || [])
@@ -288,7 +319,7 @@ export function analyzeSentenceWithLocalNlp(
     totalEvaluated++;
 
     // 동음이의어 클러스터에 해당하는지 확인 (예: 눈, 다리, 배, 밤, 보내다, 나가다, 차, 말, 쓰다, 타다, 바람, 드시다, 사과)
-    const homonymKey = resolveHomonymClusterKey(token.base, token.raw);
+    const homonymKey = resolveHomonymClusterKey(token.base);
     if (homonymKey && HOMONYM_CLUSTERS[homonymKey]) {
       const cluster = HOMONYM_CLUSTERS[homonymKey];
       const scoredSenses = cluster.senses.map((sense) => {
@@ -321,9 +352,10 @@ export function analyzeSentenceWithLocalNlp(
         .map((s) => getSignById(s.sense.signId))
         .filter((s): s is SignWordEntry => Boolean(s));
 
-      // 문맥 단서가 최소 1개 이상 매칭되었거나, 기본(Prior) 차이가 확실한 경우 Confident 판정
+      // 문맥 단서(matchedWords)가 최소 1개 이상 실제로 매칭되고 점수 차이가 명확할 때만 Confident 판정
+      // (단서가 없는 미지의 문맥일 경우 isConfident = false로 두어 Gemini AI가 문맥을 직접 추론하도록 위임)
       const isHomonymConfident = Boolean(
-        selectedSign && (best.matchedWords.length > 0 || scoreDiff >= 2)
+        selectedSign && best.matchedWords.length > 0 && scoreDiff >= 2
       );
 
       if (isHomonymConfident) {
@@ -352,12 +384,11 @@ export function analyzeSentenceWithLocalNlp(
         isPast: token.isPast,
       });
 
-      // 만약 '-어도/-아도' 허락 연결어미가 붙은 용언이고 뒤에 '되다/될까요'가 오지 않는 경우
       continue;
     }
 
-    // 일반 단어 로컬 사전 매칭
-    const localMatches = searchLocalDictionary([token.base, token.raw]);
+    // 일반 단어 로컬 사전 매칭 (Garu가 복원한 기본형 token.base 기준)
+    const localMatches = searchLocalDictionary([token.base]);
     if (localMatches.length > 0) {
       const primary = localMatches[0];
       const alts = localMatches.slice(1, 5);
@@ -395,18 +426,37 @@ export function analyzeSentenceWithLocalNlp(
   );
 
   // ============================================================================
-  // [Step 4] Confidence Gating 판정 (로컬 0.01초 즉시 반환 vs Gemini 호출)
+  // [Step 4] Confidence Gating & 의미 충돌 감지(Semantic Anomaly Gate)
   // ============================================================================
   const allTokensResolved = reorderedSequence.every(
     (t) => t.isConfident && Boolean(t.resolvedSign)
   );
-  const ratio =
-    totalEvaluated > 0 ? Math.round((confidentCount / totalEvaluated) * 100) : 0;
 
-  // 모든 핵심 토큰이 로컬 사전 또는 관용구/동음이의어 모델에서 명확히 해결되었고,
-  // 문장이 지나치게 길지 않은 경우(10개 토큰 이하) -> 100% 확신 (Gemini 생략 가능!)
+  // [Semantic Anomaly Gate]
+  // 개별 단어가 모두 사전에 있더라도, 비유 중심 명사(눈/손/발/입/귀/배/마음 등)와 고위험 다의어 서술어가 함께 등장했는데
+  // 관용구 FST, 물리적 차단어(Blocker), 동음이의어 TF-IDF 공기어 중 어느 것도 작동하지 않은 미지의 결합이라면
+  // 직역 오역을 막기 위해 확신도를 낮추고 Gemini 문맥 추론을 호출합니다.
+  const hasFigurativeNoun = garuTokens.some((t) =>
+    FIGURATIVE_RISK_NOUNS.has(t.base)
+  );
+  const hasPolysemousPred = garuTokens.some((t) =>
+    POLYSEMOUS_RISK_PREDICATES.has(t.base)
+  );
+  const hasResolvedContextClue =
+    appliedIdioms.length > 0 ||
+    matchedPhysicalBlocker ||
+    disambiguatedHomonyms.some((h) => h.scoreDiff >= 2);
+
+  const hasUnresolvedFigurativeRisk =
+    hasFigurativeNoun && hasPolysemousPred && !hasResolvedContextClue;
+
+  const rawRatio =
+    totalEvaluated > 0 ? Math.round((confidentCount / totalEvaluated) * 100) : 0;
+  const ratio = hasUnresolvedFigurativeRisk ? Math.min(rawRatio, 65) : rawRatio;
+
   const isFullyConfident =
     allTokensResolved &&
+    !hasUnresolvedFigurativeRisk &&
     reorderedSequence.length > 0 &&
     reorderedSequence.length <= 10;
 
@@ -420,34 +470,15 @@ export function analyzeSentenceWithLocalNlp(
   };
 }
 
-function resolveHomonymClusterKey(base: string, raw: string): string | null {
-  const cleanRaw = raw.replace(/[?!.,~"']/g, "");
+function resolveHomonymClusterKey(base: string): string | null {
   if (HOMONYM_CLUSTERS[base]) return base;
-  if (HOMONYM_CLUSTERS[cleanRaw]) return cleanRaw;
-
-  // 활용형/어간 보정
-  if (/^(보내|보낼|보냈|보내세요|보내셨어요)$/.test(cleanRaw) || base === "보내다") {
-    return "보내다";
-  }
-  if (/^(나가|나갈|나갔|나가세요)$/.test(cleanRaw) || base === "나가다") {
-    return "나가다";
-  }
-  if (/^(드시|드세|드실|드셨)/.test(cleanRaw) || base === "드시다" || base === "들다") {
-    return "드시다";
-  }
-  if (/^(써요|썼어요|쓰세요|쓰고|쓴다|쓴)$/.test(cleanRaw) || base === "쓰다") {
-    return "쓰다";
-  }
-  if (/^(타요|탔어요|타고|타세요|탈)$/.test(cleanRaw) || base === "타다") {
-    return "타다";
-  }
   return null;
 }
 
 /**
  * 한국수어(KSL) 문법 어순 재배치 및 중복 서술어 압축기
  * - KSL 표준 어순: [시간] -> [장소/주어/목적어/부사/핵심동사] -> [가능/부정(가능하다/아니다/못하다)] -> [과거 완료(끝)] -> [의문사]
- * - 중복 서술어 압축: 예) "촬영할건데(찍다) ... 찍어도(찍다)" -> [찍다] 1개로 통합
+ * - 중복 서술어 압축: 한 문장 내에서 동일한 수어 용언(동사/형용사) ID가 중복 도출된 경우 하나로 통합
  */
 function reorderAndCompressKslSequence(
   tokens: Array<NlpResolvedToken & { isPast?: boolean }>,
@@ -455,7 +486,7 @@ function reorderAndCompressKslSequence(
 ): NlpResolvedToken[] {
   if (tokens.length === 0) return [];
 
-  // 1) 중복 수어 ID 연속/절간 압축 (예: 촬영할건데[찍다] + 찍어도[찍다] -> [찍다] 1개, 소식을[듣다] + 듣고[듣다] -> [듣다] 1개)
+  // 1) 중복 수어 ID 연속/절간 압축
   const deduplicated: Array<NlpResolvedToken & { isPast?: boolean }> = [];
   for (const token of tokens) {
     const signId = token.resolvedSign?.id;
@@ -465,12 +496,14 @@ function reorderAndCompressKslSequence(
       // 바로 직전 토큰과 동일한 수어 ID이면 하나로 병합 (예: 소식[듣다] + 듣고[듣다], 한잔[마시다] + 마셔요[마시다])
       const lastToken = deduplicated[deduplicated.length - 1];
       if (lastToken && lastToken.resolvedSign?.id === signId) {
-        lastToken.originalPart = `${lastToken.originalPart} ${token.originalPart}`;
+        if (lastToken.originalPart !== token.originalPart) {
+          lastToken.originalPart = `${lastToken.originalPart} ${token.originalPart}`;
+        }
         continue;
       }
 
-      // 문장 내 동일 동사 중복 압축 (예: 촬영할건데[찍다] ... 찍어도[찍다])
-      if (cleanGloss === "찍다" || cleanGloss === "먹다" || cleanGloss === "마시다") {
+      // 복문/연결절 내 동일 용언(동사·형용사) 수어 중복 압축 (특정 동사 하드코딩 없이 모든 용언 표제어에 일반 적용)
+      if (cleanGloss.endsWith("다")) {
         const prevIdx = deduplicated.findIndex(
           (d) => d.resolvedSign?.id === signId
         );

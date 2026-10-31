@@ -1,9 +1,9 @@
 {
   "version": "2.0.0-ksl-nlp",
-  "generatedAt": "2026-10-25T14:36:48.282Z",
+  "generatedAt": "2026-10-31T06:52:06.919Z",
   "stats": {
     "totalDictionaryEntries": 165,
-    "totalIdioms": 20,
+    "totalIdioms": 36,
     "totalHomonymGroups": 13,
     "totalHomonymSenses": 28
   },
@@ -533,13 +533,19 @@
       "id": "idiom_busy_eyes_nose",
       "idiom": "눈코 뜰 새 없다",
       "dictMeaning": "정신을 차릴 수 없을 만큼 매우 바쁘다",
-      "headBase": "눈코",
+      "headBase": "눈",
       "predBases": [
-        "뜨다",
-        "없다",
-        "바쁘다"
+        "뜨다"
       ],
-      "maxDistance": 4,
+      "maxDistance": 3,
+      "requireContextWords": [
+        "코"
+      ],
+      "consumeSpanTerms": [
+        "코",
+        "새",
+        "없다"
+      ],
       "physicalBlockerWords": [],
       "kslSequence": [
         {
@@ -642,6 +648,470 @@
         "ksl_050"
       ],
       "explanation": "관용어 '속이 터지다/상하다'를 [화나다]로 의역했습니다."
+    },
+    {
+      "id": "idiom_taste_suit",
+      "idiom": "입에 맞다 / 입맛에 맞다",
+      "dictMeaning": "음식 맛이 기호에 맞아 맛있다",
+      "headBase": "입",
+      "predBases": [
+        "맞다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [
+        "크기",
+        "마스크"
+      ],
+      "kslSequence": [
+        {
+          "kslGloss": "맛있다",
+          "targetSignId": "ksl_011",
+          "senseHint": "음식이 입에 맞아 맛있다"
+        },
+        {
+          "kslGloss": "괜찮다",
+          "targetSignId": "ksl_032",
+          "senseHint": "좋다, 괜찮다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_120",
+        "ksl_056"
+      ],
+      "explanation": "관용어 '입에 맞다(음식이 맛있다)'를 수어 문맥에 맞게 [맛있다] → [괜찮다]로 의역했습니다."
+    },
+    {
+      "id": "idiom_appetite_none",
+      "idiom": "입맛이 없다",
+      "dictMeaning": "음식을 먹고 싶은 생각이 없다",
+      "headBase": "입맛",
+      "predBases": [
+        "없다",
+        "아니다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "밥",
+          "targetSignId": "ksl_087",
+          "senseHint": "음식, 식사"
+        },
+        {
+          "kslGloss": "먹다",
+          "targetSignId": "ksl_012",
+          "senseHint": "먹다"
+        },
+        {
+          "kslGloss": "싫다",
+          "targetSignId": "ksl_047",
+          "senseHint": "먹고 싶지 않다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_059"
+      ],
+      "explanation": "관용어 '입맛이 없다(음식을 먹고 싶지 않다)'를 [밥] → [먹다] → [싫다]로 의역했습니다."
+    },
+    {
+      "id": "idiom_mind_like",
+      "idiom": "마음에 들다",
+      "dictMeaning": "대상이 좋게 여겨져 호감이 가다",
+      "headBase": "마음",
+      "predBases": [
+        "들다",
+        "드시다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "좋아하다",
+          "targetSignId": "ksl_046",
+          "senseHint": "마음에 들다, 좋아하다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_129"
+      ],
+      "explanation": "관용어 '마음에 들다(좋아하다)'를 [좋아하다]로 의역했습니다."
+    },
+    {
+      "id": "idiom_wait_eagerly",
+      "idiom": "목이 빠지게 기다리다",
+      "dictMeaning": "몹시 애타게 오랫동안 기다리다",
+      "headBase": "목",
+      "predBases": [
+        "빠지다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [
+        "병원",
+        "뼈",
+        "다치다"
+      ],
+      "kslSequence": [
+        {
+          "kslGloss": "많이",
+          "targetSignId": "ksl_095",
+          "senseHint": "간절히, 많이"
+        },
+        {
+          "kslGloss": "기다리다",
+          "targetSignId": "ksl_054",
+          "senseHint": "기다리다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_054"
+      ],
+      "explanation": "관용어 '목이 빠지다(애타게 기다리다)'를 [많이] → [기다리다]로 의역했습니다."
+    },
+    {
+      "id": "colloc_mind_decide",
+      "idiom": "마음을 먹다",
+      "dictMeaning": "어떤 일을 하기로 결심하거나 다짐하다",
+      "headBase": "마음",
+      "predBases": [
+        "먹다",
+        "드시다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "마음",
+          "targetSignId": "ksl_129",
+          "senseHint": "마음, 다짐"
+        },
+        {
+          "kslGloss": "생각하다",
+          "targetSignId": "ksl_079",
+          "senseHint": "결심하다, 생각하다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_129",
+        "ksl_012"
+      ],
+      "explanation": "다의어 연어 '마음을 먹다(결심하다)'를 직역(식사)하지 않고 [마음] → [생각하다(결심하다)]로 의역했습니다."
+    },
+    {
+      "id": "colloc_age_grow",
+      "idiom": "나이를 먹다 / 연세를 드시다",
+      "dictMeaning": "해가 지나 나이가 많아지다",
+      "headBase": "나이",
+      "predBases": [
+        "먹다",
+        "드시다",
+        "들다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "어르신",
+          "targetSignId": "ksl_085",
+          "senseHint": "나이, 연세, 어르신"
+        },
+        {
+          "kslGloss": "많이",
+          "targetSignId": "ksl_095",
+          "senseHint": "나이가 많아지다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_085",
+        "ksl_012"
+      ],
+      "explanation": "다의어 연어 '나이를 먹다(연세가 들다)'를 음식 섭취 수어 대신 [어르신(나이)] → [많이]로 의역했습니다."
+    },
+    {
+      "id": "colloc_fear_eat",
+      "idiom": "겁을 먹다 / 겁이 나다",
+      "dictMeaning": "무섭거나 두려운 마음이 생기다",
+      "headBase": "겁",
+      "predBases": [
+        "먹다",
+        "나다",
+        "집어먹다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "놀라다",
+          "targetSignId": "ksl_145",
+          "senseHint": "무섭다, 두렵다, 놀라다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_145",
+        "ksl_012"
+      ],
+      "explanation": "관용어 '겁을 먹다(두려워하다)'를 [놀라다(두렵다)]로 의역했습니다."
+    },
+    {
+      "id": "colloc_heat_eat",
+      "idiom": "더위를 먹다",
+      "dictMeaning": "더운 기운에 지쳐 몸이 아프고 기운이 빠지다",
+      "headBase": "더위",
+      "predBases": [
+        "먹다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "덥다",
+          "targetSignId": "ksl_063",
+          "senseHint": "더위, 무덥다"
+        },
+        {
+          "kslGloss": "아프다",
+          "targetSignId": "ksl_018",
+          "senseHint": "병이 나다, 아프다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_063",
+        "ksl_012"
+      ],
+      "explanation": "관용어 '더위를 먹다(더위로 몸이 상하다)'를 [덥다] → [아프다]로 의역했습니다."
+    },
+    {
+      "id": "colloc_cold_catch",
+      "idiom": "감기에 걸리다",
+      "dictMeaning": "감기 바이러스로 인해 몸이 아프다",
+      "headBase": "감기",
+      "predBases": [
+        "걸리다",
+        "들다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "춥다",
+          "targetSignId": "ksl_062",
+          "senseHint": "감기, 오한"
+        },
+        {
+          "kslGloss": "아프다",
+          "targetSignId": "ksl_018",
+          "senseHint": "병에 걸리다, 아프다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_018"
+      ],
+      "explanation": "다의어 구문 '감기에 걸리다'를 [춥다(감기)] → [아프다]로 의역했습니다."
+    },
+    {
+      "id": "colloc_disease_catch",
+      "idiom": "병에 걸리다",
+      "dictMeaning": "질병이 생겨 몸이 아프다",
+      "headBase": "병",
+      "predBases": [
+        "걸리다",
+        "나다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [
+        "유리",
+        "물병",
+        "약병",
+        "깨지다"
+      ],
+      "kslSequence": [
+        {
+          "kslGloss": "아프다",
+          "targetSignId": "ksl_018",
+          "senseHint": "질병으로 아프다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_018"
+      ],
+      "explanation": "다의어 구문 '병에 걸리다/병이 나다'를 [아프다]로 의역했습니다."
+    },
+    {
+      "id": "colloc_time_take",
+      "idiom": "시간이 걸리다",
+      "dictMeaning": "어떤 일에 시간이 소요되다",
+      "headBase": "시간",
+      "predBases": [
+        "걸리다",
+        "들다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "시간",
+          "targetSignId": "ksl_020",
+          "senseHint": "시간"
+        },
+        {
+          "kslGloss": "많이",
+          "targetSignId": "ksl_095",
+          "senseHint": "오래 걸리다, 소요되다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_020"
+      ],
+      "explanation": "다의어 구문 '시간이 걸리다(소요되다)'를 [시간] → [많이(오래)]로 의역했습니다."
+    },
+    {
+      "id": "colloc_mind_bother",
+      "idiom": "마음에 걸리다",
+      "dictMeaning": "안심이 되지 않고 걱정스럽거나 신경이 쓰이다",
+      "headBase": "마음",
+      "predBases": [
+        "걸리다",
+        "쓰이다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "걱정하다",
+          "targetSignId": "ksl_131",
+          "senseHint": "신경 쓰이고 걱정되다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_129",
+        "ksl_131"
+      ],
+      "explanation": "관용어 '마음에 걸리다(걱정되다)'를 [걱정하다]로 의역했습니다."
+    },
+    {
+      "id": "colloc_energy_none",
+      "idiom": "기운이 없다 / 힘이 없다",
+      "dictMeaning": "몸이 지치고 피곤하여 기력이 없다",
+      "headBase": "기운",
+      "predBases": [
+        "없다",
+        "빠지다",
+        "아니다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "피곤하다",
+          "targetSignId": "ksl_051",
+          "senseHint": "지치고 기운이 없다"
+        },
+        {
+          "kslGloss": "아프다",
+          "targetSignId": "ksl_018",
+          "senseHint": "몸 상태가 편찮다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_051",
+        "ksl_059"
+      ],
+      "explanation": "완곡 표현 '기운이 없다(기력이 없고 지치다)'를 [피곤하다] → [아프다]로 의역했습니다."
+    },
+    {
+      "id": "idiom_eye_match_love",
+      "idiom": "눈이 맞다",
+      "dictMeaning": "서로 마음이 통하거나 사랑하는 사이가 되다",
+      "headBase": "눈",
+      "predBases": [
+        "맞다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [
+        "공",
+        "손",
+        "주먹",
+        "다치다",
+        "병원",
+        "안과"
+      ],
+      "kslSequence": [
+        {
+          "kslGloss": "함께",
+          "targetSignId": "ksl_104",
+          "senseHint": "서로, 함께"
+        },
+        {
+          "kslGloss": "사랑하다",
+          "targetSignId": "ksl_048",
+          "senseHint": "눈이 맞다, 사랑하다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_107",
+        "ksl_056"
+      ],
+      "explanation": "관용어 '눈이 맞다(서로 호감을 느끼고 사랑하다)'를 [함께] → [사랑하다]로 의역했습니다."
+    },
+    {
+      "id": "idiom_foot_cut",
+      "idiom": "발을 끊다 / 발길이 끊기다",
+      "dictMeaning": "오고 가는 관계를 완전히 끊다",
+      "headBase": "발",
+      "predBases": [
+        "끊다",
+        "끊기다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [
+        "병원",
+        "수술",
+        "다치다"
+      ],
+      "kslSequence": [
+        {
+          "kslGloss": "오다",
+          "targetSignId": "ksl_041",
+          "senseHint": "왕래하다, 방문하다"
+        },
+        {
+          "kslGloss": "아니다",
+          "targetSignId": "ksl_057",
+          "senseHint": "오지 않다, 끊다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_119",
+        "ksl_057"
+      ],
+      "explanation": "관용어 '발을 끊다(왕래하지 않다)'를 [오다] → [아니다]로 의역했습니다."
+    },
+    {
+      "id": "idiom_mouth_promise",
+      "idiom": "입을 맞추다",
+      "dictMeaning": "여러 사람이 미리 말을 똑같이 맞추어 약속하다",
+      "headBase": "입",
+      "predBases": [
+        "맞추다"
+      ],
+      "maxDistance": 3,
+      "physicalBlockerWords": [],
+      "kslSequence": [
+        {
+          "kslGloss": "함께",
+          "targetSignId": "ksl_104",
+          "senseHint": "함께, 서로"
+        },
+        {
+          "kslGloss": "약속",
+          "targetSignId": "ksl_144",
+          "senseHint": "미리 말을 맞추어 약속하다"
+        }
+      ],
+      "literalFallbackIds": [
+        "ksl_120",
+        "ksl_144"
+      ],
+      "explanation": "관용어 '입을 맞추다(말을 맞추어 약속하다)'를 [함께] → [약속]으로 의역했습니다."
     }
   ],
   "homonyms": {
@@ -769,7 +1239,7 @@
             "까딱거리": 13.9,
             "하늘": 35.3,
             "날씨": 35.3,
-            "겨울": 33.6,
+            "겨울": 35.3,
             "강수": 23.8,
             "폭설": 37.8,
             "스노우": 13.9,
@@ -972,7 +1442,7 @@
             "장염": 37.8,
             "설사": 37.8,
             "병원": 31.3,
-            "약": 33.6,
+            "약": 32.3,
             "화장실": 37.8,
             "만지다": 37.8,
             "만지": 37.8,
@@ -994,7 +1464,7 @@
             "물": 32.3,
             "위": 6.4,
             "사람": 8.2,
-            "짐": 21.8,
+            "짐": 20.5,
             "싣다": 12.1,
             "싣": 12.1,
             "다니다": 13.9,
@@ -1058,7 +1528,7 @@
             "먹": 31.3,
             "달콤하다": 23.8,
             "달콤하": 23.8,
-            "과일": 32.3,
+            "과일": 31.3,
             "나주": 13.9,
             "오르다": 5.3,
             "오르": 5.3,
@@ -1071,7 +1541,7 @@
             "대": 8.2,
             "달": 31.3,
             "간식": 31.3,
-            "사과": 32.3,
+            "사과": 31.3,
             "과실": 23.8,
             "식사": 21.8,
             "드시다": 32.3,
@@ -1084,10 +1554,10 @@
             "시원하": 32.3,
             "즙": 37.8,
             "감": 33.6,
-            "귤": 35.3,
+            "귤": 33.6,
             "후식": 37.8,
             "선물": 35.3,
-            "상자": 35.3,
+            "상자": 33.6,
             "껍질": 35.3,
             "쪼개다": 35.3,
             "쪼개": 35.3,
@@ -1137,8 +1607,8 @@
             "자": 37.8,
             "잠": 37.8,
             "새벽": 37.8,
-            "오늘": 35.3,
-            "어제": 35.3,
+            "오늘": 37.8,
+            "어제": 37.8,
             "밤중": 23.8,
             "껌껌하다": 13.9,
             "껌껌하": 13.9,
@@ -1223,12 +1693,12 @@
             "송이": 37.8,
             "가시": 37.8,
             "가시다": 37.8,
-            "가을": 33.6,
+            "가을": 35.3,
             "산": 37.8,
             "사다": 35.3,
             "사": 35.3,
             "고구마": 37.8,
-            "과일": 32.3
+            "과일": 31.3
           }
         }
       ]
@@ -1295,14 +1765,12 @@
             "방학": 37.8,
             "휴가": 37.8,
             "하루": 37.8,
-            "오늘": 35.3,
-            "어제": 35.3,
             "연말": 37.8,
             "새해": 37.8,
             "생일": 37.8,
             "생신": 37.8,
-            "가을": 33.6,
-            "겨울": 33.6,
+            "연휴": 37.8,
+            "일주일": 37.8,
             "잘": 37.8,
             "즐겁다": 37.8,
             "즐겁": 37.8,
@@ -1369,6 +1837,25 @@
             "영상": 37.8,
             "문자": 37.8,
             "메시지": 37.8,
+            "이메일": 37.8,
+            "메일": 37.8,
+            "카톡": 37.8,
+            "서류": 37.8,
+            "문서": 37.8,
+            "파일": 37.8,
+            "상자": 33.6,
+            "박스": 37.8,
+            "짐": 33.6,
+            "과일": 31.3,
+            "귤": 33.6,
+            "사과": 31.3,
+            "배": 29.8,
+            "김치": 37.8,
+            "반찬": 35.3,
+            "음식": 33.6,
+            "약": 32.3,
+            "돈": 37.8,
+            "송금": 37.8,
             "우체국": 37.8,
             "주소": 37.8,
             "집": 32.3,
@@ -1376,9 +1863,19 @@
             "아들": 37.8,
             "딸": 37.8,
             "가족": 37.8,
+            "친구": 37.8,
+            "부모님": 37.8,
+            "부모": 37.8,
+            "선생님": 37.8,
+            "선생": 37.8,
+            "어르신": 37.8,
+            "할머니": 37.8,
+            "할아버지": 37.8,
             "전달하다": 37.8,
             "받다": 33.6,
-            "받": 33.6
+            "받": 33.6,
+            "배달": 37.8,
+            "배송": 37.8
           }
         }
       ]
@@ -1701,7 +2198,7 @@
             "사람": 8.2,
             "타다": 30.5,
             "타": 30.5,
-            "짐": 12.1,
+            "짐": 10.9,
             "끌다": 13.9,
             "끌": 13.9,
             "발": 12.1,
@@ -1844,8 +2341,8 @@
           "label": "약이나 음식 맛이 쓰다",
           "prior": 3,
           "weights": {
-            "약": 33.6,
-            "음식": 21.8,
+            "약": 32.3,
+            "음식": 20.5,
             "맛": 37.8,
             "달다": 31.3,
             "달": 31.3,
@@ -1939,7 +2436,7 @@
             "기차": 37.8,
             "지하철": 37.8,
             "비행기": 37.8,
-            "배": 30.5,
+            "배": 29.8,
             "엘리베이터": 37.8,
             "휠체어": 37.8,
             "내리다": 29.8,
@@ -2043,8 +2540,8 @@
             "산책": 33.6,
             "옷": 37.8,
             "바다": 33.6,
-            "가을": 33.6,
-            "겨울": 33.6
+            "가을": 35.3,
+            "겨울": 35.3
           }
         },
         {
@@ -2112,7 +2609,7 @@
           "label": "식사·음식·간식을 드시다",
           "prior": 6,
           "weights": {
-            "음식": 21.8,
+            "음식": 20.5,
             "밥": 37.8,
             "입": 10,
             "넣다": 12.1,
@@ -2143,14 +2640,14 @@
             "아침": 35.3,
             "저녁": 35.3,
             "간식": 31.3,
-            "과일": 32.3,
-            "사과": 32.3,
-            "배": 30.5,
+            "과일": 31.3,
+            "사과": 31.3,
+            "배": 29.8,
             "밤": 33.6,
             "고기": 37.8,
             "떡": 37.8,
             "국": 37.8,
-            "반찬": 37.8,
+            "반찬": 35.3,
             "맛있다": 31.3,
             "맛있": 31.3,
             "많이": 37.8,
@@ -2158,7 +2655,7 @@
             "배부르": 35.3,
             "배고프다": 35.3,
             "배고프": 35.3,
-            "약": 33.6
+            "약": 32.3
           }
         },
         {
@@ -2226,7 +2723,7 @@
             "열매": 19.5,
             "먹다": 31.3,
             "먹": 31.3,
-            "과일": 32.3,
+            "과일": 31.3,
             "오르다": 5.3,
             "오르": 5.3,
             "주먹": 4.9,
@@ -2261,12 +2758,12 @@
             "맛있": 31.3,
             "달다": 31.3,
             "달": 31.3,
-            "배": 30.5,
+            "배": 29.8,
             "감": 33.6,
-            "귤": 35.3,
+            "귤": 33.6,
             "빨갛다": 37.8,
             "빨갛": 37.8,
-            "상자": 35.3,
+            "상자": 33.6,
             "쪼개다": 35.3,
             "쪼개": 35.3,
             "씻다": 37.8,

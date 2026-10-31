@@ -196,29 +196,54 @@ function createDefaultNonManualTip(clean: string): string {
 }
 
 /**
- * senseHint와 사전 후보의 텍스트를 대조하여 가장 일치하는 수어를 채점 (0ms 스코어러)
+ * senseHint 및 excludeSense와 사전 후보의 텍스트(뜻풀이·대응표현·수형설명)를 대조하여
+ * 가장 문맥에 일치하는 수어를 채점 (0ms 의미론적 스코어러)
  */
 function scoreCandidateBySense(
   candidate: SignWordEntry,
-  senseHint?: string
+  senseHint?: string,
+  excludeSense?: string
 ): number {
-  if (!senseHint) return 0;
-  const keywords = senseHint
-    .split(/[\s,./·()]+/)
-    .map((k) => k.trim())
-    .filter((k) => k.length >= 2);
-
   let score = 0;
-  const searchable = `${candidate.word} ${candidate.meaning} ${candidate.signDescription} ${(candidate.keywords || []).join(" ")}`;
+  const searchable = `${candidate.word} ${candidate.meaning} ${candidate.signDescription} ${(candidate.keywords || []).join(" ")} ${(candidate.synonyms || []).join(" ")}`;
 
-  for (const kw of keywords) {
-    if (searchable.includes(kw)) {
-      if (candidate.word.includes(kw)) score += 25;
-      if (candidate.meaning.includes(kw)) score += 15;
-      if (candidate.keywords?.some((k) => k.includes(kw) || kw.includes(k))) score += 10;
-      if (candidate.signDescription.includes(kw)) score += 5;
+  if (senseHint) {
+    const keywords = senseHint
+      .split(/[\s,./·()]+/)
+      .map((k) => k.trim())
+      .filter((k) => k.length >= 2);
+
+    for (const kw of keywords) {
+      if (searchable.includes(kw)) {
+        if (candidate.word.includes(kw)) score += 25;
+        if (candidate.meaning.includes(kw)) score += 18;
+        if (candidate.synonyms?.some((s) => s.includes(kw) || kw.includes(s)))
+          score += 15;
+        if (candidate.keywords?.some((k) => k.includes(kw) || kw.includes(k)))
+          score += 10;
+        if (candidate.signDescription.includes(kw)) score += 5;
+      }
     }
   }
+
+  // 오역 배제 키워드(excludeSense)에 해당하면 강력 감점
+  if (excludeSense) {
+    const excludeKws = excludeSense
+      .split(/[\s,./·()]+/)
+      .map((k) => k.trim())
+      .filter((k) => k.length >= 2);
+
+    for (const exKw of excludeKws) {
+      if (
+        candidate.word.includes(exKw) ||
+        candidate.meaning.includes(exKw) ||
+        candidate.synonyms?.some((s) => s === exKw)
+      ) {
+        score -= 35;
+      }
+    }
+  }
+
   return score;
 }
 
@@ -226,7 +251,9 @@ interface GeminiContextOutput {
   sequence: Array<{
     originalPart: string;
     kslGloss: string;
+    searchKeywords?: string[];
     senseHint?: string;
+    excludeSense?: string;
     selectionReason?: string;
   }>;
   nonManualTip?: string;
@@ -287,7 +314,7 @@ export async function translateKoreanToKsl(
   let customExplanation: string | undefined;
 
   // ==========================================
-  // [3단계] Confidence Gating: 미등록 단어나 불확실한 문장만 초저지연 Gemini 호출
+  // [3단계] Confidence Gating: 미등록 단어·미확인 동음이의어·복합 구문일 때 초저지연 Gemini 호출
   // ==========================================
   if (!nlpResult.isFullyConfident && genAI && garuTokens.length > 0) {
     const geminiStepStart = Date.now();
@@ -296,12 +323,15 @@ export async function translateKoreanToKsl(
         .map((t) => `"${t.originalPart}"->${t.kslGloss}(${t.senseHint})`)
         .join(", ");
 
-      const prompt = `한국수어(KSL) 통역사로서 아래 한국어 문장의 1차 NLP 분석 결과를 검수하여, 관용어·동음이의어 의미 태그(senseHint)와 KSL 어순 시퀀스를 JSON으로만 응답하세요.
+      const prompt = `전문 한국수어(KSL) 통역사로서 아래 한국어 문장의 속뜻과 문맥을 분석하여 농인이 실제로 사용하는 한국수어(KSL) 어순 시퀀스를 JSON으로만 응답하세요.
 - 입력 문장: "${trimmed}"
-- 1차 NLP 분석: [${nlpDraftCompact}]
-- 지침: 관용어는 실제 속뜻의 쉬운 기본 수어 단어로 풀고, 동음이의어(눈, 다리, 배, 밤, 보내다, 나가다, 차, 말, 쓰다 등)는 문맥에 맞는 senseHint를 명시하세요. 시간은 맨 앞, 의문사는 맨 끝으로 배치하세요.
+- 1차 형태소/NLP 초안: [${nlpDraftCompact}]
+- 핵심 번역 규칙:
+  1. 관용구·비유·완곡어법(예: 입에 맞다, 기운이 없다, 손이 크다, 마음에 들다 등)은 글자 그대로 직역하지 말고 실제 속뜻에 해당하는 직관적인 기본 수어 표제어 조합으로 의역하세요.
+  2. 동음이의어·다의어(예: 보내다[시간을 지내다 vs 물건 발송], 배[신체 복부 vs 선박 vs 과일], 눈[신체 vs 날씨], 쓰다[글씨 적다 vs 모자·안경 착용 vs 맛이 쓰다], 차[자동차 vs 음료], 다리[신체 vs 교량] 등)는 문맥에 맞는 정확한 기본 수어 표제어(kslGloss)와 의미 힌트(senseHint), 그리고 오역 방지를 위해 배제할 뜻(excludeSense)을 명시하세요.
+  3. 한국수어 문법 어순: [시간/배경] -> [장소/대상/목적어] -> [핵심 동사/형용사] -> [부정/금지/가능(아니다/말다/못하다/가능하다)] -> [의문사(무엇/어디/언제/왜)] 순으로 배치하세요. 부정 표현(안/못/~지 마세요)이 절대 누락되지 않게 하세요.
 출력 형식:
-{"sequence":[{"originalPart":"어절","kslGloss":"수어표제어","senseHint":"문맥힌트","selectionReason":"선택이유"}],"nonManualTip":"표정팁1문장"}`;
+{"sequence":[{"originalPart":"원문어절","kslGloss":"표준수어표제어","searchKeywords":["1순위검색어","2순위유의어"],"senseHint":"문맥상정확한의미","excludeSense":"배제할동음이의어의미","selectionReason":"문맥의역및선택이유"}],"nonManualTip":"문장감정과문법에맞는표정·고개짓가이드1문장","contextExplanation":"직역오역을피하고수어문맥으로변환한핵심해설1문장"}`;
 
       const res = await generateJsonWithGemini<GeminiContextOutput>(
         genAI,
@@ -320,7 +350,9 @@ export async function translateKoreanToKsl(
         activeSequence = res.parsed.sequence.map((item) => ({
           originalPart: item.originalPart,
           kslGloss: item.kslGloss,
+          searchKeywords: item.searchKeywords,
           senseHint: item.senseHint || item.kslGloss,
+          excludeSense: item.excludeSense,
           selectionReason:
             item.selectionReason ||
             `문맥 '${item.senseHint || item.kslGloss}'에 맞게 변환했습니다.`,
@@ -370,10 +402,12 @@ export async function translateKoreanToKsl(
           .replace(/[\[\]"'?!.~]/g, "")
           .trim() || token.kslGloss;
 
-      const searchRes = await searchHybridDictionaryWithMeta([
+      const queryTerms = [
         cleanGloss,
-        token.originalPart,
-      ]);
+        ...(token.searchKeywords || []),
+      ].filter(Boolean);
+
+      const searchRes = await searchHybridDictionaryWithMeta(queryTerms);
       tokenTimings.push({
         token: cleanGloss,
         source: searchRes.source,
@@ -406,10 +440,14 @@ export async function translateKoreanToKsl(
       }
 
       let bestCandidate = candidates[0];
-      let bestScore = -1;
+      let bestScore = -999;
 
       for (const cand of candidates) {
-        let score = scoreCandidateBySense(cand, token.senseHint);
+        let score = scoreCandidateBySense(
+          cand,
+          token.senseHint,
+          token.excludeSense
+        );
         if (
           cand.word === cleanGloss ||
           cand.word.replace(/\(.*?\)/g, "").trim() === cleanGloss

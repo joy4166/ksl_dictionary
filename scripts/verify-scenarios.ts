@@ -52,6 +52,11 @@ async function runTests() {
       expectedIds: ["ksl_129", "ksl_050"], // [마음] -> [슬프다]
       desc: "관용어 '가슴이 아프다' -> [마음] + [슬프다]",
     },
+    {
+      sentence: "오늘은 정말 눈코 뜰 새 없어요",
+      expectedIds: ["ksl_007", "ksl_095", "ksl_139"], // [오늘] -> [많이] -> [바쁘다]
+      desc: "관용어 '눈코 뜰 새 없다' (Garu '눈/NNG + 코/NNG + 뜨/VV' 분해 기반 FST 매칭) -> [오늘] + [많이] + [바쁘다]",
+    },
   ];
 
   for (const tc of idiomCases) {
@@ -161,6 +166,67 @@ async function runTests() {
         { id: "ksl_080", word: "가능하다" },
       ],
       desc: "복합절 구어체 ('대회에 나갈'->참가하다, '할머니랑'->함께, '촬영할건데+찍어도'->찍다 1개 압축, '될까요'->가능하다)",
+    },
+    {
+      sentence: "오늘 귤을 보냈어요",
+      expectedPairs: [{ id: "ksl_005", word: "보내다" }],
+      desc: "'오늘'이 포함되어도 '귤' 문맥을 인식해 '지내다' 오역 없이 '보내다(발송)' 선택",
+    },
+    {
+      sentence: "가지마세요",
+      expectedPairs: [
+        { id: "ksl_040", word: "가다" },
+        { id: "ksl_082", word: "말다" },
+      ],
+      desc: "띄어쓰기 없는 부정/금지 어절 '가지마세요' -> [가다] + [말다(금지)] 보존",
+    },
+    {
+      sentence: "밥먹었어요",
+      expectedPairs: [
+        { id: "ksl_087", word: "밥" },
+        { id: "ksl_012", word: "먹다" },
+      ],
+      desc: "띄어쓰기 없는 복합 어절 '밥먹었어요' -> 명사 [밥] + 동사 [먹다] 동시 추출",
+    },
+    {
+      sentence: "오늘 식사 입에 맞으세요?",
+      expectedPairs: [
+        { id: "ksl_011", word: "맛있다" },
+        { id: "ksl_032", word: "괜찮다" },
+      ],
+      desc: "관용어 '입에 맞다' -> [맛있다] + [괜찮다] 문맥 의역",
+    },
+    {
+      sentence: "마음을 단단히 먹었어요",
+      expectedPairs: [
+        { id: "ksl_129", word: "마음" },
+        { id: "ksl_079", word: "생각하다" },
+      ],
+      desc: "다의어 동사 '먹다': '마음을 먹다' -> 식사[먹다] 직역 대신 [마음] + [생각하다(결심)] 의역",
+    },
+    {
+      sentence: "겁을 먹지 마세요",
+      expectedPairs: [
+        { id: "ksl_145", word: "놀라다" },
+        { id: "ksl_082", word: "말다" },
+      ],
+      desc: "다의어 동사 '먹다': '겁을 먹지 마세요' -> [놀라다(두렵다)] + [말다(금지)] 의역",
+    },
+    {
+      sentence: "감기에 걸렸어요",
+      expectedPairs: [
+        { id: "ksl_062", word: "춥다" },
+        { id: "ksl_018", word: "아프다" },
+      ],
+      desc: "다의어 동사 '걸리다': '감기에 걸리다' -> [춥다] + [아프다] 의역",
+    },
+    {
+      sentence: "시간이 많이 걸렸어요",
+      expectedPairs: [
+        { id: "ksl_020", word: "시간" },
+        { id: "ksl_095", word: "많이" },
+      ],
+      desc: "다의어 동사 '걸리다': '시간이 걸리다' -> [시간] + [많이(오래)] 의역",
     },
   ];
 

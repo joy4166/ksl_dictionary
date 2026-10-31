@@ -15,18 +15,6 @@ export async function POST(req: NextRequest) {
     const customApiKey =
       typeof body?.apiKey === "string" ? body.apiKey.trim() : undefined;
 
-    if (customApiKey && !process.env.GEMINI_API_KEY) {
-      process.env.GEMINI_API_KEY = customApiKey;
-      try {
-        const fs = await import("fs");
-        const path = await import("path");
-        const envPath = path.join(process.cwd(), ".env.local");
-        fs.writeFileSync(envPath, `GEMINI_API_KEY=${customApiKey}\n`, "utf8");
-      } catch (e) {
-        // ignore
-      }
-    }
-
     if (!sentence) {
       return NextResponse.json(
         { error: "번역할 한국어 문장을 입력해 주세요." },

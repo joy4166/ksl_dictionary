@@ -55,55 +55,44 @@ export function getPresetPhrasebook(): {
 }
 
 /**
- * 한국어 높임말/한자어/활용형 -> 직관적인 쉬운 기본 수어(Easy-KSL) 표제어 정규화 사전
- * (Gemini나 형태소 분석기가 변형된 표제어를 넘겨도 100% 매칭되도록 보장)
+ * 한국어 높임말·한자어 기본형(Lemma) -> 직관적인 표준 한국수어(KSL) 기본 표제어 유의어 사전
+ * (활용형/어절 하드코딩 없이 순수 사전 기본형 간의 유의어 매핑만 정의)
  */
 const CANONICAL_GLOSS_ALIASES: Record<string, string[]> = {
-  // 식사/음료
+  // 식사/음료 높임말 및 한자어 기본형
   드시다: ["먹다", "식사", "마시다"],
-  드세요: ["먹다", "마시다"],
-  드실래요: ["먹다", "마시다"],
-  드셨어요: ["먹다", "마시다"],
   잡수시다: ["먹다"],
   식사하다: ["먹다", "밥", "점심"],
   식사: ["밥", "먹다", "점심"],
-  // 수면/건강
+  음식: ["음식", "밥", "먹다"],
+  한잔: ["마시다", "물"],
+  복약: ["약"],
+  복용하다: ["약", "먹다"],
+  // 수면/건강 높임말 및 한자어 기본형
   주무시다: ["자다"],
-  주무세요: ["자다"],
-  주무셨어요: ["자다"],
+  취침하다: ["자다"],
   취침: ["자다"],
   편찮으시다: ["아프다"],
   편찮다: ["아프다"],
+  불편하다: ["아프다", "피곤하다"],
   통증: ["아프다"],
   침침하다: ["어둡다", "아프다", "모르다"],
-  소식: ["말하다", "편지", "듣다"],
-  한잔: ["마시다", "물"],
-  음식: ["음식", "밥", "먹다"],
-  복약: ["약"],
-  복용하다: ["약", "먹다"],
-  // 부정/금지
-  못: ["못하다"],
-  안: ["안하다", "없다"],
-  // 호칭/대명사
-  저: ["나"],
-  제: ["나"],
-  제가: ["나"],
-  저는: ["나"],
-  나: ["나"],
+  기운: ["피곤하다", "힘"],
+  더위: ["덥다"],
+  추위: ["춥다"],
+  겁: ["무섭다", "놀라다"],
+  // 호칭/존칭 명사 기본형
   생신: ["생일"],
-  연세: ["나이"],
-  춘추: ["나이"],
+  연세: ["나이", "어르신"],
+  춘추: ["나이", "어르신"],
+  나이: ["어르신", "생일"],
   성함: ["이름"],
   댁: ["집"],
   조모: ["할머니"],
   조부: ["할아버지"],
-  // 촬영/참가/행사 (Easy-KSL 쉬운 기본 수어 치환)
+  // 촬영/행사/일상 한자어 -> 쉬운 KSL 기본형
   촬영하다: ["찍다", "사진", "영상"],
   촬영: ["찍다", "사진", "영상"],
-  촬영할건데: ["찍다"],
-  찍어도: ["찍다"],
-  찍을까요: ["찍다"],
-  사진찍다: ["찍다", "사진"],
   동영상: ["영상"],
   비디오: ["영상"],
   경진대회: ["대회"],
@@ -114,25 +103,30 @@ const CANONICAL_GLOSS_ALIASES: Record<string, string[]> = {
   출전하다: ["참가하다"],
   참가: ["참가하다"],
   참여: ["참가하다"],
-  나갈: ["참가하다", "나가다"],
   외출하다: ["나가다"],
   외출: ["나가다"],
-  // 공동/동반 및 허락/가능
+  // 부사/시간 기본형
   같이: ["함께"],
   다같이: ["함께"],
   더불어: ["함께"],
-  될까요: ["가능하다", "괜찮다"],
-  되나요: ["가능하다", "괜찮다"],
-  돼요: ["가능하다", "괜찮다"],
-  될까: ["가능하다", "괜찮다"],
-  되다: ["가능하다", "괜찮다"],
-  괜찮을까요: ["괜찮다", "가능하다"],
-  가능한가요: ["가능하다", "괜찮다"],
+  정말: ["많이", "맞다"],
+  진짜: ["맞다", "많이"],
+  너무: ["많이"],
+  매우: ["많이"],
+  아주: ["많이"],
+  엄청: ["많이"],
+  무척: ["많이"],
+  이제: ["지금"],
+  이제야: ["지금"],
   가능: ["가능하다"],
-  // 일상 동작
+  되다: ["가능하다", "괜찮다"],
+  // 일상 동작 높임말/한자어 기본형
+  안녕하다: ["안녕하세요"],
+  안녕: ["안녕하세요"],
   말씀: ["말하다"],
   말씀하시다: ["말하다"],
-  드리다: ["드리다", "주다"],
+  소식: ["말하다", "편지", "듣다"],
+  주다: ["드리다"],
   계시다: ["있다"],
   안계시다: ["없다"],
   들어가시다: ["돌아가다", "가다"],
@@ -142,42 +136,25 @@ const CANONICAL_GLOSS_ALIASES: Record<string, string[]> = {
   운동하다: ["운동", "체조"],
   노래하다: ["노래"],
   공부하다: ["공부", "배우다"],
-  일하다: ["일"],
+  일하다: ["근무", "노동"],
+  일: ["근무", "노동"],
   목욕하다: ["목욕", "씻다"],
   세수하다: ["씻다"],
   인사하다: ["안녕하세요", "인사"],
   감사하다: ["고맙다"],
   죄송하다: ["미안하다"],
   사과하다: ["미안하다"],
+  실례하다: ["미안하다"],
   도와드리다: ["도와주다"],
   돕다: ["도와주다"],
-  // 의문사
+  // 의문사 기본형
   뭐: ["무엇"],
-  뭔가요: ["무엇"],
   무슨: ["무엇"],
-  어떠세요: ["어떻다"],
-  어때요: ["어떻다"],
 };
 
 /**
- * 국립국어원 검색 시 엉뚱한 희귀 동음이의어로 오매칭되는 활용형/조사 결합 어절 블랙리스트
- * (예: '나갈' -> 국립국어원에서 '품절/매진'으로 검색됨)
- */
-const HOMONYM_TRAP_RAW_WORDS = new Set([
-  "나갈",
-  " 저",
-  "저",
-  "제",
-  "제가",
-  "될까요",
-  "되나요",
-  "촬영할건데",
-  "찍어도",
-]);
-
-/**
  * 검색어 배열을 정제하고 괄호/슬래시 분리 및 어간·유의어 후보를 확장합니다.
- * - 정규화 별칭(Easy-KSL 기본 수어)을 원문 활용형보다 최우선 순위로 배치합니다.
+ * - 정규화 별칭(표준 KSL 기본 수어)을 최우선 순위로 배치합니다.
  */
 export function expandAndSanitizeQueryTerms(rawTerms: string[]): string[] {
   const expanded: string[] = [];
@@ -190,24 +167,20 @@ export function expandAndSanitizeQueryTerms(rawTerms: string[]): string[] {
 
   for (const raw of rawTerms) {
     if (!raw) continue;
-    // 예: "먹다(드시다)" 또는 "촬영할건데 · 찍어도" 분리
     const parts = raw
       .split(/[(),/·|]+/)
       .map((p) => p.replace(/[\[\]"'?!.~]/g, "").trim())
       .filter(Boolean);
 
     for (const part of parts) {
-      // 1) 정규화 별칭(쉬운 기본 수어)이 있으면 최우선 순위로 먼저 추가!
+      // 1) 기본형 유의어 별칭이 있으면 최우선 순위로 추가
       if (CANONICAL_GLOSS_ALIASES[part]) {
         for (const alias of CANONICAL_GLOSS_ALIASES[part]) {
           pushUnique(alias);
         }
       }
 
-      // 동음이의어 함정 어절('나갈'->매진 등)이 아닐 때만 원문 어절 추가
-      if (!HOMONYM_TRAP_RAW_WORDS.has(part)) {
-        pushUnique(part);
-      }
+      pushUnique(part);
 
       // 2) '~하다' 동사 <-> 명사 어간 양방향 확장 (2글자 이상 어간)
       if (part.endsWith("하다") && part.length >= 3) {
@@ -216,11 +189,7 @@ export function expandAndSanitizeQueryTerms(rawTerms: string[]): string[] {
           CANONICAL_GLOSS_ALIASES[stem].forEach(pushUnique);
         }
         pushUnique(stem);
-      } else if (
-        part.length >= 2 &&
-        !part.endsWith("다") &&
-        !HOMONYM_TRAP_RAW_WORDS.has(part)
-      ) {
+      } else if (part.length >= 2 && !part.endsWith("다")) {
         if (CANONICAL_GLOSS_ALIASES[`${part}하다`]) {
           CANONICAL_GLOSS_ALIASES[`${part}하다`].forEach(pushUnique);
         }
@@ -372,25 +341,36 @@ export async function fetchLiveFromSldict(
       return [];
     }
 
-    // 일상용어(CTE)를 최우선 정렬하고, 검색어와 정확히 일치하는 표제어를 앞으로 배치
-    const sorted = [...rawCandidates].sort((a, b) => {
+    // 표제어/대응표현 완전 일치(exact match) 여부를 계산하는 헬퍼
+    const isExactTitleMatch = (rawTitle: string) => {
+      const words = rawTitle.split(",").map((w) => w.trim());
+      return words.some(
+        (w) => w === cleanKw || w.replace(/\(.*?\)/g, "").trim() === cleanKw
+      );
+    };
+
+    // 1글자 검색어(예: '일', '겁' 등)는 부분 문자열 일치로 엉뚱한 복합어('일월 일일', '기겁')가
+    // 선택되는 것을 막기 위해 정확히 일치하는 표제어가 있는 후보만 허용
+    const filteredCandidates =
+      cleanKw.length === 1
+        ? rawCandidates.filter((c) => isExactTitleMatch(c.rawTitle))
+        : rawCandidates;
+
+    if (filteredCandidates.length === 0) {
+      LIVE_SLDICT_CACHE.set(cleanKw, []);
+      return [];
+    }
+
+    // 1순위: 검색어와 표제어가 정확히 일치하는 항목 우선
+    // 2순위: 일상용어(CTE) 카테고리 우선
+    const sorted = [...filteredCandidates].sort((a, b) => {
+      const aExact = isExactTitleMatch(a.rawTitle) ? 1 : 0;
+      const bExact = isExactTitleMatch(b.rawTitle) ? 1 : 0;
+      if (aExact !== bExact) return bExact - aExact;
+
       const aIsCte = a.topCategory === "CTE" ? 1 : 0;
       const bIsCte = b.topCategory === "CTE" ? 1 : 0;
-      if (aIsCte !== bIsCte) return bIsCte - aIsCte;
-
-      const aWords = a.rawTitle.split(",").map((w) => w.trim());
-      const bWords = b.rawTitle.split(",").map((w) => w.trim());
-      const aExact = aWords.some(
-        (w) => w === cleanKw || w.replace(/\(.*?\)/g, "").trim() === cleanKw
-      )
-        ? 1
-        : 0;
-      const bExact = bWords.some(
-        (w) => w === cleanKw || w.replace(/\(.*?\)/g, "").trim() === cleanKw
-      )
-        ? 1
-        : 0;
-      return bExact - aExact;
+      return bIsCte - aIsCte;
     });
 
     // 상위 최대 3개 후보의 상세 페이지(수형 설명 & 수형 사진) 병렬 조회
@@ -458,7 +438,7 @@ export async function fetchLiveFromSldict(
         const meaningText =
           item.rawDef ||
           (synonyms.length > 1
-            ? `대응표현: ${synonyms.slice(0, 5).join(", ")}`
+            ? `대응표현: ${synonyms.join(", ")}`
             : `${primaryWord} 수어 표현`);
         const finalDesc =
           signDescription ||
@@ -475,7 +455,7 @@ export async function fetchLiveFromSldict(
           handShapeHint: "👐",
           imageUrls,
           videoUrl: item.videoUrl,
-          keywords: [cleanKw, ...synonyms.slice(0, 4)],
+          keywords: Array.from(new Set([cleanKw, ...synonyms])),
           synonyms,
         };
       })
@@ -519,13 +499,16 @@ export async function searchHybridDictionaryWithMeta(
 
   const primaryTerm = cleanTerms[0];
 
-  // 1순위: 대표 표제어(primaryTerm)의 표제어가 로컬 사전에 직접 일치하는지 확인
+  // 1순위: 대표 표제어(primaryTerm) 및 그 정규화 기본형 별칭이 로컬 사전에 직접 일치하는지 확인
   const primaryLocalMatches = searchLocalDictionary([primaryTerm]);
-  const exactLocalMatches = primaryLocalMatches.filter(
-    (e) =>
-      e.word === primaryTerm ||
-      e.word.replace(/\(.*?\)/g, "").trim() === primaryTerm
-  );
+  const primaryCanonicalSet = new Set<string>([
+    primaryTerm,
+    ...(CANONICAL_GLOSS_ALIASES[primaryTerm] || []),
+  ]);
+  const exactLocalMatches = primaryLocalMatches.filter((e) => {
+    const cleanW = e.word.replace(/\(.*?\)/g, "").trim();
+    return primaryCanonicalSet.has(e.word) || primaryCanonicalSet.has(cleanW);
+  });
   const allLocalSynonymMatches = searchLocalDictionary(cleanTerms);
 
   if (exactLocalMatches.length > 0) {
@@ -542,8 +525,10 @@ export async function searchHybridDictionaryWithMeta(
     };
   }
 
-  // 2순위: 대표 표제어가 로컬 사전에 없다면, 유의어에 가로채이지 않도록 국립국어원(sldict) 실시간 검색을 먼저 수행! (병렬 2개 한정)
-  const primaryExpanded = expandAndSanitizeQueryTerms([primaryTerm]).slice(0, 2);
+  // 2순위: 대표 표제어가 로컬 사전에 없다면, 국립국어원(sldict) 실시간 검색을 먼저 수행 (불필요한 '~하다' 파생어 제외, 최대 2개)
+  const primaryExpanded = expandAndSanitizeQueryTerms([primaryTerm])
+    .filter((term) => term === primaryTerm || !term.endsWith("하다") || CANONICAL_GLOSS_ALIASES[primaryTerm]?.includes(term))
+    .slice(0, 2);
   const livePrimaryResults = await Promise.all(
     primaryExpanded.map((pTerm) => fetchLiveFromSldict(pTerm))
   );
