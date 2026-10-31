@@ -4,6 +4,12 @@ import { Garu } from "garu-ko";
 
 const DICT_PATH = path.join(process.cwd(), "src", "data", "dictionary.json");
 const MODEL_OUT_PATH = path.join(process.cwd(), "src", "data", "ksl-nlp-model.json");
+const REVERSE_INDEX_OUT_PATH = path.join(
+  process.cwd(),
+  "src",
+  "data",
+  "reverse-motion-index.json"
+);
 
 /**
  * [1] 국립국어원 표준국어대사전/한국어기초사전 관용구 뜻풀이 기반
@@ -1178,7 +1184,12 @@ async function buildModel() {
   };
 
   fs.writeFileSync(MODEL_OUT_PATH, JSON.stringify(finalModel, null, 2), "utf-8");
-  console.log(`✅ ksl-nlp-model.json 컴파일 완료!`);
+  fs.writeFileSync(
+    REVERSE_INDEX_OUT_PATH,
+    JSON.stringify(reverseMotionIndex),
+    "utf-8"
+  );
+  console.log(`✅ ksl-nlp-model.json & reverse-motion-index.json 컴파일 완료!`);
   console.log(`   - 관용구 FST 패턴: ${finalModel.stats.totalIdioms}종`);
   console.log(`   - 동음이의어 클러스터: ${finalModel.stats.totalHomonymGroups}개 그룹 (${finalModel.stats.totalHomonymSenses}개 세부 의미)`);
 }

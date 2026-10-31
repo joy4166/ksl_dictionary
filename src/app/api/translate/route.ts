@@ -36,13 +36,9 @@ export async function POST(req: NextRequest) {
   } catch (error) {
     const totalApiMs = Date.now() - reqStart;
     console.error(`[HTTP POST /api/translate] 500 Error (${totalApiMs}ms):`, error);
-    const errMsg = error instanceof Error ? error.message : String(error);
-    const errStack = error instanceof Error ? error.stack : undefined;
     return NextResponse.json(
       {
         error: "수어 문맥 변환 처리 중 오류가 발생했습니다.",
-        details: errMsg,
-        stack: errStack,
       },
       { status: 500 }
     );

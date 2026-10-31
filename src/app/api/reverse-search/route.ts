@@ -11,12 +11,12 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const descriptionQuery =
       typeof body?.descriptionQuery === "string"
-        ? body.descriptionQuery.trim()
+        ? body.descriptionQuery.trim().slice(0, 150)
         : "";
     const selectedChips = Array.isArray(body?.selectedChips)
-      ? body.selectedChips.filter(
-          (c: unknown): c is string => typeof c === "string"
-        )
+      ? body.selectedChips
+          .filter((c: unknown): c is string => typeof c === "string")
+          .slice(0, 24)
       : [];
     const customApiKey =
       typeof body?.apiKey === "string" ? body.apiKey.trim() : undefined;

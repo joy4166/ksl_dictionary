@@ -7,6 +7,79 @@ import {
 } from "@/types/sign";
 
 const STORAGE_KEY = "my_sign_dictionary_custom_phrases_v1";
+const RECENT_SEARCHES_KEY = "ksl_translate_recent_sentences_v1";
+const MAX_RECENT_SEARCHES = 8;
+
+/**
+ * 브라우저 localStorage에 저장된 최근 검색(번역) 문장 목록 조회
+ */
+export function getRecentSearchesFromStorage(): string[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(RECENT_SEARCHES_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * 최근 검색(번역)한 문장을 localStorage에 추가 (중복 제거 및 최신순 정렬)
+ */
+export function addRecentSearchToStorage(sentence: string): string[] {
+  const clean = sentence.trim();
+  if (!clean) return getRecentSearchesFromStorage();
+
+  const current = getRecentSearchesFromStorage();
+  const updated = [
+    clean,
+    ...current.filter((item) => item.trim() !== clean),
+  ].slice(0, MAX_RECENT_SEARCHES);
+
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updated));
+    } catch {
+      // ignore storage quota errors
+    }
+  }
+  return updated;
+}
+
+/**
+ * 특정 최근 검색 문장 개별 삭제
+ */
+export function removeRecentSearchFromStorage(sentence: string): string[] {
+  const clean = sentence.trim();
+  const current = getRecentSearchesFromStorage();
+  const updated = current.filter((item) => item.trim() !== clean);
+
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.setItem(RECENT_SEARCHES_KEY, JSON.stringify(updated));
+    } catch {
+      // ignore
+    }
+  }
+  return updated;
+}
+
+/**
+ * 최근 검색 문장 전체 초기화
+ */
+export function clearRecentSearchesFromStorage(): string[] {
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.removeItem(RECENT_SEARCHES_KEY);
+    } catch {
+      // ignore
+    }
+  }
+  return [];
+}
 
 /**
  * 브라우저 localStorage에 저장된 사용자 커스텀 문장 목록 조회

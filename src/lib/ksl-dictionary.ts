@@ -1,6 +1,6 @@
 import dictionaryData from "@/data/dictionary.json";
-import nlpModelData from "@/data/ksl-nlp-model.json";
 import presetData from "@/data/preset-phrases.json";
+import reverseMotionIndexData from "@/data/reverse-motion-index.json";
 import {
   PhraseCategoryInfo,
   ReverseSearchCandidate,
@@ -10,8 +10,7 @@ import {
 
 const LOCAL_DICTIONARY: SignWordEntry[] = dictionaryData as SignWordEntry[];
 const REVERSE_MOTION_INDEX: Record<string, string[]> =
-  ((nlpModelData as unknown as { reverseMotionIndex?: Record<string, string[]> })
-    .reverseMotionIndex) || {};
+  reverseMotionIndexData as Record<string, string[]>;
 
 /** 실시간 국립국어원 한국수어사전 조회 인메모리 캐시 */
 const LIVE_SLDICT_CACHE = new Map<string, SignWordEntry[]>();

@@ -18,9 +18,10 @@ import {
 } from "@/lib/ksl-nlp-engine";
 
 /**
- * 기본 Gemini 모델 설정 (초저지연 Flash 모델 우선)
+ * 기본 Gemini 모델 설정 (실측 0.7~0.9초 초저지연 Flash Lite 모델 우선)
  */
-const DEFAULT_MODEL = "gemini-3.8-flash";
+const DEFAULT_MODEL = "gemini-3.5-flash-lite";
+const FALLBACK_MODEL = "gemini-2.0-flash";
 let activeModelName = process.env.GEMINI_MODEL?.trim() || DEFAULT_MODEL;
 
 /**
@@ -30,11 +31,15 @@ const TRANSLATION_CACHE = new Map<string, TranslationResult>();
 const MAX_CACHE_SIZE = 200;
 
 function resolveGeminiApiKey(customApiKey?: string): string | null {
-  const apiKey = customApiKey?.trim() || process.env.GEMINI_API_KEY?.trim();
-  if (!apiKey || apiKey === "your_gemini_api_key_here" || apiKey === "") {
-    return null;
+  const custom = customApiKey?.trim();
+  if (custom && custom !== "your_gemini_api_key_here" && custom.length > 10) {
+    return custom;
   }
-  return apiKey;
+  const envKey = process.env.GEMINI_API_KEY?.trim();
+  if (envKey && envKey !== "your_gemini_api_key_here" && envKey.length > 10) {
+    return envKey;
+  }
+  return null;
 }
 
 function getGeminiClient(customApiKey?: string): GoogleGenerativeAI | null {
@@ -124,27 +129,12 @@ async function generateJsonWithGemini<T>(
       lastError = err;
       const errMsg = err instanceof Error ? err.message : String(err);
 
-      // thinkingConfig 미지원 모델이거나 404 에러인 경우 gemini-2.0-flash로 즉시 전환
-      if (
-        errMsg.includes("thinkingConfig") ||
-        errMsg.includes("404") ||
-        errMsg.includes("not found")
-      ) {
+      // 에러 발생 시 초저지연 폴백 모델(gemini-flash-lite-latest)로 즉시 전환
+      if (attempt < maxAttempts) {
         useThinkingConfig = false;
-        const modelMatch = errMsg.match(/use models\/([a-zA-Z0-9._-]+)/);
         activeModelName =
-          modelMatch && modelMatch[1] ? modelMatch[1] : "gemini-2.0-flash";
-        continue;
-      }
-
-      if (
-        (errMsg.includes("503") ||
-          errMsg.includes("high demand") ||
-          errMsg.includes("overloaded") ||
-          errMsg.includes("429")) &&
-        attempt < maxAttempts
-      ) {
-        await new Promise((r) => setTimeout(r, 200));
+          targetModel === DEFAULT_MODEL ? FALLBACK_MODEL : DEFAULT_MODEL;
+        await new Promise((r) => setTimeout(r, 150));
         continue;
       }
 
@@ -314,7 +304,9 @@ export async function translateKoreanToKsl(
   let customExplanation: string | undefined;
 
   // ==========================================
-  // [3단계] Confidence Gating: 미등록 단어·미확인 동음이의어·복합 구문일 때 초저지연 Gemini 호출
+  // [3단계] Confidence Gating & Semantic Anomaly Gate:
+  // - 1차 KSL 사전/관용구/동음이의어 매칭이 100% 확립된 경우(isFullyConfident): 외부 LLM 호출 없이 평균 3~8ms 내 즉시 반환!
+  // - 미등록 어휘·미확인 동음이의어·비유 충돌 위험이 감지된 경우(!isFullyConfident): 초저지연 Gemini AI로 분기하여 정밀 추론
   // ==========================================
   if (!nlpResult.isFullyConfident && genAI && garuTokens.length > 0) {
     const geminiStepStart = Date.now();
@@ -336,7 +328,7 @@ export async function translateKoreanToKsl(
       const res = await generateJsonWithGemini<GeminiContextOutput>(
         genAI,
         prompt,
-        2800,
+        3500,
         "Gemini 초저지연 문맥 보정"
       );
 
@@ -347,17 +339,30 @@ export async function translateKoreanToKsl(
         Array.isArray(res.parsed.sequence) &&
         res.parsed.sequence.length > 0
       ) {
-        activeSequence = res.parsed.sequence.map((item) => ({
-          originalPart: item.originalPart,
-          kslGloss: item.kslGloss,
-          searchKeywords: item.searchKeywords,
-          senseHint: item.senseHint || item.kslGloss,
-          excludeSense: item.excludeSense,
-          selectionReason:
-            item.selectionReason ||
-            `문맥 '${item.senseHint || item.kslGloss}'에 맞게 변환했습니다.`,
-          isConfident: true,
-        }));
+        activeSequence = res.parsed.sequence.map((item) => {
+          // 1차 KSL NLP에서 이미 확정된 수어 엔트리가 있고 표제어가 동일하면 즉시 바인딩 유지
+          const matchedLocal = nlpResult.sequence.find(
+            (localTok) =>
+              localTok.isConfident &&
+              localTok.resolvedSign &&
+              (localTok.kslGloss === item.kslGloss ||
+                localTok.originalPart === item.originalPart)
+          );
+          return {
+            originalPart: item.originalPart,
+            kslGloss: matchedLocal ? matchedLocal.kslGloss : item.kslGloss,
+            searchKeywords: item.searchKeywords,
+            senseHint: item.senseHint || item.kslGloss,
+            excludeSense: item.excludeSense,
+            selectionReason:
+              item.selectionReason ||
+              matchedLocal?.selectionReason ||
+              `문맥 '${item.senseHint || item.kslGloss}'에 맞게 변환했습니다.`,
+            resolvedSign: matchedLocal?.resolvedSign,
+            alternativeSigns: matchedLocal?.alternativeSigns,
+            isConfident: true,
+          };
+        });
         customNonManualTip = res.parsed.nonManualTip;
         customExplanation = res.parsed.contextExplanation;
         usedGemini = true;

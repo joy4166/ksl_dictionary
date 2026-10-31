@@ -35,23 +35,24 @@ export default function CategoryTabs({
   countsByCategory,
 }: CategoryTabsProps) {
   return (
-    <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 no-scrollbar">
+    <div className="flex items-center gap-1.5 overflow-x-auto pb-1.5 no-scrollbar touch-pan-x">
       <button
         type="button"
         onClick={() => onSelectCategory("all")}
-        className={`inline-flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all ${
+        aria-pressed={selectedCategory === "all"}
+        className={`touch-target inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-mono transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1 ${
           selectedCategory === "all"
-            ? "bg-blue-600 text-white shadow-xs"
-            : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+            ? "border-emerald-700 bg-emerald-700 font-bold text-white"
+            : "border-stone-200 bg-white text-stone-700 hover:bg-stone-100"
         }`}
       >
         <LayoutGrid className="h-3.5 w-3.5" />
         <span>전체</span>
         <span
-          className={`rounded-full px-1.5 py-0.5 text-[10px] ${
+          className={`rounded-full px-1.5 py-0.2 text-[10px] font-mono tabular-nums ${
             selectedCategory === "all"
-              ? "bg-blue-500 text-white"
-              : "bg-slate-100 text-slate-600"
+              ? "bg-emerald-800 text-white"
+              : "bg-stone-100 text-stone-600"
           }`}
         >
           {countsByCategory.all || 0}
@@ -68,19 +69,20 @@ export default function CategoryTabs({
             key={cat.id}
             type="button"
             onClick={() => onSelectCategory(cat.id)}
-            className={`inline-flex shrink-0 items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition-all ${
+            aria-pressed={isSelected}
+            className={`touch-target inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-mono transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1 ${
               isSelected
-                ? "bg-blue-600 text-white shadow-xs"
-                : "bg-white border border-slate-200 text-slate-700 hover:bg-slate-50"
+                ? "border-emerald-700 bg-emerald-700 font-bold text-white"
+                : "border-stone-200 bg-white text-stone-700 hover:bg-stone-100"
             }`}
           >
             <Icon className="h-3.5 w-3.5" />
             <span>{cat.label}</span>
             <span
-              className={`rounded-full px-1.5 py-0.5 text-[10px] ${
+              className={`rounded-full px-1.5 py-0.2 text-[10px] font-mono tabular-nums ${
                 isSelected
-                  ? "bg-blue-500 text-white"
-                  : "bg-slate-100 text-slate-600"
+                  ? "bg-emerald-800 text-white"
+                  : "bg-stone-100 text-stone-600"
               }`}
             >
               {count}

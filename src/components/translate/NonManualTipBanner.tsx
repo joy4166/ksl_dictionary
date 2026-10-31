@@ -4,9 +4,6 @@ import {
   ArrowRight,
   Bookmark,
   Check,
-  ChevronDown,
-  ChevronUp,
-  Clock,
   SmilePlus,
   Sparkles,
 } from "lucide-react";
@@ -37,131 +34,67 @@ export default function NonManualTipBanner({
   const [selectedCategory, setSelectedCategory] =
     useState<PhraseCategoryId>("greeting");
   const [showCategoryPicker, setShowCategoryPicker] = useState(false);
-  const [showTimingsDetail, setShowTimingsDetail] = useState(false);
+
+  const selectedCategoryLabel =
+    CATEGORY_OPTIONS.find((c) => c.id === selectedCategory)?.label || "인사/안부";
 
   return (
-    <div className="rounded-2xl border border-blue-200 bg-gradient-to-br from-blue-50/90 via-white to-indigo-50/60 p-4 shadow-xs space-y-3">
-      {/* 한국수어(KSL) 어순 시퀀스 한눈에 보기 */}
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5 flex-wrap">
-          <span className="rounded-md bg-blue-600 px-2 py-0.5 text-[11px] font-bold text-white">
-            한국수어(KSL) 어순
-          </span>
-          {result.engineUsed === "gemini" ? (
-            <span className="inline-flex items-center gap-1 rounded-md bg-emerald-100 px-2 py-0.5 text-[10px] font-bold text-emerald-800 border border-emerald-200">
-              <Sparkles className="h-3 w-3" />
-              하이브리드 NLP + Gemini 문맥번역
+    <div className="rounded-xl border border-stone-200 bg-white p-4 space-y-3.5 overflow-hidden">
+      {/* 어르신 대면 공유 및 전체 문장 가독성을 위한 한국어 원문 헤더 */}
+      <div className="border-b border-stone-200 pb-3 space-y-2">
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <span className="rounded-md bg-emerald-700 px-2 py-0.5 text-[11px] font-mono font-bold text-white">
+              KSL 어순
+            </span>
+            <span className="inline-flex items-center gap-1 rounded-md border border-stone-200 bg-stone-100 px-2 py-0.5 text-[11px] font-mono text-stone-700">
+              <Sparkles className="h-3 w-3 text-emerald-700" />
+              <span className="tabular-nums font-semibold">
+                {result.kslSequence.length}개 동작 시퀀스
+              </span>
+            </span>
+          </div>
+
+          {/* 문장함에 저장 버튼 */}
+          {isSaved ? (
+            <span
+              role="status"
+              aria-live="polite"
+              className="inline-flex min-h-8 items-center gap-1 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1 text-xs font-mono font-semibold text-emerald-900"
+            >
+              <Check className="h-3.5 w-3.5 text-emerald-700" />
+              <span>{selectedCategoryLabel}에 저장됨</span>
             </span>
           ) : (
-            <span className="inline-flex items-center gap-1 rounded-md bg-indigo-100 px-2 py-0.5 text-[10px] font-bold text-indigo-800 border border-indigo-200">
-              <Sparkles className="h-3 w-3" />
-              Garu + KSL 관용구·동음이의어 NLP 엔진 ({result.kslSequence.length}동작)
-            </span>
-          )}
-
-          {/* 소요 시간 (타이밍 로그) 뱃지 */}
-          {result.timings && (
             <button
               type="button"
-              onClick={() => setShowTimingsDetail((prev) => !prev)}
-              className="inline-flex items-center gap-1 rounded-md bg-amber-50 hover:bg-amber-100 px-2 py-0.5 text-[10px] font-bold text-amber-800 border border-amber-300 transition-colors cursor-pointer"
-              title="클릭하여 단계별 처리 시간 상세 로그 보기"
+              onClick={() => setShowCategoryPicker((prev) => !prev)}
+              aria-expanded={showCategoryPicker}
+              className="inline-flex min-h-8 items-center gap-1 rounded-lg border border-stone-200 bg-stone-50 px-3 py-1 text-xs font-mono font-semibold text-stone-800 transition-all duration-150 hover:bg-stone-100 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1"
             >
-              <Clock className="h-3 w-3 text-amber-600" />
-              <span>{(result.timings.totalMs / 1000).toFixed(2)}초</span>
-              {showTimingsDetail ? (
-                <ChevronUp className="h-3 w-3" />
-              ) : (
-                <ChevronDown className="h-3 w-3" />
-              )}
+              <Bookmark className="h-3.5 w-3.5 text-emerald-700" />
+              <span>문장함 저장</span>
             </button>
           )}
         </div>
 
-        {/* 문장함에 저장 버튼 */}
-        {isSaved ? (
-          <span className="inline-flex items-center gap-1 rounded-xl bg-emerald-100 px-2.5 py-1 text-xs font-bold text-emerald-800">
-            <Check className="h-3.5 w-3.5" />
-            문장함에 저장됨
-          </span>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setShowCategoryPicker((prev) => !prev)}
-            className="inline-flex items-center gap-1 rounded-xl bg-white border border-blue-300 px-2.5 py-1 text-xs font-bold text-blue-700 shadow-2xs hover:bg-blue-50 active:scale-95"
-          >
-            <Bookmark className="h-3.5 w-3.5" />
-            <span>나만의 문장함 저장</span>
-          </button>
-        )}
+        <p
+          className={`font-extrabold tracking-tight text-stone-900 leading-snug break-keep break-words ${
+            isLargeMode ? "text-xl sm:text-2xl pt-1" : "text-base"
+          }`}
+        >
+          “{result.inputSentence}”
+        </p>
       </div>
-
-      {/* 처리 소요 시간 상세 분석 패널 (토글) */}
-      {showTimingsDetail && result.timings && (
-        <div className="rounded-xl bg-slate-900 text-slate-100 p-3 text-xs font-mono space-y-2 border border-slate-700 shadow-inner">
-          <div className="flex items-center justify-between text-amber-400 font-bold border-b border-slate-800 pb-1.5">
-            <span className="flex items-center gap-1.5">
-              <Clock className="h-3.5 w-3.5" />
-              문맥 변환 성능 타임로그
-            </span>
-            <span>총 {result.timings.totalMs}ms ({(result.timings.totalMs / 1000).toFixed(2)}s)</span>
-          </div>
-
-          <div className="space-y-1.5 pt-0.5 text-[11px]">
-            <div className="flex justify-between items-center text-slate-300">
-              <span>1. 형태소 분해(Garu) & 문맥·어순 분석:</span>
-              <span className="font-bold text-blue-400">
-                {result.timings.stage1GeminiMs}ms
-                {result.timings.modelUsed && (
-                  <span className="ml-1 text-[10px] text-slate-400 font-normal">
-                    ({result.timings.modelUsed})
-                  </span>
-                )}
-              </span>
-            </div>
-
-            <div className="flex justify-between items-center text-slate-300">
-              <span>2. 하이브리드 수어 사전 바인딩:</span>
-              <span className="font-bold text-emerald-400">
-                {result.timings.stage2DictionaryMs}ms
-              </span>
-            </div>
-
-            {/* 토큰별 세부 사전 매칭 출처 */}
-            {result.timings.tokenDetails && result.timings.tokenDetails.length > 0 && (
-              <div className="pl-3 py-1 border-l-2 border-slate-700 space-y-1">
-                {result.timings.tokenDetails.map((td, i) => (
-                  <div key={i} className="flex justify-between text-[10px] text-slate-400">
-                    <span>
-                      • [{td.token}]{" "}
-                      {td.source === "local" ? (
-                        <span className="text-emerald-400 font-semibold">[로컬 캐시]</span>
-                      ) : td.source === "live_crawler" ? (
-                        <span className="text-amber-400 font-semibold">[국립국어원 실시간]</span>
-                      ) : (
-                        <span className="text-slate-400 font-semibold">[기본 폴백]</span>
-                      )}
-                    </span>
-                    <span>{td.durationMs}ms</span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            <div className="flex justify-between items-center text-slate-300">
-              <span>3. 동음이의어 문맥 2차 정밀 검증:</span>
-              <span className="font-bold text-purple-400">
-                {result.timings.stage3DisambiguationMs}ms
-              </span>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* 카테고리 선택기 (저장 버튼 클릭 시 노출) */}
       {showCategoryPicker && !isSaved && (
-        <div className="rounded-xl bg-white p-3 border border-blue-200 space-y-2">
-          <div className="text-xs font-bold text-slate-700">
+        <div
+          role="region"
+          aria-label="문장함 카테고리 선택"
+          className="motion-panel-reveal rounded-lg bg-stone-50 p-3 border border-stone-200 space-y-2.5"
+        >
+          <div className="text-xs font-semibold text-stone-800">
             저장할 대화 상황 카테고리를 선택하세요:
           </div>
           <div className="flex flex-wrap gap-1.5">
@@ -170,21 +103,22 @@ export default function NonManualTipBanner({
                 key={cat.id}
                 type="button"
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-all ${
+                aria-pressed={selectedCategory === cat.id}
+                className={`inline-flex min-h-8 items-center rounded-md border px-3 py-1 text-xs font-medium transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1 ${
                   selectedCategory === cat.id
-                    ? "bg-blue-600 text-white"
-                    : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                    ? "border-emerald-700 bg-emerald-700 font-bold text-white"
+                    : "border-stone-200 bg-white text-stone-700 hover:bg-stone-100"
                 }`}
               >
                 {cat.label}
               </button>
             ))}
           </div>
-          <div className="flex justify-end gap-2 pt-1">
+          <div className="flex justify-end gap-2 pt-1.5 border-t border-stone-200/80">
             <button
               type="button"
               onClick={() => setShowCategoryPicker(false)}
-              className="rounded-lg px-2.5 py-1 text-xs text-slate-500 hover:bg-slate-100"
+              className="inline-flex min-h-8 items-center rounded-md border border-transparent px-3 py-1 text-xs font-medium text-stone-600 hover:bg-stone-200/60 hover:text-stone-900 transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
             >
               취소
             </button>
@@ -194,7 +128,7 @@ export default function NonManualTipBanner({
                 onSaveToPhrasebook(selectedCategory);
                 setShowCategoryPicker(false);
               }}
-              className="rounded-lg bg-blue-600 px-3 py-1 text-xs font-bold text-white hover:bg-blue-700"
+              className="inline-flex min-h-8 items-center rounded-md bg-emerald-700 px-3.5 py-1 text-xs font-mono font-bold text-white hover:bg-emerald-800 transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1"
             >
               저장 완료
             </button>
@@ -202,26 +136,35 @@ export default function NonManualTipBanner({
         </div>
       )}
 
-      {/* 수어 단어 어순 칩 플로우 */}
+      {/* 수어 단어 어순 칩 플로우 (Focal Moment: 한국어 어순이 KSL 수어 시퀀스로 재배열되는 단계적 흐름) */}
       <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
         {result.kslSequence.map((token, idx) => (
           <div
             key={`${token.selectedSign.id}_${idx}`}
-            className="flex items-center gap-1.5"
+            style={{ "--step-index": idx } as React.CSSProperties}
+            className="motion-step-enter flex items-center gap-1.5"
           >
             <div
-              className={`inline-flex items-center gap-1.5 rounded-xl bg-white px-3 py-1.5 font-extrabold text-slate-900 shadow-xs border border-blue-200 ${
-                isLargeMode ? "text-base" : "text-sm"
+              className={`inline-flex items-center gap-1.5 rounded-lg border border-stone-200 bg-stone-50 px-3 py-1.5 font-extrabold text-stone-900 tracking-tight ${
+                isLargeMode
+                  ? "text-lg py-2 px-3.5 border-emerald-700 bg-emerald-50/40"
+                  : "text-sm"
               }`}
             >
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-[11px] font-bold text-white">
+              <span
+                className={`flex items-center justify-center rounded-full bg-emerald-700 font-mono font-bold tabular-nums text-white ${
+                  isLargeMode ? "h-6 w-6 text-xs" : "h-5 w-5 text-[11px]"
+                }`}
+              >
                 {idx + 1}
               </span>
-              <span>{token.selectedSign.handShapeHint || "👐"}</span>
-              <span>{token.selectedSign.word}</span>
+              <span className="select-none" aria-hidden="true">
+                {token.selectedSign.handShapeHint || "👐"}
+              </span>
+              <span className="break-words">{token.selectedSign.word}</span>
             </div>
             {idx < result.kslSequence.length - 1 && (
-              <ArrowRight className="h-4 w-4 text-blue-400 shrink-0" />
+              <ArrowRight className="h-4 w-4 text-stone-500 shrink-0" />
             )}
           </div>
         ))}
@@ -229,14 +172,14 @@ export default function NonManualTipBanner({
 
       {/* 문맥·문법 변환 해설 */}
       {result.contextExplanation && (
-        <div className="flex items-start gap-2 rounded-xl bg-indigo-50/80 border border-indigo-200/80 px-3 py-2">
-          <Sparkles className="h-3.5 w-3.5 text-indigo-600 shrink-0 mt-0.5" />
+        <div className="flex items-start gap-2 rounded-lg border border-stone-200 bg-stone-50 px-3 py-2">
+          <Sparkles className="h-3.5 w-3.5 text-emerald-700 shrink-0 mt-0.5" />
           <div
-            className={`leading-snug text-indigo-950 ${
+            className={`min-w-0 break-words leading-snug text-stone-800 ${
               isLargeMode ? "text-sm font-medium" : "text-xs"
             }`}
           >
-            <span className="font-extrabold text-indigo-800 mr-1">
+            <span className="font-mono font-bold text-emerald-900 mr-1.5">
               [문맥·어순 변환]
             </span>
             {result.contextExplanation}
@@ -244,15 +187,15 @@ export default function NonManualTipBanner({
         </div>
       )}
 
-      {/* 비수지 기호(표정·고개짓) 한 줄 팁 */}
-      <div className="flex items-start gap-2 rounded-xl bg-amber-50/90 border border-amber-200/80 px-3 py-2.5">
-        <SmilePlus className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+      {/* 비수지 기호(표정·고개짓) 한 줄 팁 (따뜻한 앰버 틴트로 대화 표정 팁 강조) */}
+      <div className="flex items-start gap-2 rounded-lg border border-amber-200/90 bg-amber-50/70 px-3 py-2.5">
+        <SmilePlus className="h-4 w-4 text-amber-800 shrink-0 mt-0.5" />
         <div
-          className={`leading-snug text-amber-950 ${
-            isLargeMode ? "text-sm font-semibold" : "text-xs"
+          className={`min-w-0 break-words leading-snug text-amber-950 ${
+            isLargeMode ? "text-base font-bold" : "text-xs"
           }`}
         >
-          <span className="font-extrabold text-amber-800 mr-1">
+          <span className="font-mono font-bold text-amber-900 mr-1.5">
             [표정·몸짓 팁]
           </span>
           {result.nonManualTip}

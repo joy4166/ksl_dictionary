@@ -1,28 +1,30 @@
 "use client";
 
-import { Loader2, Mic, MicOff, Search, Sparkles, X } from "lucide-react";
+import { Clock, Loader2, Mic, MicOff, RotateCcw, Search, Trash2, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 interface SpeechInputBarProps {
   value: string;
   onChange: (val: string) => void;
   onSubmit: (sentence: string) => void;
+  onClear?: () => void;
   isLoading: boolean;
+  recentSearches: string[];
+  onDeleteRecentSearch?: (sentence: string) => void;
+  onClearRecentSearches?: () => void;
 }
 
-const QUICK_EXAMPLES = [
-  "추석 잘 보내세요",
-  "할머니는 손이 크셔서 음식을 많이 하세요",
-  "어제 밤에 눈이 많이 내려서 길이 미끄럽다",
-  "저 대회에 나갈 영상을 촬영할건데 할머니랑 찍어도 될까요?",
-  "마음이 놓이네요",
-];
+const MAX_SENTENCE_LENGTH = 200;
 
 export default function SpeechInputBar({
   value,
   onChange,
   onSubmit,
+  onClear,
   isLoading,
+  recentSearches,
+  onDeleteRecentSearch,
+  onClearRecentSearches,
 }: SpeechInputBarProps) {
   const [isListening, setIsListening] = useState(false);
   const [speechError, setSpeechError] = useState<string | null>(null);
@@ -79,12 +81,13 @@ export default function SpeechInputBar({
       for (let i = 0; i < event.results.length; i++) {
         transcript += event.results[i][0].transcript;
       }
-      onChange(transcript);
+      const bounded = transcript.slice(0, MAX_SENTENCE_LENGTH);
+      onChange(bounded);
       const lastResult = event.results[event.results.length - 1];
       if (lastResult?.isFinal) {
         setIsListening(false);
-        if (transcript.trim()) {
-          onSubmit(transcript.trim());
+        if (bounded.trim()) {
+          onSubmit(bounded.trim());
         }
       }
     };
@@ -112,55 +115,74 @@ export default function SpeechInputBar({
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!value.trim() || isLoading) return;
-    onSubmit(value.trim());
+    onSubmit(value.trim().slice(0, MAX_SENTENCE_LENGTH));
   };
 
   return (
     <div className="space-y-2.5">
-      <form onSubmit={handleFormSubmit} className="relative">
+      <form onSubmit={handleFormSubmit} className="relative" noValidate>
+        <label htmlFor="translate-sentence-input" className="sr-only">
+          수어로 변환할 한국어 문장 입력 (최대 200자)
+        </label>
         <div
-          className={`flex items-center gap-1.5 rounded-2xl border-2 bg-white p-1.5 shadow-sm transition-all ${
+          className={`flex items-center gap-1.5 rounded-xl border bg-white p-1.5 transition-all duration-150 ${
             isListening
-              ? "border-rose-500 ring-4 ring-rose-100"
-              : "border-blue-600 focus-within:ring-4 focus-within:ring-blue-100"
+              ? "border-emerald-700 ring-2 ring-emerald-700 ring-offset-1"
+              : "border-stone-300 focus-within:border-emerald-700 focus-within:ring-2 focus-within:ring-emerald-700 focus-within:ring-offset-1"
           }`}
         >
           {/* 음성 인식(STT) 버튼 */}
           <button
             type="button"
             onClick={handleToggleSpeech}
-            title="음성으로 문장 입력하기 (한국어 STT)"
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl transition-all ${
+            aria-pressed={isListening}
+            aria-label={
               isListening
-                ? "animate-pulse bg-rose-500 text-white shadow-sm"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                ? "음성 인식 중지"
+                : "음성으로 한국어 문장 입력하기"
+            }
+            title="음성으로 문장 입력하기 (한국어 STT)"
+            className={`relative flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1 ${
+              isListening
+                ? "bg-emerald-700 text-white"
+                : "bg-stone-100 text-stone-700 hover:bg-stone-200"
             }`}
           >
             {isListening ? (
-              <MicOff className="h-5 w-5" />
+              <>
+                <MicOff className="h-5 w-5" />
+                <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-white animate-ping" />
+              </>
             ) : (
               <Mic className="h-5 w-5" />
             )}
           </button>
 
           <input
+            id="translate-sentence-input"
             type="text"
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => onChange(e.target.value.slice(0, MAX_SENTENCE_LENGTH))}
+            maxLength={MAX_SENTENCE_LENGTH}
+            aria-describedby="translate-input-counter"
             placeholder={
               isListening
-                ? "말씀해 주세요... (듣고 있습니다)"
+                ? "말씀해 주세요... (음성 인식 대기 중)"
                 : "농인과 나눌 대화를 입력하세요 (예: 추석 잘 보내세요)"
             }
-            className="w-full min-w-0 bg-transparent px-1.5 py-2 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"
+            className="w-full min-w-0 bg-transparent px-1.5 py-2 text-base sm:text-sm font-medium text-stone-900 placeholder:text-stone-500 focus:outline-none"
           />
 
           {value && (
             <button
               type="button"
-              onClick={() => onChange("")}
-              aria-label="입력 지우기"
-              className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+              onClick={() => {
+                onChange("");
+                onClear?.();
+              }}
+              aria-label="입력 지우기 및 초기화"
+              title="입력 문장 및 결과 초기화"
+              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-stone-500 hover:bg-stone-100 hover:text-stone-900 transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
             >
               <X className="h-4 w-4" />
             </button>
@@ -169,7 +191,7 @@ export default function SpeechInputBar({
           <button
             type="submit"
             disabled={isLoading || !value.trim()}
-            className="flex h-10 shrink-0 items-center gap-1.5 rounded-xl bg-blue-600 px-3.5 text-xs font-bold text-white shadow-xs transition-all hover:bg-blue-700 disabled:bg-slate-300"
+            className="flex h-10 shrink-0 items-center gap-1.5 rounded-lg bg-emerald-700 px-3.5 text-xs font-mono font-bold text-white transition-all duration-150 hover:bg-emerald-800 disabled:bg-stone-200 disabled:text-emerald-950/50 disabled:cursor-not-allowed active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1"
           >
             {isLoading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -181,35 +203,102 @@ export default function SpeechInputBar({
         </div>
       </form>
 
+      {/* 장문 입력 시 글자수 제한 카운터 표시 (120자 이상일 때 노출, 스크린 리더에는 항상 제공) */}
+      <div
+        id="translate-input-counter"
+        className={
+          value.length >= 120
+            ? "flex justify-end px-1 text-[11px] font-mono tabular-nums text-stone-600"
+            : "sr-only"
+        }
+      >
+        {value.length} / {MAX_SENTENCE_LENGTH}자
+      </div>
+
       {speechError && (
-        <p className="rounded-xl bg-rose-50 px-3 py-2 text-xs text-rose-700 border border-rose-200">
-          {speechError}
-        </p>
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="flex items-center justify-between gap-2 rounded-lg bg-red-50 px-3 py-2 text-xs text-red-700 border border-red-200"
+        >
+          <span className="break-words min-w-0">{speechError}</span>
+          <button
+            type="button"
+            onClick={handleToggleSpeech}
+            className="inline-flex min-h-8 shrink-0 items-center gap-1 rounded-md border border-red-300 bg-white px-2.5 py-1 text-[11px] font-semibold text-red-700 hover:bg-red-100 transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
+          >
+            <RotateCcw className="h-3 w-3" />
+            <span>다시 시도</span>
+          </button>
+        </div>
       )}
 
-      {/* 현장 빈출 문장 원터치 예시 칩 */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
-        <span className="inline-flex shrink-0 items-center gap-1 text-[11px] font-bold text-slate-500">
-          <Sparkles className="h-3 w-3 text-blue-600" />
-          빠른 예시:
+      {/* 최근 검색한 문장 원터치 칩 */}
+      <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar touch-pan-x">
+        <span className="inline-flex shrink-0 items-center gap-1 text-[11px] font-mono font-semibold text-stone-600">
+          <Clock className="h-3 w-3 text-emerald-700" />
+          최근 검색한 문장:
         </span>
-        {QUICK_EXAMPLES.map((example) => (
-          <button
-            key={example}
-            type="button"
-            onClick={() => {
-              onChange(example);
-              onSubmit(example);
-            }}
-            className={`shrink-0 rounded-full border px-2.5 py-1 text-xs font-medium transition-all active:scale-95 ${
-              value.trim() === example
-                ? "border-blue-600 bg-blue-50 text-blue-700 font-bold"
-                : "border-slate-200 bg-white text-slate-600 hover:border-blue-300 hover:text-blue-700"
-            }`}
-          >
-            {example}
-          </button>
-        ))}
+        {recentSearches.length === 0 ? (
+          <span className="text-xs text-stone-600 py-1.5">
+            변환한 문장이 이곳에 자동 저장됩니다
+          </span>
+        ) : (
+          <>
+            {recentSearches.map((sentence) => {
+              const isSelected = value.trim() === sentence;
+              return (
+                <div
+                  key={sentence}
+                  className={`inline-flex min-h-9 shrink-0 items-center rounded-md border transition-all duration-150 ${
+                    isSelected
+                      ? "border-emerald-700 bg-emerald-700 text-white"
+                      : "border-stone-200 bg-white text-stone-700 hover:bg-stone-100"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    disabled={isLoading}
+                    onClick={() => {
+                      onChange(sentence);
+                      onSubmit(sentence);
+                    }}
+                    className={`touch-target inline-flex min-h-9 items-center pl-3 pr-1.5 py-1.5 text-xs transition-all duration-150 active:scale-[0.98] disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 ${
+                      isSelected ? "font-bold text-white" : "font-medium text-stone-700"
+                    }`}
+                  >
+                    {sentence}
+                  </button>
+                  {onDeleteRecentSearch && (
+                    <button
+                      type="button"
+                      onClick={() => onDeleteRecentSearch(sentence)}
+                      aria-label={`최근 검색 '${sentence}' 삭제`}
+                      title="이 검색 기록 삭제"
+                      className={`inline-flex h-7 w-7 items-center justify-center rounded mr-0.5 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 ${
+                        isSelected
+                          ? "text-white hover:bg-emerald-800"
+                          : "text-stone-500 hover:bg-stone-200 hover:text-stone-900"
+                      }`}
+                    >
+                      <X className="h-3 w-3" />
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+            {onClearRecentSearches && recentSearches.length > 1 && (
+              <button
+                type="button"
+                onClick={onClearRecentSearches}
+                className="touch-target inline-flex min-h-9 shrink-0 items-center gap-1 rounded-md border border-stone-200 bg-stone-100 px-2.5 py-1.5 text-[11px] font-mono font-semibold text-stone-600 hover:bg-stone-200 hover:text-stone-900 transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700"
+              >
+                <Trash2 className="h-3 w-3" />
+                <span>전체 삭제</span>
+              </button>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

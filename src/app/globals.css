@@ -1,17 +1,53 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  /* Warm Stone (90%) + Restrained Sage & Amber (10%) Semantic Token System */
+  --surface-canvas: #fafaf9; /* stone-50: 눈부심 없는 따뜻한 미색 캔버스 */
+  --surface-muted: #f5f5f4; /* stone-100: 차분한 보조 서피스 */
+  --surface-subtle: #e7e5e4; /* stone-200: 바깥 배경 */
+  --surface-elevated: #ffffff; /* 카드 본문 서피스 */
+  --surface-inverse: #065f46; /* emerald-800: 깊이감 있는 세이지 그린 액센트 */
+  --border-subtle: #e7e5e4; /* stone-200: 따뜻한 1px 보더 */
+  --border-strong: #047857; /* emerald-700: 포커스 및 강조 보더 */
+  --text-primary: #1c1917; /* stone-900: 부드러운 차콜 본문 잉크 */
+  --text-secondary: #57534e; /* stone-600: 보조 텍스트 */
+  --text-muted: #78716c; /* stone-500: 캡션/힌트 텍스트 */
+  --text-inverse: #ffffff;
+  --status-danger: #ef4444;
+  --ease-out-quart: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --background: var(--surface-subtle);
+  --foreground: var(--text-primary);
+}
+
+@theme inline {
+  --color-canvas: var(--surface-canvas);
+  --color-surface: var(--surface-muted);
+  --color-subtle: var(--surface-subtle);
+  --color-elevated: var(--surface-elevated);
+  --color-inverse: var(--surface-inverse);
+  --color-line: var(--border-subtle);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text-primary);
+  --color-ink-secondary: var(--text-secondary);
+  --color-ink-muted: var(--text-muted);
+  --color-ink-inverse: var(--text-inverse);
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
+  caret-color: var(--border-strong);
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont,
     system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo",
     "Noto Sans KR", "Malgun Gothic", sans-serif;
   -webkit-tap-highlight-color: transparent;
+  overflow-wrap: break-word;
+}
+
+::selection {
+  background-color: #d1fae5; /* emerald-100 */
+  color: #064e3b; /* emerald-900 */
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -21,4 +57,79 @@ body {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* iOS/Android 노치 및 홈 인디케이터 Safe Area 패딩 지원 */
+.safe-top {
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(0.375rem, env(safe-area-inset-bottom));
+}
+
+/* 터치 디바이스(Coarse Pointer)에서 보조 버튼/칩의 터치 타겟 여유 확보 */
+@media (pointer: coarse) {
+  .touch-target {
+    min-height: 2.5rem; /* 40px */
+  }
+}
+
+/* ============================================================================
+ * [Motion System — Operate + Read (100ms~150ms Discipline)]
+ * - Focal Moment: KSL 어순 시퀀스(1 -> 2 -> 3)가 문장 문법에 맞춰 순서대로 이어지는 흐름
+ * - Continuity: 드로어/패널 전개 및 탭 전환 시 레이아웃 점프 없는 150ms 도착 감속
+ * - Feedback: 모든 버튼/칩의 즉각적인 active:scale-[0.98] + transition-colors duration-150
+ * ============================================================================ */
+@keyframes ksl-step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes ksl-panel-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.motion-step-enter {
+  animation: ksl-step-enter 150ms var(--ease-out-quart) both;
+  animation-delay: calc(min(var(--step-index, 0), 5) * 25ms);
+}
+
+.motion-panel-reveal {
+  animation: ksl-panel-reveal 140ms var(--ease-out-quart) both;
+}
+
+/* 전정기관 민감 사용자를 위한 동작 줄이기(Reduced Motion) 접근성 대체 경로 */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ping,
+  .animate-pulse {
+    animation: none !important;
+  }
+
+  .motion-step-enter,
+  .motion-panel-reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .group:hover img,
+  .group:hover div,
+  button:active,
+  a:active {
+    transform: none !important;
+  }
 }

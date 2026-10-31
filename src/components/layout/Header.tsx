@@ -1,134 +1,74 @@
 "use client";
 
-import { Check, HandHeart, KeyRound, Maximize2, Minimize2, X } from "lucide-react";
-import { useState } from "react";
+import { HandHeart, Maximize2, Minimize2 } from "lucide-react";
 
 interface HeaderProps {
   isLargeMode: boolean;
   onToggleLargeMode: () => void;
-  apiKey: string;
-  onSaveApiKey: (key: string) => void;
 }
 
 export default function Header({
   isLargeMode,
   onToggleLargeMode,
-  apiKey,
-  onSaveApiKey,
 }: HeaderProps) {
-  const [showKeyModal, setShowKeyModal] = useState(false);
-  const [draftKey, setDraftKey] = useState(apiKey);
-
-  const hasKey = Boolean(apiKey && apiKey.trim().length > 10);
-
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200 bg-white/95 backdrop-blur-md px-4 py-3 space-y-2.5">
+    <header className="sticky top-0 z-30 border-b border-stone-200 bg-stone-50/95 backdrop-blur-md px-4 pb-3 safe-top space-y-2.5">
+      {/* 키보드 및 스크린 리더 사용자를 위한 본문 바로가기 스킵 링크 */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-emerald-800 focus:px-3 focus:py-2 focus:text-xs focus:font-mono focus:font-bold focus:text-white focus:outline-none focus:ring-2 focus:ring-emerald-700 focus:ring-offset-2"
+      >
+        본문으로 바로가기
+      </a>
+
       <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-2.5">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-700 text-white">
             <HandHeart className="h-5 w-5" />
           </div>
-          <div>
+          <div className="min-w-0">
             <div className="flex items-center gap-1.5">
-              <h1 className="text-base font-extrabold tracking-tight text-slate-900">
-                나만의 수어 사전
+              <h1 className="text-base font-extrabold tracking-tight text-stone-900 whitespace-nowrap">
+                KSL 번역
               </h1>
-              <span className="rounded-md bg-blue-50 px-1.5 py-0.5 text-[10px] font-bold text-blue-700 border border-blue-200">
-                KSL 문맥번역
+              <span className="inline-flex shrink-0 items-center gap-1 rounded-md bg-emerald-50 px-1.5 py-0.5 text-[10px] font-mono font-bold text-emerald-800 border border-emerald-200">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" aria-hidden="true" />
+                AI
               </span>
             </div>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-stone-600 truncate">
               농인과 대화를 위한 소통 앱
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
-          {/* Gemini API 키 설정 버튼 */}
-          <button
-            type="button"
-            onClick={() => {
-              setDraftKey(apiKey);
-              setShowKeyModal((prev) => !prev);
-            }}
-            className={`inline-flex items-center gap-1 rounded-xl px-2.5 py-2 text-xs font-bold transition-all active:scale-95 ${
-              hasKey
-                ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-            }`}
-            title="Gemini API 키를 입력하면 AI 2단계 심층 문맥 번역이 활성화됩니다"
-          >
-            <KeyRound className="h-3.5 w-3.5" />
-            <span>{hasKey ? "AI 연결됨" : "AI 키"}</span>
-          </button>
-
+        <div className="flex items-center gap-2 shrink-0">
           {/* 어르신 화면 공유 모드 (크게 보기) 토글 버튼 */}
           <button
             type="button"
             onClick={onToggleLargeMode}
             aria-pressed={isLargeMode}
-            className={`inline-flex items-center gap-1 rounded-xl px-2.5 py-2 text-xs font-bold transition-all active:scale-95 ${
+            className={`touch-target inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-mono font-bold whitespace-nowrap transition-all duration-150 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 focus-visible:ring-offset-1 ${
               isLargeMode
-                ? "bg-amber-500 text-white shadow-sm ring-2 ring-amber-200"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+                ? "border-emerald-800 bg-emerald-700 text-white"
+                : "border-stone-200 bg-white text-stone-800 hover:bg-stone-100"
             }`}
             title="스마트폰 화면을 어르신께 함께 보여드릴 때 카드와 글씨를 크게 확대합니다"
           >
             {isLargeMode ? (
               <>
-                <Minimize2 className="h-3.5 w-3.5" />
-                <span>기본</span>
+                <Minimize2 className="h-3.5 w-3.5 shrink-0" />
+                <span>기본 화면</span>
               </>
             ) : (
               <>
-                <Maximize2 className="h-3.5 w-3.5" />
-                <span>크게</span>
+                <Maximize2 className="h-3.5 w-3.5 shrink-0" />
+                <span>크게 보기</span>
               </>
             )}
           </button>
         </div>
       </div>
-
-      {/* Gemini API 키 입력 드로어 */}
-      {showKeyModal && (
-        <div className="rounded-2xl border border-blue-200 bg-blue-50/70 p-3 space-y-2">
-          <div className="flex items-center justify-between">
-            <span className="text-xs font-extrabold text-blue-950">
-              🔑 Google Gemini API 키 설정
-            </span>
-            <button
-              type="button"
-              onClick={() => setShowKeyModal(false)}
-              className="text-slate-400 hover:text-slate-600"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </div>
-          <p className="text-[11px] text-slate-600 leading-snug">
-            Gemini API 키(`AIza...`)를 입력하면 <strong>Gemini 2.5 Flash</strong>가 복잡한 구어체·관용 표현의 문맥 의역과 동음이의어 수형 설명 비교를 직접 수행합니다.
-          </p>
-          <div className="flex items-center gap-1.5">
-            <input
-              type="password"
-              value={draftKey}
-              onChange={(e) => setDraftKey(e.target.value)}
-              placeholder="AIzaSy... (Google AI Studio API Key)"
-              className="flex-1 rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none"
-            />
-            <button
-              type="button"
-              onClick={() => {
-                onSaveApiKey(draftKey.trim());
-                setShowKeyModal(false);
-              }}
-              className="inline-flex items-center gap-1 rounded-xl bg-blue-600 px-3 py-1.5 text-xs font-bold text-white hover:bg-blue-700"
-            >
-              <Check className="h-3.5 w-3.5" />
-              <span>저장</span>
-            </button>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
