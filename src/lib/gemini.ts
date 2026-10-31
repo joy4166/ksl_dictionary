@@ -20,7 +20,7 @@ import {
 /**
  * 기본 Gemini 모델 설정 (초저지연 Flash 모델 우선)
  */
-const DEFAULT_MODEL = "gemini-2.5-flash";
+const DEFAULT_MODEL = "gemini-3.8-flash";
 let activeModelName = process.env.GEMINI_MODEL?.trim() || DEFAULT_MODEL;
 
 /**
