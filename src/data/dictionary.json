@@ -6,7 +6,7 @@
     "meaning": "만났을 때나 헤어질 때 하는 인사말 (안녕, 안녕하세요, 안녕히 계세요)",
     "category": "인사/안부",
     "signDescription": "두 주먹을 쥐고 바닥이 아래로 향하게 하여 가슴 앞에서 아래로 내린다.",
-    "actionSummary": "왼팔 등을 오른손으로 쓸어내린 뒤, 두 주먹을 쥐고 인사하듯 고개 숙이기",
+    "actionSummary": "두 주먹을 쥐고 바닥이 아래로 향하게 하여 가슴 앞에서 아래로 내린다.",
     "handShapeHint": "👊+🙇",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151226/235171/IMG000230296_700X466.jpg"
@@ -39,7 +39,7 @@
     "meaning": "음력 팔월 보름을 일컫는 명절 (한가위, 송편을 빚는 날)",
     "category": "시간/명절",
     "signDescription": "손끝을 맞대고 끝이 위로 등이 밖으로 향하게 세운 왼손의 손끝 위에서 4지부터 1지까지 오른손의 1·5지 끝을 맞댔다 뗐다 한 다음, 손등이 아래로 향하게 가볍게 쥔 두 주먹을 위로 올리며 손가락을 활짝 편다.",
-    "actionSummary": "왼손 바닥 위에서 오른손 손가락 끝으로 송편을 예쁘게 빚는 동작",
+    "actionSummary": "손끝을 맞대고 끝이 위로 등이 밖으로 향하게 세운 왼손의 손끝 위에서 4지부터 1지까지 오른손의 1·5지 끝을 맞댔다 뗐다 한 다음, 손등이 아래로 향하게 가볍게 쥔 두 주먹을 위로 올리며 손가락을 활짝 편다.",
     "handShapeHint": "🥟+🤏",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151231/237962/IMG000233861_700X466.jpg",
@@ -71,7 +71,7 @@
     "meaning": "좋게, 훌륭하게, 탈 없이 편안하게, 맛있게",
     "category": "일상/부사",
     "signDescription": "오른 손바닥으로 왼 팔등을 스쳐 내린다.",
-    "actionSummary": "오른손 엄지를 세워(👍) 코끝에 살짝 댔다가 앞으로 톡 내밀기",
+    "actionSummary": "오른 손바닥으로 왼 팔등을 스쳐 내린다.",
     "handShapeHint": "👍+👃",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151230/237257/IMG000232990_700X466.jpg"
@@ -103,7 +103,7 @@
     "meaning": "시간·주말·명절을 보내다, 생활하다, 살아가다",
     "category": "일상/동작",
     "signDescription": "1·5지를 펴서 바닥이 밖으로 향하게 쥔 두 주먹을 동시에 오른쪽으로 한 바퀴 돌린 다음, 오른손의 1·5지 끝을 맞대어 동그라미를 만들어 좌우로 가볍게 두 번 흔든다.",
-    "actionSummary": "양손 엄지·검지를 펴고(ㄴ자) 가슴 앞에서 위아래로 번갈아 돌리기",
+    "actionSummary": "1·5지를 펴서 바닥이 밖으로 향하게 쥔 두 주먹을 동시에 오른쪽으로 한 바퀴 돌린 다음, 오른손의 1·5지 끝을 맞대어 동그라미를 만들어 좌우로 가볍게 두 번 흔든다.",
     "handShapeHint": "👆+🔄",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151208/224280/IMG000216736_700X466.jpg",
@@ -139,7 +139,7 @@
     "meaning": "편지, 소포, 물건이나 사람을 다른 곳으로 발송하다 (※ 명절/시간을 보낼 때는 '지내다' 사용)",
     "category": "일상/동작",
     "signDescription": "손등이 아래로 향하게 편 오른 주먹은 앞에, 왼 주먹은 뒤에 놓이게 하여 1·2지를 펴면서 밖으로 약간 내민다.",
-    "actionSummary": "왼손 바닥 위에서 오른손을 앞으로 휙 밀어 보내는 동작 (물건/편지 발송)",
+    "actionSummary": "손등이 아래로 향하게 편 오른 주먹은 앞에, 왼 주먹은 뒤에 놓이게 하여 1·2지를 펴면서 밖으로 약간 내민다.",
     "handShapeHint": "✋+📤",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151223/233265/IMG000227856_700X466.jpg"
@@ -171,7 +171,7 @@
     "meaning": "한 주의 끝 무렵인 토요일과 일요일",
     "category": "시간/명절",
     "signDescription": "두 손을 펴서 손끝이 위로 향하게 하여 가슴 앞에서 밖으로 내려 손바닥이 위로 향하게 한 다음, 두 주먹의 1·5지를 펴서 1지가 위로 향하게 하여 가슴 앞에서 동시에 위로 올린다.",
-    "actionSummary": "턱 아래 주먹(토요일) 동작 후 볼 옆 검지(일요일)를 이어서 표현",
+    "actionSummary": "두 손을 펴서 손끝이 위로 향하게 하여 가슴 앞에서 밖으로 내려 손바닥이 위로 향하게 한 다음, 두 주먹의 1·5지를 펴서 1지가 위로 향하게 하여 가슴 앞에서 동시에 위로 올린다.",
     "handShapeHint": "👊+☝️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151129/218934/IMG000210547_700X466.jpg",
@@ -203,7 +203,7 @@
     "meaning": "지금 지나가고 있는 이날",
     "category": "시간/명절",
     "signDescription": "두 손을 펴서 손등이 위로 손끝이 밖으로 향하게 하여 가슴 앞에서 약간 아래로 내린다.",
-    "actionSummary": "양손 손바닥을 아래로 향하게 펴고 가슴 앞에서 동시에 살짝 내리기",
+    "actionSummary": "두 손을 펴서 손등이 위로 손끝이 밖으로 향하게 하여 가슴 앞에서 약간 아래로 내린다.",
     "handShapeHint": "👐+⬇️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151227/235200/IMG000230344_700X466.jpg"
@@ -233,7 +233,7 @@
     "meaning": "마음속에 일어나는 느낌이나 정서, 컨디션",
     "category": "감정/상태",
     "signDescription": "오른 손바닥을 가슴에 대고 왼쪽으로 두 바퀴 돌린다.",
-    "actionSummary": "오른손을 살짝 오므려 가슴에 대고 위아래로 쓸어 움직이기",
+    "actionSummary": "오른 손바닥을 가슴에 대고 왼쪽으로 두 바퀴 돌린다.",
     "handShapeHint": "🖐️+❤️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151214/227736/IMG000220693_700X466.jpg"
@@ -265,7 +265,7 @@
     "meaning": "상태나 의견이 어떠하다 ('어떠세요?', '어때요?')",
     "category": "인사/안부",
     "signDescription": "오른 주먹의 1지를 펴서 바닥이 밖으로 향하게 세워 왼쪽으로 흔든 다음, 1·2지를 펴서 구부려 세운 두 주먹의 4지 옆면을 두 번 맞부딪친다.",
-    "actionSummary": "양손 손바닥을 위로 펴고 좌우로 가볍게 흔들며 질문하는 표정 짓기",
+    "actionSummary": "오른 주먹의 1지를 펴서 바닥이 밖으로 향하게 세워 왼쪽으로 흔든 다음, 1·2지를 펴서 구부려 세운 두 주먹의 4지 옆면을 두 번 맞부딪친다.",
     "handShapeHint": "🤲+❓",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20210104/794551/IMG000358104_700X466.jpg",
@@ -295,7 +295,7 @@
     "meaning": "낮에 끼니로 먹는 음식 (점심 식사)",
     "category": "식사/간식",
     "signDescription": "오른 주먹의 1·2지를 펴서 1지만 구부려 이마 앞에 세운 다음, 오른손을 펴서 손바닥이 밖으로 손끝이 위로 향하게 세운 오른손을 밖으로 내민다.",
-    "actionSummary": "오른손 두 손가락을 얼굴 중앙에 댔다가 입으로 밥 먹는 동작 하기",
+    "actionSummary": "오른 주먹의 1·2지를 펴서 1지만 구부려 이마 앞에 세운 다음, 오른손을 펴서 손바닥이 밖으로 손끝이 위로 향하게 세운 오른손을 밖으로 내민다.",
     "handShapeHint": "✌️+🍚",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151227/235454/IMG000230680_700X466.jpg",
@@ -326,7 +326,7 @@
     "meaning": "음식의 맛이 좋다",
     "category": "식사/간식",
     "signDescription": "오른 주먹의 1·5지 옆면을 턱 왼쪽에 댔다가 오른쪽으로 이동시킨다.",
-    "actionSummary": "오른손 손바닥으로 볼에서 턱 쪽을 부드럽게 두 번 쓸어내리기",
+    "actionSummary": "오른 주먹의 1·5지 옆면을 턱 왼쪽에 댔다가 오른쪽으로 이동시킨다.",
     "handShapeHint": "🤚+😋",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231569/IMG000225623_700X466.jpg"
@@ -357,7 +357,7 @@
     "meaning": "음식이나 밥을 입에 넣어 삼키다 (드시다, 식사하다)",
     "category": "식사/간식",
     "signDescription": "오른손을 펴서, 손바닥이 위로 향하게 하여 두 번 입으로 올린다.",
-    "actionSummary": "왼손으로 밥그릇을 받치고 오른손으로 밥을 떠서 입으로 두 번 가져가기",
+    "actionSummary": "오른손을 펴서, 손바닥이 위로 향하게 하여 두 번 입으로 올린다.",
     "handShapeHint": "🥣+👄",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151218/230026/IMG000223590_700X466.jpg"
@@ -389,7 +389,7 @@
     "meaning": "일이 다 이루어지다, 완료되다 (수어에서 과거 시제 '~했어요/했습니까?'를 나타낼 때 문장 끝에 사용)",
     "category": "시간/명절",
     "signDescription": "손끝이 밖으로 향하게 모로 세운 왼 손바닥에 오른 손끝을 가져다 댄다.",
-    "actionSummary": "양손을 가슴 앞에서 마주 보게 폈다가 양옆으로 당기며 주먹 쥐기",
+    "actionSummary": "손끝이 밖으로 향하게 모로 세운 왼 손바닥에 오른 손끝을 가져다 댄다.",
     "handShapeHint": "👐+✊",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151128/218049/IMG000209479_700X466.jpg"
@@ -424,7 +424,7 @@
     "meaning": "계속하여, 그 위에 보태어 추가로",
     "category": "식사/간식",
     "signDescription": "1·5지를 펴서 1지가 위에 5지가 아래에 놓이게 하여 약간 구부린 오른 주먹을, 같은 모양의 왼 주먹의 5지 밑에 댔다가 왼 주먹의 1지 위에 올려놓는다",
-    "actionSummary": "왼손 주먹 위에 오른손 손바닥을 얹어 위로 한 번 더 올리기",
+    "actionSummary": "1·5지를 펴서 1지가 위에 5지가 아래에 놓이게 하여 약간 구부린 오른 주먹을, 같은 모양의 왼 주먹의 5지 밑에 댔다가 왼 주먹의 1지 위에 올려놓는다",
     "handShapeHint": "👊+✋⬆️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151127/217618/IMG000208962_700X466.jpg"
@@ -454,7 +454,7 @@
     "meaning": "윗사람에게 물건이나 음식을 주다 ('드릴까요?', '바치다')",
     "category": "식사/간식",
     "signDescription": "손바닥이 위로, 손끝이 밖으로 향하게 편 두 손을 가슴 앞에서 약간 위로 올리며 밖으로 내민다.",
-    "actionSummary": "양손 손바닥을 위로 모아 어르신 쪽으로 두 손 모아 공손히 내밀기",
+    "actionSummary": "손바닥이 위로, 손끝이 밖으로 향하게 편 두 손을 가슴 앞에서 약간 위로 올리며 밖으로 내민다.",
     "handShapeHint": "🤲+➡️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151223/233271/IMG000227702_700X466.jpg"
@@ -487,7 +487,7 @@
     "meaning": "마시는 식수, 음료",
     "category": "식사/간식",
     "signDescription": "오른 주먹의 1·5지를 펴서 구부려 입으로 약간 기울여 올린다.",
-    "actionSummary": "오른손으로 컵을 쥔 모양을 만들어 입에 대고 마시는 동작",
+    "actionSummary": "오른 주먹의 1·5지를 펴서 구부려 입으로 약간 기울여 올린다.",
     "handShapeHint": "🥛+👄",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151218/230033/IMG000223602_700X466.jpg"
@@ -515,7 +515,7 @@
     "meaning": "어느 곳, 어느 부위",
     "category": "복약/건강",
     "signDescription": "오른 주먹의 1지를 펴서 바닥이 밖으로 향하게 세워 왼쪽으로 흔든 다음, 손바닥이 아래로 향하게 반쯤 구부린 오른손을 가슴 앞에서 약간 내리다가 멈춘다.",
-    "actionSummary": "양손 검지(☝️)를 펴고 좌우로 살랑살랑 흔들며 물어보는 표정 짓기",
+    "actionSummary": "오른 주먹의 1지를 펴서 바닥이 밖으로 향하게 세워 왼쪽으로 흔든 다음, 손바닥이 아래로 향하게 반쯤 구부린 오른손을 가슴 앞에서 약간 내리다가 멈춘다.",
     "handShapeHint": "☝️+↔️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20210104/794550/IMG000358103_700X466.jpg",
@@ -544,7 +544,7 @@
     "meaning": "몸이 편찮으시다, 통증이 있다",
     "category": "복약/건강",
     "signDescription": "손바닥이 위로 향하게 약간 오므린 오른손을 좌우로 흔든다.",
-    "actionSummary": "오른손을 볼 옆에 대고 걱정스러운 표정으로 손을 살짝 떨듯 흔들기",
+    "actionSummary": "손바닥이 위로 향하게 약간 오므린 오른손을 좌우로 흔든다.",
     "handShapeHint": "🤚+😣",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151226/235081/IMG000230111_700X466.jpg"
@@ -574,7 +574,7 @@
     "meaning": "병이나 상처를 고치기 위해 먹거나 바르는 약 (약을 복용하다)",
     "category": "복약/건강",
     "signDescription": "오른손의 2지로, 손바닥이 위로 향하게 편 왼 손바닥을 전후로 두 번 문지른다.",
-    "actionSummary": "왼손 바닥을 오른손 손가락으로 비빈 후 입에 알약을 털어 넣는 동작",
+    "actionSummary": "오른손의 2지로, 손바닥이 위로 향하게 편 왼 손바닥을 전후로 두 번 문지른다.",
     "handShapeHint": "💊+👄",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151227/235759/IMG000231035_700X466.jpg"
@@ -603,7 +603,7 @@
     "meaning": "시각이나 때 ('~할 시간이에요')",
     "category": "시간/명절",
     "signDescription": "손등이 위로 향하게 쥔 왼 주먹의 손목등에 오른 주먹의 1지를 펴서 모로 세워 댔다가 시계 바늘이 도는 방향으로 한 바퀴 돌려 다시 댄다(한 시간을 나타내는 경우).",
-    "actionSummary": "오른손 검지 끝으로 왼쪽 손목(손목시계 자리)을 톡톡 두드리기",
+    "actionSummary": "손등이 위로 향하게 쥔 왼 주먹의 손목등에 오른 주먹의 1지를 펴서 모로 세워 댔다가 시계 바늘이 도는 방향으로 한 바퀴 돌려 다시 댄다(한 시간을 나타내는 경우).",
     "handShapeHint": "⌚+👆",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151209/224951/IMG000217530_700X466.jpg"
@@ -632,7 +632,7 @@
     "meaning": "조금 뒤에, 잠깐 동안 ('잠시 후')",
     "category": "시간/명절",
     "signDescription": "1·5지 끝을 맞대어 동그라미를 만든 두 주먹을 모로 세워 좌우에서 접근시켜 맞댄 다음, 두 손을 펴서 손끝이 밖으로 향하게 모로 세워 두 손바닥이 마주 보게 하여 어깨 높이에서 가슴 높이로 내린다.",
-    "actionSummary": "오른손 검지 끝을 엄지로 살짝 집어 '조금/잠깐'을 표현하기",
+    "actionSummary": "1·5지 끝을 맞대어 동그라미를 만든 두 주먹을 모로 세워 좌우에서 접근시켜 맞댄 다음, 두 손을 펴서 손끝이 밖으로 향하게 모로 세워 두 손바닥이 마주 보게 하여 어깨 높이에서 가슴 높이로 내린다.",
     "handShapeHint": "🤏+⏱️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151201/220072/IMG000211792_700X466.jpg",
@@ -663,7 +663,7 @@
     "meaning": "건강을 위해 몸을 움직이는 운동이나 스트레칭",
     "category": "프로그램",
     "signDescription": "두 주먹을 어깨 위로 동시에 두 번 올렸다 내린 다음, 손바닥이 아래로 향하게 반쯤 구부린 오른손을 가슴 앞에서 약간 내리다가 멈춘다.",
-    "actionSummary": "양손 주먹을 쥐고 어깨 옆에서 위아래로 힘차게 체조하듯 뻗기",
+    "actionSummary": "두 주먹을 어깨 위로 동시에 두 번 올렸다 내린 다음, 손바닥이 아래로 향하게 반쯤 구부린 오른손을 가슴 앞에서 약간 내리다가 멈춘다.",
     "handShapeHint": "💪+🙌",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151225/234117/IMG000228967_700X466.jpg",
@@ -694,7 +694,7 @@
     "meaning": "일이나 프로그램을 처음으로 열거나 출발하다",
     "category": "프로그램",
     "signDescription": "손끝이 밖으로, 손등이 옆으로 향하게 편 두 손의 손바닥을 맞댔다가 양옆으로 벌린다.",
-    "actionSummary": "양손을 가슴 앞에 나란히 세웠다가 앞으로 동시에 탁 내려 시작 알리기",
+    "actionSummary": "손끝이 밖으로, 손등이 옆으로 향하게 편 두 손의 손바닥을 맞댔다가 양옆으로 벌린다.",
     "handShapeHint": "👐+🎬",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151227/235552/IMG000230795_700X466.jpg"
@@ -728,7 +728,7 @@
     "meaning": "말하는 사람과 가까운 이 자리, 이곳",
     "category": "프로그램",
     "signDescription": "오른 주먹의 1지를 펴서 끝이 약간 아래로 향하게 하여 약간 내린다.",
-    "actionSummary": "오른손 검지(👇)로 앞쪽 자리를 부드럽게 가리키기",
+    "actionSummary": "오른 주먹의 1지를 펴서 끝이 약간 아래로 향하게 하여 약간 내린다.",
     "handShapeHint": "👇+📍",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151225/234509/IMG000229417_700X466.jpg"
@@ -758,7 +758,7 @@
     "meaning": "의자나 자리에 앉다 ('앉아 주세요')",
     "category": "프로그램",
     "signDescription": "왼 주먹의 1·2지를 펴서 끝이 오른쪽으로 등이 위로 향하게 하고, 그 등에 오른 주먹의 1·2지를 펴서 구부려 바닥을 댄다.",
-    "actionSummary": "왼손 손등 위에 오른손 손바닥을 포개어 아래로 지그시 누르기",
+    "actionSummary": "왼 주먹의 1·2지를 펴서 끝이 오른쪽으로 등이 위로 향하게 하고, 그 등에 오른 주먹의 1·2지를 펴서 구부려 바닥을 댄다.",
     "handShapeHint": "✋+⬇️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151121/214187/IMG000205053_700X466.jpg"
@@ -786,7 +786,7 @@
     "meaning": "실수나 위험이 없도록 주의를 기울이다 ('조심히')",
     "category": "귀가/송영",
     "signDescription": "모로 세운 왼 주먹 위에 모로 세운 오른 주먹을 올려놓고 안으로 당긴다.",
-    "actionSummary": "오른손 검지 끝으로 오른쪽 눈 바로 아래를 톡톡 두 번 짚기",
+    "actionSummary": "모로 세운 왼 주먹 위에 모로 세운 오른 주먹을 올려놓고 안으로 당긴다.",
     "handShapeHint": "☝️+👁️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151228/236159/IMG000231546_700X466.jpg"
@@ -821,7 +821,7 @@
     "meaning": "집이나 원래 있던 곳으로 귀가하다 ('들어가세요', '집에 가다')",
     "category": "귀가/송영",
     "signDescription": "오른 주먹의 1·2지를 펴서 바닥이 밖으로 향하게 세웠다가 손등이 밖으로 향하도록 손목을 돌린 다음, 오른손을 펴서 손등이 밖으로 손끝이 아래로 향하게 하여 내밀며 손끝을 약간 들어 올린다.",
-    "actionSummary": "오른손을 뒤집으며 집 방향(앞쪽)으로 부드럽게 보내는 동작",
+    "actionSummary": "오른 주먹의 1·2지를 펴서 바닥이 밖으로 향하게 세웠다가 손등이 밖으로 향하도록 손목을 돌린 다음, 오른손을 펴서 손등이 밖으로 손끝이 아래로 향하게 하여 내밀며 손끝을 약간 들어 올린다.",
     "handShapeHint": "🤚+🏠",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151218/229826/IMG000223355_700X466.jpg",
@@ -853,7 +853,7 @@
     "meaning": "오늘의 바로 다음 날",
     "category": "시간/명절",
     "signDescription": "오른 주먹의 1지를 펴서 바닥이 밖으로 향하게 세워 오른쪽 눈 옆에 댔다가 밖으로 내민다.",
-    "actionSummary": "오른손 검지를 머리 옆에 댔다가 앞쪽으로 호를 그리며 내밀기",
+    "actionSummary": "오른 주먹의 1지를 펴서 바닥이 밖으로 향하게 세워 오른쪽 눈 옆에 댔다가 밖으로 내민다.",
     "handShapeHint": "☝️+↪️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231070/IMG000224974_700X466.jpg"
@@ -880,7 +880,7 @@
     "meaning": "다시 한 번, 거듭하여",
     "category": "귀가/송영",
     "signDescription": "오른 주먹의 5지 바닥을 1·2지의 손톱에 가볍게 대고 손등이 밖으로 향하게 하여 왼쪽 아래로 내리며 1·2지를 편다.",
-    "actionSummary": "오른손 엄지·검지를 펴고 앞으로 한 번 더 찍듯 내밀기",
+    "actionSummary": "오른 주먹의 5지 바닥을 1·2지의 손톱에 가볍게 대고 손등이 밖으로 향하게 하여 왼쪽 아래로 내리며 1·2지를 편다.",
     "handShapeHint": "✌️+🔁",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151219/230474/IMG000224212_700X466.jpg"
@@ -908,7 +908,7 @@
     "meaning": "서로 마주 보고 대면하다 ('봬요', '만나요')",
     "category": "귀가/송영",
     "signDescription": "두 주먹의 1지를 펴서 마주 세웠다가 중앙으로 모아 마주 댄다.",
-    "actionSummary": "양손 검지(☝️☝️)를 세워 양옆에서 가운데로 가져와 마주 보게 하기",
+    "actionSummary": "두 주먹의 1지를 펴서 마주 세웠다가 중앙으로 모아 마주 댄다.",
     "handShapeHint": "☝️+☝️",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151220/231284/IMG000225243_700X466.jpg"
@@ -939,7 +939,7 @@
     "meaning": "은혜나 친절에 대하여 감사하는 마음이 있다 ('감사합니다')",
     "category": "인사/안부",
     "signDescription": "손끝이 밖으로 향하게 펴서 모로 세운 오른손의 4지 옆면을 손바닥이 아래로 향하게 편 왼 손등에 두 번 댄다.",
-    "actionSummary": "왼손 손등 위를 오른손 옆날로 가볍게 통통 두 번 두드리기",
+    "actionSummary": "손끝이 밖으로 향하게 펴서 모로 세운 오른손의 4지 옆면을 손바닥이 아래로 향하게 편 왼 손등에 두 번 댄다.",
     "handShapeHint": "🤚+🙏",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151204/221972/IMG000214002_700X466.jpg"
@@ -967,7 +967,7 @@
     "meaning": "별일 없다, 걱정할 필요 없다, 좋다",
     "category": "복약/건강",
     "signDescription": "오른 주먹의 4지를 펴서 끝 바닥을 턱에 가볍게 두 번 댄다.",
-    "actionSummary": "오른손 가운뎃손가락 끝을 턱에 댔다가 앞으로 가볍게 떼기",
+    "actionSummary": "오른 주먹의 4지를 펴서 끝 바닥을 턱에 가볍게 두 번 댄다.",
     "handShapeHint": "턱+👌",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151216/228644/IMG000221836_700X466.jpg"
@@ -996,7 +996,7 @@
     "meaning": "용변을 보거나 손을 씻는 곳",
     "category": "복약/건강",
     "signDescription": "오른손을 펴서 손바닥이 밖으로 향하게 세워 2·3·4지를 벌리고 1·5지를 ‘C’자 모양으로 구부린다.",
-    "actionSummary": "양손 검지·중지를 구부려 가슴 앞에서 마주 대어 지붕 모양 만들기",
+    "actionSummary": "오른손을 펴서 손바닥이 밖으로 향하게 세워 2·3·4지를 벌리고 1·5지를 ‘C’자 모양으로 구부린다.",
     "handShapeHint": "✌️+🚻",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151120/213292/IMG000203972_700X466.jpg"
@@ -1021,7 +1021,7 @@
     "meaning": "음식을 충분히 먹어 배가 차다",
     "category": "식사/간식",
     "signDescription": "왼손을 손등이 밖으로 손끝이 오른쪽으로 향하게 배 앞에 내놓고 오른손을 손등이 밖으로 손끝이 왼쪽으로 향하게 하여 배에 댔다가 내밀어 왼 손바닥에 댄다.",
-    "actionSummary": "배 앞에서 손을 둥글게 내밀며 배를 두드리거나 목까지 차오른 동작 하기",
+    "actionSummary": "왼손을 손등이 밖으로 손끝이 오른쪽으로 향하게 배 앞에 내놓고 오른손을 손등이 밖으로 손끝이 왼쪽으로 향하게 하여 배에 댔다가 내밀어 왼 손바닥에 댄다.",
     "handShapeHint": "🫃+✋",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151206/223091/IMG000215372_700X466.jpg"
@@ -1048,7 +1048,7 @@
     "meaning": "피로를 풀기 위해 휴식을 취하다",
     "category": "복약/건강",
     "signDescription": "두 손을 펴서 손끝이 위로 향하게 하여 가슴 앞에서 밖으로 내려 손바닥이 위로 향하게 한다.",
-    "actionSummary": "양손 엄지를 양쪽 가슴에 대고 편안하게 숨을 고르는 동작",
+    "actionSummary": "두 손을 펴서 손끝이 위로 향하게 하여 가슴 앞에서 밖으로 내려 손바닥이 위로 향하게 한다.",
     "handShapeHint": "👍+😌",
     "imageUrls": [
       "https://sldict.korean.go.kr/multimedia/multimedia_files/convert/20151222/232741/IMG000227135_700X466.jpg"

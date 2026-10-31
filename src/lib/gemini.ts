@@ -519,23 +519,36 @@ export async function translateKoreanToKsl(
 }
 
 /**
- * [기능 ④] 손동작 묘사 기반 '수어 역검색'
+ * [기능 ④] 손동작 묘사 기반 '수어 역검색' (Garu 형태소 원형 추출 + 수형 인덱스 매칭 + Gemini 리랭킹)
  */
 export async function searchReverseSignByMotion(
   descriptionQuery: string,
   selectedChips: string[] = [],
   customApiKey?: string
 ): Promise<ReverseSearchCandidate[]> {
+  const cleanDesc = descriptionQuery.trim();
+  let garuLemmas: string[] = [];
+
+  if (cleanDesc.length > 0) {
+    const { tokens } = await extractMorphemesWithGaru(cleanDesc);
+    garuLemmas = tokens.map((t) => t.base);
+  }
+
   const localCandidates = searchReverseByMotionLocal(
-    descriptionQuery,
-    selectedChips
+    cleanDesc,
+    selectedChips,
+    garuLemmas
   );
   const genAI = getGeminiClient(customApiKey);
 
-  const hasUserQuery =
-    descriptionQuery.trim().length > 0 || selectedChips.length > 0;
+  const hasUserQuery = cleanDesc.length > 0 || selectedChips.length > 0;
 
-  if (!hasUserQuery || !genAI) {
+  // 로컬 Garu 형태소+수형 인덱스 매칭 점수가 충분히 높거나(80점 이상) API 키가 없으면 즉시 반환
+  if (
+    !hasUserQuery ||
+    !genAI ||
+    (localCandidates.length > 0 && localCandidates[0].score >= 80)
+  ) {
     return localCandidates;
   }
 

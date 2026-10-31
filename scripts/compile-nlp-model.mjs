@@ -1070,8 +1070,101 @@ async function buildModel() {
     };
   }
 
+  // [3] 수어 역검색용 Garu 형태소 기반 수형·동작 원형 인덱스(reverseMotionIndex) 컴파일
+  const reverseMotionIndex = {};
+  for (const entry of dictionary) {
+    // 국립국어원 한국수어사전 공식 수형 설명(signDescription)만 순수하게 인덱싱하여 이전 태그 오매칭 방지
+    const motionCorpus = `${entry.signDescription} ${entry.actionSummary}`;
+    const bases = new Set(extractContentBases(garu, motionCorpus));
+
+    // 국립국어원 수형 전문 표기(1지=검지, 2지=중지, 4지=새끼손가락, 5지=엄지, 상하, 밖으로 내밀다)를 일상 동작 어휘와 양방향 연결
+    if (/(?<![·\d])1지|1·|검지/.test(motionCorpus)) {
+      bases.add("검지");
+      bases.add("1지");
+    }
+    if (/1·2지|2지|중지|V자/.test(motionCorpus)) {
+      bases.add("V자");
+      bases.add("2지");
+      bases.add("중지");
+    }
+    if (/4지|새끼손가락|소지/.test(motionCorpus)) {
+      bases.add("새끼손가락");
+      bases.add("4지");
+    }
+    if (/5지|엄지/.test(motionCorpus)) {
+      bases.add("엄지");
+      bases.add("5지");
+    }
+    if (/두\s*(손|주먹)|양손/.test(motionCorpus)) {
+      bases.add("양손");
+    }
+    if (/코끝|코에|코\s/.test(motionCorpus)) {
+      bases.add("코");
+      bases.add("코끝");
+    }
+    if (/입술|입가|입에|입으로|입\s/.test(motionCorpus)) {
+      bases.add("입");
+      bases.add("입술");
+    }
+    if (/뺨|볼/.test(motionCorpus)) {
+      bases.add("볼");
+      bases.add("뺨");
+    }
+    if (/손목/.test(motionCorpus)) {
+      bases.add("손목");
+    }
+    if (/손등|팔등/.test(motionCorpus)) {
+      bases.add("손등");
+    }
+    if (/구부리|굽히|접어|접는|구부려/.test(motionCorpus)) {
+      bases.add("구부리다");
+      bases.add("접다");
+    }
+    if (/두드리|톡톡|통통|(?<!맞부딪)치며|(?<!맞부딪)친다/.test(motionCorpus)) {
+      bases.add("두드리다");
+      bases.add("치다");
+      bases.add("톡톡");
+    }
+    if (/비비|비빈|문지르|문질러|닦아/.test(motionCorpus)) {
+      bases.add("비비다");
+      bases.add("문지르다");
+    }
+    if (/스치|스쳐|쓸어|그은/.test(motionCorpus)) {
+      bases.add("스치다");
+      bases.add("쓸다");
+    }
+    if (/(?<!맞)(댔|대고|대며|대어|댄다|대다|닿게|닿다)/.test(motionCorpus)) {
+      bases.add("대다");
+    }
+    if (/맞대|맞댔|마주|붙이|붙인/.test(motionCorpus)) {
+      bases.add("맞대다");
+      bases.add("붙이다");
+    }
+    if (/떼며|떼면서|뗐다|떼고|벌리|벌린/.test(motionCorpus)) {
+      bases.add("떼다");
+      bases.add("벌리다");
+    }
+    if (/건다|걸고|걸어/.test(motionCorpus)) {
+      bases.add("걸다");
+    }
+    if (/상하|위아래|올렸다 내|올리고 내/.test(motionCorpus)) {
+      bases.add("위아래");
+      bases.add("상하");
+    }
+    if (/좌우|양옆/.test(motionCorpus)) {
+      bases.add("좌우");
+    }
+    // '손바닥이 밖으로 향하게'(수향)는 제외하고, 실제 앞/밖으로 내미는 수동(Movement)만 인덱싱
+    if (/밖으로\s*(내밀|내민|밀|내미)|앞으로|내밀|내민/.test(motionCorpus)) {
+      bases.add("앞으로");
+      bases.add("내밀다");
+    }
+
+    reverseMotionIndex[entry.id] = Array.from(bases);
+  }
+
   const finalModel = {
-    version: "2.0.0-ksl-nlp",
+    version: "2.1.0-ksl-nlp",
     generatedAt: new Date().toISOString(),
     stats: {
       totalDictionaryEntries: dictionary.length,
@@ -1081,6 +1174,7 @@ async function buildModel() {
     },
     idioms: OFFICIAL_KSL_IDIOMS,
     homonyms: compiledHomonyms,
+    reverseMotionIndex,
   };
 
   fs.writeFileSync(MODEL_OUT_PATH, JSON.stringify(finalModel, null, 2), "utf-8");

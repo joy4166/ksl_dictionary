@@ -3,7 +3,7 @@
  * [나만의 수어 사전] 공식 데이터셋 기반 KSL 관용구 FST + 동음이의어 TF-IDF 문맥 엔진 & 초고속 응답 QA 스크립트
  */
 
-import { translateKoreanToKsl } from "../src/lib/gemini";
+import { translateKoreanToKsl, searchReverseSignByMotion } from "../src/lib/gemini";
 
 function assert(condition: boolean, message: string) {
   if (!condition) {
@@ -248,7 +248,51 @@ async function runTests() {
   console.log(`\n⏱️  [속도 검증] 14개 핵심 문장 평균 번역 소요 시간: ${avgMs.toFixed(2)}ms (목표 < 100ms 완벽 달성!)`);
   assert(avgMs < 100, `사전으로서의 즉각 응답 속도(${avgMs.toFixed(2)}ms < 100ms) 검증 통과`);
 
-  console.log("\n🎉 모든 관용어 FST · 동음이의어 TF-IDF 문맥 판별 · 초고속 응답 QA를 100% 통과했습니다!");
+  // 4. 수어 역검색(Reverse Sign Search) 구어체 동작 묘사 & 칩 매칭 테스트
+  console.log("\n--- [검증 4] 수어 역검색(Reverse Search) 구어체 동작 묘사 & 칩 매칭 테스트 ---");
+  const reverseCases = [
+    {
+      query: "검지를 입에 대고 앞으로 내밀어요",
+      chips: [],
+      expectedTopWord: "말하다",
+      desc: "구어체 복합 동작('검지를 입에 대고 앞으로 내밀어요' -> 1지+입+대다+내밀다)",
+    },
+    {
+      query: "손목을 두드렸어요",
+      chips: ["손목/손등", "두드리기"],
+      expectedTopWord: "선생님",
+      desc: "신체 위치+과거형 동사 활용형('손목을 두드렸어요' -> 손목+두드리다)",
+    },
+    {
+      query: "오른뺨을 두드렸어요",
+      chips: [],
+      expectedTopWord: "간식",
+      desc: "세부 안면 부위+동작('오른뺨을 두드렸어요' -> 뺨+두드리다)",
+    },
+    {
+      query: "새끼손가락을 걸었어요",
+      chips: [],
+      expectedTopWord: "약속",
+      desc: "국립국어원 수지 기호 매핑('새끼손가락을 걸었어요' -> 4지+걸다)",
+    },
+    {
+      query: "가슴을 손바닥으로 돌렸어요",
+      chips: ["가슴 앞", "돌리기"],
+      expectedTopWord: "기분",
+      desc: "수위+수형+수동 결합('가슴을 손바닥으로 돌렸어요' -> 가슴+손바닥+돌리다)",
+    },
+  ];
+
+  for (const rc of reverseCases) {
+    const results = await searchReverseSignByMotion(rc.query, rc.chips);
+    const top3Words = results.slice(0, 3).map((r) => r.sign.word);
+    assert(
+      top3Words.includes(rc.expectedTopWord),
+      `${rc.desc} -> 상위 후보 [${top3Words.join(", ")}] 내 '${rc.expectedTopWord}' 적중!`
+    );
+  }
+
+  console.log("\n🎉 모든 관용어 FST · 동음이의어 TF-IDF · 수어 역검색 · 초고속 응답 QA를 100% 통과했습니다!");
 }
 
 runTests();
